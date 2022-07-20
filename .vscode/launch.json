@@ -1,0 +1,39 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "args": [
+            // for train
+            "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/14_reg_shufflenetv2_mpii_256x256_dsnt.py", 
+            "--gpu-id","4",
+
+            // for test
+            // "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/13_reg_shufflenetv2_mpii_256x256_dsnt.py", 
+            // "work_dirs/13_reg_shufflenetv2_mpii_256x256_dsnt/epoch_210.pth",
+
+            // for img demo
+            // "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/13_reg_shufflenetv2_mpii_256x256_dsnt.py", 
+            // "work_dirs/13_reg_shufflenetv2_mpii_256x256_dsnt/epoch_210.pth",
+            // "--img-root","/data/tfj/workspace/datasets/MPII/images",
+            // "--json-file","/data/tfj/workspace/datasets/MPII/annotations/my_label/mpii_coco_format_val.json",
+            // "--out-img-root","./tmp_save"
+
+
+
+
+
+
+
+            ]
+        }
+    ]
+}

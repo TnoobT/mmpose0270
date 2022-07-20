@@ -1,0 +1,1340 @@
+2022-07-17 05:44:25,680 - mmpose - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.9.7 (default, Sep 16 2021, 13:09:58) [GCC 7.5.0]
+CUDA available: True
+GPU 0,1,2,3,4,5,6,7: NVIDIA GeForce RTX 3090
+CUDA_HOME: /usr/local/cuda-11.1
+NVCC: Cuda compilation tools, release 11.1, V11.1.74
+GCC: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+PyTorch: 1.9.1+cu111
+PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.1.2 (Git Hash 98be7e8afa711dc9b66c8ff3504129cb82013cdb)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.1
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86
+  - CuDNN 8.0.5
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.1, CUDNN_VERSION=8.0.5, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.9.1, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+TorchVision: 0.10.1+cu111
+OpenCV: 4.5.5
+MMCV: 1.5.1
+MMCV Compiler: GCC 7.5
+MMCV CUDA Compiler: 11.1
+MMPose: 0.27.0+
+------------------------------------------------------------
+
+2022-07-17 05:44:25,681 - mmpose - INFO - Distributed training: True
+2022-07-17 05:44:28,888 - mmpose - INFO - Config:
+checkpoint_config = dict(interval=10)
+log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
+log_level = 'INFO'
+load_from = None
+resume_from = None
+dist_params = dict(backend='nccl')
+workflow = [('train', 1)]
+opencv_num_threads = 0
+mp_start_method = 'fork'
+dataset_info = dict(
+    dataset_name='mpii',
+    paper_info=dict(
+        author=
+        'Mykhaylo Andriluka and Leonid Pishchulin and Peter Gehler and Schiele, Bernt',
+        title=
+        '2D Human Pose Estimation: New Benchmark and State of the Art Analysis',
+        container=
+        'IEEE Conference on Computer Vision and Pattern Recognition (CVPR)',
+        year='2014',
+        homepage='http://human-pose.mpi-inf.mpg.de/'),
+    keypoint_info=dict({
+        0:
+        dict(
+            name='right_ankle',
+            id=0,
+            color=[255, 128, 0],
+            type='lower',
+            swap='left_ankle'),
+        1:
+        dict(
+            name='right_knee',
+            id=1,
+            color=[255, 128, 0],
+            type='lower',
+            swap='left_knee'),
+        2:
+        dict(
+            name='right_hip',
+            id=2,
+            color=[255, 128, 0],
+            type='lower',
+            swap='left_hip'),
+        3:
+        dict(
+            name='left_hip',
+            id=3,
+            color=[0, 255, 0],
+            type='lower',
+            swap='right_hip'),
+        4:
+        dict(
+            name='left_knee',
+            id=4,
+            color=[0, 255, 0],
+            type='lower',
+            swap='right_knee'),
+        5:
+        dict(
+            name='left_ankle',
+            id=5,
+            color=[0, 255, 0],
+            type='lower',
+            swap='right_ankle'),
+        6:
+        dict(name='pelvis', id=6, color=[51, 153, 255], type='lower', swap=''),
+        7:
+        dict(name='thorax', id=7, color=[51, 153, 255], type='upper', swap=''),
+        8:
+        dict(
+            name='upper_neck',
+            id=8,
+            color=[51, 153, 255],
+            type='upper',
+            swap=''),
+        9:
+        dict(
+            name='head_top', id=9, color=[51, 153, 255], type='upper',
+            swap=''),
+        10:
+        dict(
+            name='right_wrist',
+            id=10,
+            color=[255, 128, 0],
+            type='upper',
+            swap='left_wrist'),
+        11:
+        dict(
+            name='right_elbow',
+            id=11,
+            color=[255, 128, 0],
+            type='upper',
+            swap='left_elbow'),
+        12:
+        dict(
+            name='right_shoulder',
+            id=12,
+            color=[255, 128, 0],
+            type='upper',
+            swap='left_shoulder'),
+        13:
+        dict(
+            name='left_shoulder',
+            id=13,
+            color=[0, 255, 0],
+            type='upper',
+            swap='right_shoulder'),
+        14:
+        dict(
+            name='left_elbow',
+            id=14,
+            color=[0, 255, 0],
+            type='upper',
+            swap='right_elbow'),
+        15:
+        dict(
+            name='left_wrist',
+            id=15,
+            color=[0, 255, 0],
+            type='upper',
+            swap='right_wrist')
+    }),
+    skeleton_info=dict({
+        0:
+        dict(link=('right_ankle', 'right_knee'), id=0, color=[255, 128, 0]),
+        1:
+        dict(link=('right_knee', 'right_hip'), id=1, color=[255, 128, 0]),
+        2:
+        dict(link=('right_hip', 'pelvis'), id=2, color=[255, 128, 0]),
+        3:
+        dict(link=('pelvis', 'left_hip'), id=3, color=[0, 255, 0]),
+        4:
+        dict(link=('left_hip', 'left_knee'), id=4, color=[0, 255, 0]),
+        5:
+        dict(link=('left_knee', 'left_ankle'), id=5, color=[0, 255, 0]),
+        6:
+        dict(link=('pelvis', 'thorax'), id=6, color=[51, 153, 255]),
+        7:
+        dict(link=('thorax', 'upper_neck'), id=7, color=[51, 153, 255]),
+        8:
+        dict(link=('upper_neck', 'head_top'), id=8, color=[51, 153, 255]),
+        9:
+        dict(link=('upper_neck', 'right_shoulder'), id=9, color=[255, 128, 0]),
+        10:
+        dict(
+            link=('right_shoulder', 'right_elbow'), id=10, color=[255, 128,
+                                                                  0]),
+        11:
+        dict(link=('right_elbow', 'right_wrist'), id=11, color=[255, 128, 0]),
+        12:
+        dict(link=('upper_neck', 'left_shoulder'), id=12, color=[0, 255, 0]),
+        13:
+        dict(link=('left_shoulder', 'left_elbow'), id=13, color=[0, 255, 0]),
+        14:
+        dict(link=('left_elbow', 'left_wrist'), id=14, color=[0, 255, 0])
+    }),
+    joint_weights=[
+        1.5, 1.2, 1.0, 1.0, 1.2, 1.5, 1.0, 1.0, 1.0, 1.0, 1.5, 1.2, 1.0, 1.0,
+        1.2, 1.5
+    ],
+    sigmas=[
+        0.089, 0.083, 0.107, 0.107, 0.083, 0.089, 0.026, 0.026, 0.026, 0.026,
+        0.062, 0.072, 0.179, 0.179, 0.072, 0.062
+    ])
+evaluation = dict(interval=10, metric='PCKh', save_best='PCKh')
+optimizer = dict(type='Adam', lr=0.0005)
+optimizer_config = dict(grad_clip=None)
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=500,
+    warmup_ratio=0.001,
+    step=[170, 200])
+total_epochs = 210
+channel_cfg = dict(
+    num_output_channels=16,
+    dataset_joints=16,
+    dataset_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
+model = dict(
+    type='TopDown',
+    pretrained='mmcls://shufflenet_v2',
+    backbone=dict(type='ShuffleNetV2', widen_factor=1.0),
+    keypoint_head=dict(
+        type='IntegralPoseRegressionHead',
+        in_channels=1024,
+        num_joints=16,
+        loss_keypoint=dict(
+            type='DSNTLoss',
+            use_target_weight=True,
+            sigma=0.25,
+            mse_weight=1,
+            js_weight=100,
+            is_dsnt=True)),
+    train_cfg=dict(),
+    test_cfg=dict(flip_test=True))
+data_cfg = dict(
+    image_size=[256, 256],
+    heatmap_size=[64, 64],
+    num_output_channels=16,
+    num_joints=16,
+    dataset_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    use_gt_bbox=True,
+    bbox_file=None)
+train_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='TopDownGetBboxCenterScale', padding=1.25),
+    dict(type='TopDownRandomFlip', flip_prob=0.5),
+    dict(
+        type='TopDownGetRandomScaleRotation', rot_factor=40, scale_factor=0.5),
+    dict(type='TopDownAffine'),
+    dict(type='ToTensor'),
+    dict(
+        type='NormalizeTensor',
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]),
+    dict(type='TopDownGenerateTargetRegression'),
+    dict(
+        type='Collect',
+        keys=['img', 'target', 'target_weight'],
+        meta_keys=[
+            'image_file', 'joints_3d', 'joints_3d_visible', 'center', 'scale',
+            'rotation', 'flip_pairs'
+        ])
+]
+val_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='TopDownGetBboxCenterScale', padding=1.25),
+    dict(type='TopDownAffine'),
+    dict(type='ToTensor'),
+    dict(
+        type='NormalizeTensor',
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]),
+    dict(
+        type='Collect',
+        keys=['img'],
+        meta_keys=['image_file', 'center', 'scale', 'rotation', 'flip_pairs'])
+]
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='TopDownGetBboxCenterScale', padding=1.25),
+    dict(type='TopDownAffine'),
+    dict(type='ToTensor'),
+    dict(
+        type='NormalizeTensor',
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]),
+    dict(
+        type='Collect',
+        keys=['img'],
+        meta_keys=['image_file', 'center', 'scale', 'rotation', 'flip_pairs'])
+]
+data_root = '/data/tfj/workspace/datasets/MPII'
+data = dict(
+    samples_per_gpu=64,
+    workers_per_gpu=4,
+    persistent_workers=True,
+    val_dataloader=dict(samples_per_gpu=32),
+    test_dataloader=dict(samples_per_gpu=32),
+    train=dict(
+        type='TopDownMpiiDataset',
+        ann_file=
+        '/data/tfj/workspace/datasets/MPII/annotations/mpii_train.json',
+        img_prefix='/data/tfj/workspace/datasets/MPII/images/',
+        data_cfg=dict(
+            image_size=[256, 256],
+            heatmap_size=[64, 64],
+            num_output_channels=16,
+            num_joints=16,
+            dataset_channel=[
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+            ],
+            inference_channel=[
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+            ],
+            use_gt_bbox=True,
+            bbox_file=None),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='TopDownGetBboxCenterScale', padding=1.25),
+            dict(type='TopDownRandomFlip', flip_prob=0.5),
+            dict(
+                type='TopDownGetRandomScaleRotation',
+                rot_factor=40,
+                scale_factor=0.5),
+            dict(type='TopDownAffine'),
+            dict(type='ToTensor'),
+            dict(
+                type='NormalizeTensor',
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]),
+            dict(type='TopDownGenerateTargetRegression'),
+            dict(
+                type='Collect',
+                keys=['img', 'target', 'target_weight'],
+                meta_keys=[
+                    'image_file', 'joints_3d', 'joints_3d_visible', 'center',
+                    'scale', 'rotation', 'flip_pairs'
+                ])
+        ],
+        dataset_info=dict(
+            dataset_name='mpii',
+            paper_info=dict(
+                author=
+                'Mykhaylo Andriluka and Leonid Pishchulin and Peter Gehler and Schiele, Bernt',
+                title=
+                '2D Human Pose Estimation: New Benchmark and State of the Art Analysis',
+                container=
+                'IEEE Conference on Computer Vision and Pattern Recognition (CVPR)',
+                year='2014',
+                homepage='http://human-pose.mpi-inf.mpg.de/'),
+            keypoint_info=dict({
+                0:
+                dict(
+                    name='right_ankle',
+                    id=0,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_ankle'),
+                1:
+                dict(
+                    name='right_knee',
+                    id=1,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_knee'),
+                2:
+                dict(
+                    name='right_hip',
+                    id=2,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_hip'),
+                3:
+                dict(
+                    name='left_hip',
+                    id=3,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_hip'),
+                4:
+                dict(
+                    name='left_knee',
+                    id=4,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_knee'),
+                5:
+                dict(
+                    name='left_ankle',
+                    id=5,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_ankle'),
+                6:
+                dict(
+                    name='pelvis',
+                    id=6,
+                    color=[51, 153, 255],
+                    type='lower',
+                    swap=''),
+                7:
+                dict(
+                    name='thorax',
+                    id=7,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                8:
+                dict(
+                    name='upper_neck',
+                    id=8,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                9:
+                dict(
+                    name='head_top',
+                    id=9,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                10:
+                dict(
+                    name='right_wrist',
+                    id=10,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_wrist'),
+                11:
+                dict(
+                    name='right_elbow',
+                    id=11,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_elbow'),
+                12:
+                dict(
+                    name='right_shoulder',
+                    id=12,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_shoulder'),
+                13:
+                dict(
+                    name='left_shoulder',
+                    id=13,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_shoulder'),
+                14:
+                dict(
+                    name='left_elbow',
+                    id=14,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_elbow'),
+                15:
+                dict(
+                    name='left_wrist',
+                    id=15,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_wrist')
+            }),
+            skeleton_info=dict({
+                0:
+                dict(
+                    link=('right_ankle', 'right_knee'),
+                    id=0,
+                    color=[255, 128, 0]),
+                1:
+                dict(
+                    link=('right_knee', 'right_hip'),
+                    id=1,
+                    color=[255, 128, 0]),
+                2:
+                dict(link=('right_hip', 'pelvis'), id=2, color=[255, 128, 0]),
+                3:
+                dict(link=('pelvis', 'left_hip'), id=3, color=[0, 255, 0]),
+                4:
+                dict(link=('left_hip', 'left_knee'), id=4, color=[0, 255, 0]),
+                5:
+                dict(
+                    link=('left_knee', 'left_ankle'), id=5, color=[0, 255, 0]),
+                6:
+                dict(link=('pelvis', 'thorax'), id=6, color=[51, 153, 255]),
+                7:
+                dict(
+                    link=('thorax', 'upper_neck'), id=7, color=[51, 153, 255]),
+                8:
+                dict(
+                    link=('upper_neck', 'head_top'),
+                    id=8,
+                    color=[51, 153, 255]),
+                9:
+                dict(
+                    link=('upper_neck', 'right_shoulder'),
+                    id=9,
+                    color=[255, 128, 0]),
+                10:
+                dict(
+                    link=('right_shoulder', 'right_elbow'),
+                    id=10,
+                    color=[255, 128, 0]),
+                11:
+                dict(
+                    link=('right_elbow', 'right_wrist'),
+                    id=11,
+                    color=[255, 128, 0]),
+                12:
+                dict(
+                    link=('upper_neck', 'left_shoulder'),
+                    id=12,
+                    color=[0, 255, 0]),
+                13:
+                dict(
+                    link=('left_shoulder', 'left_elbow'),
+                    id=13,
+                    color=[0, 255, 0]),
+                14:
+                dict(
+                    link=('left_elbow', 'left_wrist'),
+                    id=14,
+                    color=[0, 255, 0])
+            }),
+            joint_weights=[
+                1.5, 1.2, 1.0, 1.0, 1.2, 1.5, 1.0, 1.0, 1.0, 1.0, 1.5, 1.2,
+                1.0, 1.0, 1.2, 1.5
+            ],
+            sigmas=[
+                0.089, 0.083, 0.107, 0.107, 0.083, 0.089, 0.026, 0.026, 0.026,
+                0.026, 0.062, 0.072, 0.179, 0.179, 0.072, 0.062
+            ])),
+    val=dict(
+        type='TopDownMpiiDataset',
+        ann_file='/data/tfj/workspace/datasets/MPII/annotations/mpii_val.json',
+        img_prefix='/data/tfj/workspace/datasets/MPII/images/',
+        data_cfg=dict(
+            image_size=[256, 256],
+            heatmap_size=[64, 64],
+            num_output_channels=16,
+            num_joints=16,
+            dataset_channel=[
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+            ],
+            inference_channel=[
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+            ],
+            use_gt_bbox=True,
+            bbox_file=None),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='TopDownGetBboxCenterScale', padding=1.25),
+            dict(type='TopDownAffine'),
+            dict(type='ToTensor'),
+            dict(
+                type='NormalizeTensor',
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]),
+            dict(
+                type='Collect',
+                keys=['img'],
+                meta_keys=[
+                    'image_file', 'center', 'scale', 'rotation', 'flip_pairs'
+                ])
+        ],
+        dataset_info=dict(
+            dataset_name='mpii',
+            paper_info=dict(
+                author=
+                'Mykhaylo Andriluka and Leonid Pishchulin and Peter Gehler and Schiele, Bernt',
+                title=
+                '2D Human Pose Estimation: New Benchmark and State of the Art Analysis',
+                container=
+                'IEEE Conference on Computer Vision and Pattern Recognition (CVPR)',
+                year='2014',
+                homepage='http://human-pose.mpi-inf.mpg.de/'),
+            keypoint_info=dict({
+                0:
+                dict(
+                    name='right_ankle',
+                    id=0,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_ankle'),
+                1:
+                dict(
+                    name='right_knee',
+                    id=1,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_knee'),
+                2:
+                dict(
+                    name='right_hip',
+                    id=2,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_hip'),
+                3:
+                dict(
+                    name='left_hip',
+                    id=3,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_hip'),
+                4:
+                dict(
+                    name='left_knee',
+                    id=4,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_knee'),
+                5:
+                dict(
+                    name='left_ankle',
+                    id=5,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_ankle'),
+                6:
+                dict(
+                    name='pelvis',
+                    id=6,
+                    color=[51, 153, 255],
+                    type='lower',
+                    swap=''),
+                7:
+                dict(
+                    name='thorax',
+                    id=7,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                8:
+                dict(
+                    name='upper_neck',
+                    id=8,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                9:
+                dict(
+                    name='head_top',
+                    id=9,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                10:
+                dict(
+                    name='right_wrist',
+                    id=10,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_wrist'),
+                11:
+                dict(
+                    name='right_elbow',
+                    id=11,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_elbow'),
+                12:
+                dict(
+                    name='right_shoulder',
+                    id=12,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_shoulder'),
+                13:
+                dict(
+                    name='left_shoulder',
+                    id=13,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_shoulder'),
+                14:
+                dict(
+                    name='left_elbow',
+                    id=14,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_elbow'),
+                15:
+                dict(
+                    name='left_wrist',
+                    id=15,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_wrist')
+            }),
+            skeleton_info=dict({
+                0:
+                dict(
+                    link=('right_ankle', 'right_knee'),
+                    id=0,
+                    color=[255, 128, 0]),
+                1:
+                dict(
+                    link=('right_knee', 'right_hip'),
+                    id=1,
+                    color=[255, 128, 0]),
+                2:
+                dict(link=('right_hip', 'pelvis'), id=2, color=[255, 128, 0]),
+                3:
+                dict(link=('pelvis', 'left_hip'), id=3, color=[0, 255, 0]),
+                4:
+                dict(link=('left_hip', 'left_knee'), id=4, color=[0, 255, 0]),
+                5:
+                dict(
+                    link=('left_knee', 'left_ankle'), id=5, color=[0, 255, 0]),
+                6:
+                dict(link=('pelvis', 'thorax'), id=6, color=[51, 153, 255]),
+                7:
+                dict(
+                    link=('thorax', 'upper_neck'), id=7, color=[51, 153, 255]),
+                8:
+                dict(
+                    link=('upper_neck', 'head_top'),
+                    id=8,
+                    color=[51, 153, 255]),
+                9:
+                dict(
+                    link=('upper_neck', 'right_shoulder'),
+                    id=9,
+                    color=[255, 128, 0]),
+                10:
+                dict(
+                    link=('right_shoulder', 'right_elbow'),
+                    id=10,
+                    color=[255, 128, 0]),
+                11:
+                dict(
+                    link=('right_elbow', 'right_wrist'),
+                    id=11,
+                    color=[255, 128, 0]),
+                12:
+                dict(
+                    link=('upper_neck', 'left_shoulder'),
+                    id=12,
+                    color=[0, 255, 0]),
+                13:
+                dict(
+                    link=('left_shoulder', 'left_elbow'),
+                    id=13,
+                    color=[0, 255, 0]),
+                14:
+                dict(
+                    link=('left_elbow', 'left_wrist'),
+                    id=14,
+                    color=[0, 255, 0])
+            }),
+            joint_weights=[
+                1.5, 1.2, 1.0, 1.0, 1.2, 1.5, 1.0, 1.0, 1.0, 1.0, 1.5, 1.2,
+                1.0, 1.0, 1.2, 1.5
+            ],
+            sigmas=[
+                0.089, 0.083, 0.107, 0.107, 0.083, 0.089, 0.026, 0.026, 0.026,
+                0.026, 0.062, 0.072, 0.179, 0.179, 0.072, 0.062
+            ])),
+    test=dict(
+        type='TopDownMpiiDataset',
+        ann_file='/data/tfj/workspace/datasets/MPII/annotations/mpii_val.json',
+        img_prefix='/data/tfj/workspace/datasets/MPII/images/',
+        data_cfg=dict(
+            image_size=[256, 256],
+            heatmap_size=[64, 64],
+            num_output_channels=16,
+            num_joints=16,
+            dataset_channel=[
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+            ],
+            inference_channel=[
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+            ],
+            use_gt_bbox=True,
+            bbox_file=None),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='TopDownGetBboxCenterScale', padding=1.25),
+            dict(type='TopDownAffine'),
+            dict(type='ToTensor'),
+            dict(
+                type='NormalizeTensor',
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]),
+            dict(
+                type='Collect',
+                keys=['img'],
+                meta_keys=[
+                    'image_file', 'center', 'scale', 'rotation', 'flip_pairs'
+                ])
+        ],
+        dataset_info=dict(
+            dataset_name='mpii',
+            paper_info=dict(
+                author=
+                'Mykhaylo Andriluka and Leonid Pishchulin and Peter Gehler and Schiele, Bernt',
+                title=
+                '2D Human Pose Estimation: New Benchmark and State of the Art Analysis',
+                container=
+                'IEEE Conference on Computer Vision and Pattern Recognition (CVPR)',
+                year='2014',
+                homepage='http://human-pose.mpi-inf.mpg.de/'),
+            keypoint_info=dict({
+                0:
+                dict(
+                    name='right_ankle',
+                    id=0,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_ankle'),
+                1:
+                dict(
+                    name='right_knee',
+                    id=1,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_knee'),
+                2:
+                dict(
+                    name='right_hip',
+                    id=2,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_hip'),
+                3:
+                dict(
+                    name='left_hip',
+                    id=3,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_hip'),
+                4:
+                dict(
+                    name='left_knee',
+                    id=4,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_knee'),
+                5:
+                dict(
+                    name='left_ankle',
+                    id=5,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_ankle'),
+                6:
+                dict(
+                    name='pelvis',
+                    id=6,
+                    color=[51, 153, 255],
+                    type='lower',
+                    swap=''),
+                7:
+                dict(
+                    name='thorax',
+                    id=7,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                8:
+                dict(
+                    name='upper_neck',
+                    id=8,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                9:
+                dict(
+                    name='head_top',
+                    id=9,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                10:
+                dict(
+                    name='right_wrist',
+                    id=10,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_wrist'),
+                11:
+                dict(
+                    name='right_elbow',
+                    id=11,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_elbow'),
+                12:
+                dict(
+                    name='right_shoulder',
+                    id=12,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_shoulder'),
+                13:
+                dict(
+                    name='left_shoulder',
+                    id=13,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_shoulder'),
+                14:
+                dict(
+                    name='left_elbow',
+                    id=14,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_elbow'),
+                15:
+                dict(
+                    name='left_wrist',
+                    id=15,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_wrist')
+            }),
+            skeleton_info=dict({
+                0:
+                dict(
+                    link=('right_ankle', 'right_knee'),
+                    id=0,
+                    color=[255, 128, 0]),
+                1:
+                dict(
+                    link=('right_knee', 'right_hip'),
+                    id=1,
+                    color=[255, 128, 0]),
+                2:
+                dict(link=('right_hip', 'pelvis'), id=2, color=[255, 128, 0]),
+                3:
+                dict(link=('pelvis', 'left_hip'), id=3, color=[0, 255, 0]),
+                4:
+                dict(link=('left_hip', 'left_knee'), id=4, color=[0, 255, 0]),
+                5:
+                dict(
+                    link=('left_knee', 'left_ankle'), id=5, color=[0, 255, 0]),
+                6:
+                dict(link=('pelvis', 'thorax'), id=6, color=[51, 153, 255]),
+                7:
+                dict(
+                    link=('thorax', 'upper_neck'), id=7, color=[51, 153, 255]),
+                8:
+                dict(
+                    link=('upper_neck', 'head_top'),
+                    id=8,
+                    color=[51, 153, 255]),
+                9:
+                dict(
+                    link=('upper_neck', 'right_shoulder'),
+                    id=9,
+                    color=[255, 128, 0]),
+                10:
+                dict(
+                    link=('right_shoulder', 'right_elbow'),
+                    id=10,
+                    color=[255, 128, 0]),
+                11:
+                dict(
+                    link=('right_elbow', 'right_wrist'),
+                    id=11,
+                    color=[255, 128, 0]),
+                12:
+                dict(
+                    link=('upper_neck', 'left_shoulder'),
+                    id=12,
+                    color=[0, 255, 0]),
+                13:
+                dict(
+                    link=('left_shoulder', 'left_elbow'),
+                    id=13,
+                    color=[0, 255, 0]),
+                14:
+                dict(
+                    link=('left_elbow', 'left_wrist'),
+                    id=14,
+                    color=[0, 255, 0])
+            }),
+            joint_weights=[
+                1.5, 1.2, 1.0, 1.0, 1.2, 1.5, 1.0, 1.0, 1.0, 1.0, 1.5, 1.2,
+                1.0, 1.0, 1.2, 1.5
+            ],
+            sigmas=[
+                0.089, 0.083, 0.107, 0.107, 0.083, 0.089, 0.026, 0.026, 0.026,
+                0.026, 0.062, 0.072, 0.179, 0.179, 0.072, 0.062
+            ])))
+work_dir = './work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt'
+gpu_ids = range(0, 4)
+
+2022-07-17 05:44:28,890 - mmpose - INFO - Set random seed to 2526, deterministic: False
+2022-07-17 05:44:37,885 - mmpose - INFO - Start running, host: tianfj@qwe, work_dir: /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt
+2022-07-17 05:44:37,885 - mmpose - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) DistSamplerSeedHook                
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook                      
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_run:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+2022-07-17 05:44:37,885 - mmpose - INFO - workflow: [('train', 1)], max: 210 epochs
+2022-07-17 05:44:37,885 - mmpose - INFO - Checkpoints will be saved to /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt by HardDiskBackend.
+2022-07-17 05:44:59,872 - mmpose - INFO - Epoch [1][50/87]	lr: 4.945e-05, eta: 2:13:29, time: 0.440, data_time: 0.344, memory: 1583, reg_loss: 51.2993, acc_pose: 0.0590, loss: 51.2993
+2022-07-17 05:45:34,339 - mmpose - INFO - Epoch [2][50/87]	lr: 1.364e-04, eta: 1:35:43, time: 0.428, data_time: 0.369, memory: 1583, reg_loss: 31.6486, acc_pose: 0.2080, loss: 31.6486
+2022-07-17 05:46:08,770 - mmpose - INFO - Epoch [3][50/87]	lr: 2.233e-04, eta: 1:27:08, time: 0.430, data_time: 0.234, memory: 1583, reg_loss: 23.7687, acc_pose: 0.2929, loss: 23.7687
+2022-07-17 05:46:43,486 - mmpose - INFO - Epoch [4][50/87]	lr: 3.102e-04, eta: 1:23:03, time: 0.428, data_time: 0.256, memory: 1583, reg_loss: 19.9036, acc_pose: 0.3598, loss: 19.9036
+2022-07-17 05:47:18,235 - mmpose - INFO - Epoch [5][50/87]	lr: 3.971e-04, eta: 1:20:29, time: 0.425, data_time: 0.169, memory: 1583, reg_loss: 17.5929, acc_pose: 0.4120, loss: 17.5929
+2022-07-17 05:47:52,894 - mmpose - INFO - Epoch [6][50/87]	lr: 4.840e-04, eta: 1:18:45, time: 0.426, data_time: 0.303, memory: 1583, reg_loss: 16.3453, acc_pose: 0.4547, loss: 16.3453
+2022-07-17 05:48:27,396 - mmpose - INFO - Epoch [7][50/87]	lr: 5.000e-04, eta: 1:17:30, time: 0.429, data_time: 0.324, memory: 1583, reg_loss: 15.3500, acc_pose: 0.4856, loss: 15.3500
+2022-07-17 05:49:01,663 - mmpose - INFO - Epoch [8][50/87]	lr: 5.000e-04, eta: 1:16:28, time: 0.428, data_time: 0.339, memory: 1583, reg_loss: 14.5792, acc_pose: 0.5055, loss: 14.5792
+2022-07-17 05:49:36,292 - mmpose - INFO - Epoch [9][50/87]	lr: 5.000e-04, eta: 1:15:41, time: 0.432, data_time: 0.271, memory: 1583, reg_loss: 14.0590, acc_pose: 0.5100, loss: 14.0590
+2022-07-17 05:50:10,631 - mmpose - INFO - Epoch [10][50/87]	lr: 5.000e-04, eta: 1:14:52, time: 0.426, data_time: 0.366, memory: 1583, reg_loss: 13.5662, acc_pose: 0.5286, loss: 13.5662
+2022-07-17 05:50:23,986 - mmpose - INFO - Saving checkpoint at 10 epochs
+2022-07-17 05:50:28,737 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_10.pth.
+2022-07-17 05:50:28,737 - mmpose - INFO - Best PCKh is 60.0937 at 10 epoch.
+2022-07-17 05:50:28,737 - mmpose - INFO - Epoch(val) [10][24]	Head: 84.1064, Shoulder: 79.3988, Elbow: 58.6506, Wrist: 43.7882, Hip: 68.7900, Knee: 43.2010, Ankle: 27.4685, PCKh: 60.0937, PCKh@0.1: 6.9061
+2022-07-17 05:50:50,150 - mmpose - INFO - Epoch [11][50/87]	lr: 5.000e-04, eta: 1:14:11, time: 0.428, data_time: 0.323, memory: 1583, reg_loss: 13.2892, acc_pose: 0.5438, loss: 13.2892
+2022-07-17 05:51:24,437 - mmpose - INFO - Epoch [12][50/87]	lr: 5.000e-04, eta: 1:13:33, time: 0.428, data_time: 0.307, memory: 1583, reg_loss: 12.9531, acc_pose: 0.5540, loss: 12.9531
+2022-07-17 05:51:58,827 - mmpose - INFO - Epoch [13][50/87]	lr: 5.000e-04, eta: 1:12:55, time: 0.425, data_time: 0.350, memory: 1583, reg_loss: 12.5893, acc_pose: 0.5709, loss: 12.5893
+2022-07-17 05:52:33,267 - mmpose - INFO - Epoch [14][50/87]	lr: 5.000e-04, eta: 1:12:17, time: 0.420, data_time: 0.279, memory: 1583, reg_loss: 12.3123, acc_pose: 0.5679, loss: 12.3123
+2022-07-17 05:53:08,112 - mmpose - INFO - Epoch [15][50/87]	lr: 5.000e-04, eta: 1:11:47, time: 0.431, data_time: 0.232, memory: 1583, reg_loss: 12.3598, acc_pose: 0.5732, loss: 12.3598
+2022-07-17 05:53:42,875 - mmpose - INFO - Epoch [16][50/87]	lr: 5.000e-04, eta: 1:11:16, time: 0.426, data_time: 0.324, memory: 1583, reg_loss: 11.9614, acc_pose: 0.5776, loss: 11.9614
+2022-07-17 05:54:17,445 - mmpose - INFO - Epoch [17][50/87]	lr: 5.000e-04, eta: 1:10:44, time: 0.423, data_time: 0.251, memory: 1583, reg_loss: 11.7649, acc_pose: 0.5871, loss: 11.7649
+2022-07-17 05:54:52,209 - mmpose - INFO - Epoch [18][50/87]	lr: 5.000e-04, eta: 1:10:17, time: 0.429, data_time: 0.305, memory: 1583, reg_loss: 11.8209, acc_pose: 0.5919, loss: 11.8209
+2022-07-17 05:55:26,958 - mmpose - INFO - Epoch [19][50/87]	lr: 5.000e-04, eta: 1:09:52, time: 0.433, data_time: 0.257, memory: 1583, reg_loss: 11.6028, acc_pose: 0.5956, loss: 11.6028
+2022-07-17 05:56:01,273 - mmpose - INFO - Epoch [20][50/87]	lr: 5.000e-04, eta: 1:09:25, time: 0.427, data_time: 0.302, memory: 1583, reg_loss: 11.3548, acc_pose: 0.6087, loss: 11.3548
+2022-07-17 05:56:14,768 - mmpose - INFO - Saving checkpoint at 20 epochs
+2022-07-17 05:56:19,514 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_10.pth was removed
+2022-07-17 05:56:19,562 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_20.pth.
+2022-07-17 05:56:19,563 - mmpose - INFO - Best PCKh is 65.9823 at 20 epoch.
+2022-07-17 05:56:19,563 - mmpose - INFO - Epoch(val) [20][24]	Head: 86.9031, Shoulder: 83.1012, Elbow: 65.6558, Wrist: 51.3649, Hip: 73.6714, Knee: 50.3140, Ankle: 37.4349, PCKh: 65.9823, PCKh@0.1: 8.6417
+2022-07-17 05:56:40,706 - mmpose - INFO - Epoch [21][50/87]	lr: 5.000e-04, eta: 1:08:56, time: 0.423, data_time: 0.268, memory: 1583, reg_loss: 11.4622, acc_pose: 0.6022, loss: 11.4622
+2022-07-17 05:57:14,907 - mmpose - INFO - Epoch [22][50/87]	lr: 5.000e-04, eta: 1:08:28, time: 0.422, data_time: 0.342, memory: 1583, reg_loss: 11.1698, acc_pose: 0.6084, loss: 11.1698
+2022-07-17 05:57:49,672 - mmpose - INFO - Epoch [23][50/87]	lr: 5.000e-04, eta: 1:08:01, time: 0.424, data_time: 0.296, memory: 1583, reg_loss: 11.0795, acc_pose: 0.6032, loss: 11.0795
+2022-07-17 05:58:24,687 - mmpose - INFO - Epoch [24][50/87]	lr: 5.000e-04, eta: 1:07:37, time: 0.428, data_time: 0.359, memory: 1583, reg_loss: 10.9807, acc_pose: 0.6185, loss: 10.9807
+2022-07-17 05:58:59,567 - mmpose - INFO - Epoch [25][50/87]	lr: 5.000e-04, eta: 1:07:13, time: 0.429, data_time: 0.316, memory: 1583, reg_loss: 10.9698, acc_pose: 0.6175, loss: 10.9698
+2022-07-17 05:59:34,294 - mmpose - INFO - Epoch [26][50/87]	lr: 5.000e-04, eta: 1:06:48, time: 0.426, data_time: 0.338, memory: 1583, reg_loss: 10.8841, acc_pose: 0.6177, loss: 10.8841
+2022-07-17 06:00:08,724 - mmpose - INFO - Epoch [27][50/87]	lr: 5.000e-04, eta: 1:06:23, time: 0.425, data_time: 0.290, memory: 1583, reg_loss: 10.8023, acc_pose: 0.6179, loss: 10.8023
+2022-07-17 06:00:43,616 - mmpose - INFO - Epoch [28][50/87]	lr: 5.000e-04, eta: 1:06:01, time: 0.435, data_time: 0.343, memory: 1583, reg_loss: 10.7528, acc_pose: 0.6193, loss: 10.7528
+2022-07-17 06:01:17,500 - mmpose - INFO - Epoch [29][50/87]	lr: 5.000e-04, eta: 1:05:36, time: 0.423, data_time: 0.207, memory: 1583, reg_loss: 10.6010, acc_pose: 0.6254, loss: 10.6010
+2022-07-17 06:01:52,928 - mmpose - INFO - Epoch [30][50/87]	lr: 5.000e-04, eta: 1:05:15, time: 0.436, data_time: 0.319, memory: 1583, reg_loss: 10.6072, acc_pose: 0.6222, loss: 10.6072
+2022-07-17 06:02:06,065 - mmpose - INFO - Saving checkpoint at 30 epochs
+2022-07-17 06:02:10,747 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_20.pth was removed
+2022-07-17 06:02:10,796 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_30.pth.
+2022-07-17 06:02:10,796 - mmpose - INFO - Best PCKh is 68.2436 at 30 epoch.
+2022-07-17 06:02:10,797 - mmpose - INFO - Epoch(val) [30][24]	Head: 87.2442, Shoulder: 85.4959, Elbow: 68.3997, Wrist: 55.8860, Hip: 75.4369, Knee: 53.6177, Ankle: 37.7656, PCKh: 68.2436, PCKh@0.1: 9.9766
+2022-07-17 06:02:32,239 - mmpose - INFO - Epoch [31][50/87]	lr: 5.000e-04, eta: 1:04:52, time: 0.429, data_time: 0.210, memory: 1583, reg_loss: 10.5247, acc_pose: 0.6296, loss: 10.5247
+2022-07-17 06:03:06,989 - mmpose - INFO - Epoch [32][50/87]	lr: 5.000e-04, eta: 1:04:29, time: 0.429, data_time: 0.245, memory: 1583, reg_loss: 10.3698, acc_pose: 0.6314, loss: 10.3698
+2022-07-17 06:03:41,339 - mmpose - INFO - Epoch [33][50/87]	lr: 5.000e-04, eta: 1:04:04, time: 0.425, data_time: 0.250, memory: 1583, reg_loss: 10.3069, acc_pose: 0.6384, loss: 10.3069
+2022-07-17 06:04:15,958 - mmpose - INFO - Epoch [34][50/87]	lr: 5.000e-04, eta: 1:03:43, time: 0.432, data_time: 0.174, memory: 1583, reg_loss: 10.1839, acc_pose: 0.6438, loss: 10.1839
+2022-07-17 06:04:50,488 - mmpose - INFO - Epoch [35][50/87]	lr: 5.000e-04, eta: 1:03:20, time: 0.430, data_time: 0.323, memory: 1583, reg_loss: 10.2148, acc_pose: 0.6465, loss: 10.2148
+2022-07-17 06:05:24,995 - mmpose - INFO - Epoch [36][50/87]	lr: 5.000e-04, eta: 1:02:57, time: 0.427, data_time: 0.151, memory: 1583, reg_loss: 10.1141, acc_pose: 0.6487, loss: 10.1141
+2022-07-17 06:05:59,611 - mmpose - INFO - Epoch [37][50/87]	lr: 5.000e-04, eta: 1:02:34, time: 0.427, data_time: 0.249, memory: 1583, reg_loss: 10.0671, acc_pose: 0.6476, loss: 10.0671
+2022-07-17 06:06:34,473 - mmpose - INFO - Epoch [38][50/87]	lr: 5.000e-04, eta: 1:02:12, time: 0.431, data_time: 0.369, memory: 1583, reg_loss: 10.0272, acc_pose: 0.6511, loss: 10.0272
+2022-07-17 06:07:08,937 - mmpose - INFO - Epoch [39][50/87]	lr: 5.000e-04, eta: 1:01:49, time: 0.430, data_time: 0.250, memory: 1583, reg_loss: 9.9264, acc_pose: 0.6497, loss: 9.9264
+2022-07-17 06:07:43,481 - mmpose - INFO - Epoch [40][50/87]	lr: 5.000e-04, eta: 1:01:27, time: 0.430, data_time: 0.369, memory: 1583, reg_loss: 9.9130, acc_pose: 0.6561, loss: 9.9130
+2022-07-17 06:07:56,508 - mmpose - INFO - Saving checkpoint at 40 epochs
+2022-07-17 06:08:01,323 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_30.pth was removed
+2022-07-17 06:08:01,373 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_40.pth.
+2022-07-17 06:08:01,374 - mmpose - INFO - Best PCKh is 69.1257 at 40 epoch.
+2022-07-17 06:08:01,374 - mmpose - INFO - Epoch(val) [40][24]	Head: 89.2224, Shoulder: 85.8696, Elbow: 68.7919, Wrist: 56.3658, Hip: 76.7353, Knee: 55.0086, Ankle: 38.6155, PCKh: 69.1257, PCKh@0.1: 10.6844
+2022-07-17 06:08:22,501 - mmpose - INFO - Epoch [41][50/87]	lr: 5.000e-04, eta: 1:01:03, time: 0.422, data_time: 0.302, memory: 1583, reg_loss: 9.8565, acc_pose: 0.6574, loss: 9.8565
+2022-07-17 06:08:57,215 - mmpose - INFO - Epoch [42][50/87]	lr: 5.000e-04, eta: 1:00:41, time: 0.429, data_time: 0.281, memory: 1583, reg_loss: 9.9880, acc_pose: 0.6598, loss: 9.9880
+2022-07-17 06:09:31,567 - mmpose - INFO - Epoch [43][50/87]	lr: 5.000e-04, eta: 1:00:19, time: 0.429, data_time: 0.367, memory: 1583, reg_loss: 9.7569, acc_pose: 0.6585, loss: 9.7569
+2022-07-17 06:10:05,925 - mmpose - INFO - Epoch [44][50/87]	lr: 5.000e-04, eta: 0:59:56, time: 0.425, data_time: 0.333, memory: 1583, reg_loss: 9.7811, acc_pose: 0.6584, loss: 9.7811
+2022-07-17 06:10:40,836 - mmpose - INFO - Epoch [45][50/87]	lr: 5.000e-04, eta: 0:59:34, time: 0.434, data_time: 0.296, memory: 1583, reg_loss: 9.8376, acc_pose: 0.6610, loss: 9.8376
+2022-07-17 06:11:15,443 - mmpose - INFO - Epoch [46][50/87]	lr: 5.000e-04, eta: 0:59:12, time: 0.427, data_time: 0.238, memory: 1583, reg_loss: 9.7032, acc_pose: 0.6627, loss: 9.7032
+2022-07-17 06:11:50,012 - mmpose - INFO - Epoch [47][50/87]	lr: 5.000e-04, eta: 0:58:50, time: 0.433, data_time: 0.343, memory: 1583, reg_loss: 9.5952, acc_pose: 0.6679, loss: 9.5952
+2022-07-17 06:12:24,225 - mmpose - INFO - Epoch [48][50/87]	lr: 5.000e-04, eta: 0:58:28, time: 0.426, data_time: 0.358, memory: 1583, reg_loss: 9.6206, acc_pose: 0.6607, loss: 9.6206
+2022-07-17 06:12:59,088 - mmpose - INFO - Epoch [49][50/87]	lr: 5.000e-04, eta: 0:58:06, time: 0.432, data_time: 0.221, memory: 1583, reg_loss: 9.4313, acc_pose: 0.6640, loss: 9.4313
+2022-07-17 06:13:33,762 - mmpose - INFO - Epoch [50][50/87]	lr: 5.000e-04, eta: 0:57:44, time: 0.430, data_time: 0.278, memory: 1583, reg_loss: 9.4731, acc_pose: 0.6665, loss: 9.4731
+2022-07-17 06:13:46,670 - mmpose - INFO - Saving checkpoint at 50 epochs
+2022-07-17 06:13:51,334 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_40.pth was removed
+2022-07-17 06:13:51,382 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_50.pth.
+2022-07-17 06:13:51,382 - mmpose - INFO - Best PCKh is 71.1319 at 50 epoch.
+2022-07-17 06:13:51,383 - mmpose - INFO - Epoch(val) [50][24]	Head: 88.8813, Shoulder: 86.9565, Elbow: 71.3824, Wrist: 59.0221, Hip: 77.5833, Knee: 58.4319, Ankle: 43.0096, PCKh: 71.1319, PCKh@0.1: 11.3661
+2022-07-17 06:14:13,232 - mmpose - INFO - Epoch [51][50/87]	lr: 5.000e-04, eta: 0:57:23, time: 0.437, data_time: 0.168, memory: 1583, reg_loss: 9.4762, acc_pose: 0.6614, loss: 9.4762
+2022-07-17 06:14:47,496 - mmpose - INFO - Epoch [52][50/87]	lr: 5.000e-04, eta: 0:57:02, time: 0.432, data_time: 0.265, memory: 1583, reg_loss: 9.5153, acc_pose: 0.6666, loss: 9.5153
+2022-07-17 06:15:21,779 - mmpose - INFO - Epoch [53][50/87]	lr: 5.000e-04, eta: 0:56:39, time: 0.423, data_time: 0.233, memory: 1583, reg_loss: 9.4074, acc_pose: 0.6713, loss: 9.4074
+2022-07-17 06:15:56,792 - mmpose - INFO - Epoch [54][50/87]	lr: 5.000e-04, eta: 0:56:17, time: 0.427, data_time: 0.367, memory: 1583, reg_loss: 9.4142, acc_pose: 0.6771, loss: 9.4142
+2022-07-17 06:16:31,414 - mmpose - INFO - Epoch [55][50/87]	lr: 5.000e-04, eta: 0:55:54, time: 0.426, data_time: 0.359, memory: 1583, reg_loss: 9.3513, acc_pose: 0.6783, loss: 9.3513
+2022-07-17 06:17:06,234 - mmpose - INFO - Epoch [56][50/87]	lr: 5.000e-04, eta: 0:55:32, time: 0.430, data_time: 0.292, memory: 1583, reg_loss: 9.3347, acc_pose: 0.6785, loss: 9.3347
+2022-07-17 06:17:41,242 - mmpose - INFO - Epoch [57][50/87]	lr: 5.000e-04, eta: 0:55:11, time: 0.435, data_time: 0.323, memory: 1583, reg_loss: 9.2657, acc_pose: 0.6710, loss: 9.2657
+2022-07-17 06:18:15,173 - mmpose - INFO - Epoch [58][50/87]	lr: 5.000e-04, eta: 0:54:49, time: 0.426, data_time: 0.270, memory: 1583, reg_loss: 9.2791, acc_pose: 0.6739, loss: 9.2791
+2022-07-17 06:18:49,612 - mmpose - INFO - Epoch [59][50/87]	lr: 5.000e-04, eta: 0:54:27, time: 0.427, data_time: 0.201, memory: 1583, reg_loss: 9.2003, acc_pose: 0.6789, loss: 9.2003
+2022-07-17 06:19:24,356 - mmpose - INFO - Epoch [60][50/87]	lr: 5.000e-04, eta: 0:54:05, time: 0.428, data_time: 0.104, memory: 1583, reg_loss: 9.1607, acc_pose: 0.6766, loss: 9.1607
+2022-07-17 06:19:37,505 - mmpose - INFO - Saving checkpoint at 60 epochs
+2022-07-17 06:19:42,243 - mmpose - INFO - Epoch(val) [60][24]	Head: 88.9836, Shoulder: 87.1433, Elbow: 72.0814, Wrist: 59.5524, Hip: 77.0815, Knee: 57.1630, Ankle: 41.0960, PCKh: 70.8899, PCKh@0.1: 11.5222
+2022-07-17 06:20:03,885 - mmpose - INFO - Epoch [61][50/87]	lr: 5.000e-04, eta: 0:53:43, time: 0.433, data_time: 0.232, memory: 1583, reg_loss: 9.0611, acc_pose: 0.6789, loss: 9.0611
+2022-07-17 06:20:38,326 - mmpose - INFO - Epoch [62][50/87]	lr: 5.000e-04, eta: 0:53:21, time: 0.427, data_time: 0.310, memory: 1583, reg_loss: 9.0611, acc_pose: 0.6750, loss: 9.0611
+2022-07-17 06:21:12,833 - mmpose - INFO - Epoch [63][50/87]	lr: 5.000e-04, eta: 0:52:59, time: 0.427, data_time: 0.344, memory: 1583, reg_loss: 8.9878, acc_pose: 0.6848, loss: 8.9878
+2022-07-17 06:21:47,440 - mmpose - INFO - Epoch [64][50/87]	lr: 5.000e-04, eta: 0:52:37, time: 0.430, data_time: 0.368, memory: 1583, reg_loss: 9.0424, acc_pose: 0.6713, loss: 9.0424
+2022-07-17 06:22:21,645 - mmpose - INFO - Epoch [65][50/87]	lr: 5.000e-04, eta: 0:52:15, time: 0.426, data_time: 0.266, memory: 1583, reg_loss: 9.0991, acc_pose: 0.6801, loss: 9.0991
+2022-07-17 06:22:55,947 - mmpose - INFO - Epoch [66][50/87]	lr: 5.000e-04, eta: 0:51:53, time: 0.426, data_time: 0.258, memory: 1583, reg_loss: 9.0994, acc_pose: 0.6831, loss: 9.0994
+2022-07-17 06:23:30,718 - mmpose - INFO - Epoch [67][50/87]	lr: 5.000e-04, eta: 0:51:32, time: 0.435, data_time: 0.301, memory: 1583, reg_loss: 8.9606, acc_pose: 0.6839, loss: 8.9606
+2022-07-17 06:24:05,314 - mmpose - INFO - Epoch [68][50/87]	lr: 5.000e-04, eta: 0:51:10, time: 0.427, data_time: 0.260, memory: 1583, reg_loss: 9.0182, acc_pose: 0.6872, loss: 9.0182
+2022-07-17 06:24:39,837 - mmpose - INFO - Epoch [69][50/87]	lr: 5.000e-04, eta: 0:50:48, time: 0.428, data_time: 0.297, memory: 1583, reg_loss: 9.0425, acc_pose: 0.6809, loss: 9.0425
+2022-07-17 06:25:14,231 - mmpose - INFO - Epoch [70][50/87]	lr: 5.000e-04, eta: 0:50:26, time: 0.426, data_time: 0.340, memory: 1583, reg_loss: 8.9343, acc_pose: 0.6828, loss: 8.9343
+2022-07-17 06:25:27,318 - mmpose - INFO - Saving checkpoint at 70 epochs
+2022-07-17 06:25:32,089 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_50.pth was removed
+2022-07-17 06:25:32,137 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_70.pth.
+2022-07-17 06:25:32,138 - mmpose - INFO - Best PCKh is 71.6680 at 70 epoch.
+2022-07-17 06:25:32,138 - mmpose - INFO - Epoch(val) [70][24]	Head: 89.1542, Shoulder: 86.9735, Elbow: 72.5756, Wrist: 60.4765, Hip: 77.3756, Knee: 58.6140, Ankle: 44.3554, PCKh: 71.6680, PCKh@0.1: 12.0401
+2022-07-17 06:25:53,357 - mmpose - INFO - Epoch [71][50/87]	lr: 5.000e-04, eta: 0:50:04, time: 0.424, data_time: 0.358, memory: 1583, reg_loss: 8.8747, acc_pose: 0.6823, loss: 8.8747
+2022-07-17 06:26:27,621 - mmpose - INFO - Epoch [72][50/87]	lr: 5.000e-04, eta: 0:49:42, time: 0.426, data_time: 0.173, memory: 1583, reg_loss: 8.9068, acc_pose: 0.6896, loss: 8.9068
+2022-07-17 06:27:02,525 - mmpose - INFO - Epoch [73][50/87]	lr: 5.000e-04, eta: 0:49:20, time: 0.427, data_time: 0.321, memory: 1583, reg_loss: 8.7902, acc_pose: 0.6846, loss: 8.7902
+2022-07-17 06:27:37,325 - mmpose - INFO - Epoch [74][50/87]	lr: 5.000e-04, eta: 0:48:59, time: 0.433, data_time: 0.369, memory: 1583, reg_loss: 8.8478, acc_pose: 0.6878, loss: 8.8478
+2022-07-17 06:28:12,184 - mmpose - INFO - Epoch [75][50/87]	lr: 5.000e-04, eta: 0:48:38, time: 0.440, data_time: 0.171, memory: 1583, reg_loss: 8.8826, acc_pose: 0.6860, loss: 8.8826
+2022-07-17 06:28:46,480 - mmpose - INFO - Epoch [76][50/87]	lr: 5.000e-04, eta: 0:48:16, time: 0.428, data_time: 0.344, memory: 1583, reg_loss: 8.7466, acc_pose: 0.6944, loss: 8.7466
+2022-07-17 06:29:20,794 - mmpose - INFO - Epoch [77][50/87]	lr: 5.000e-04, eta: 0:47:54, time: 0.426, data_time: 0.278, memory: 1583, reg_loss: 8.6640, acc_pose: 0.6914, loss: 8.6640
+2022-07-17 06:29:55,331 - mmpose - INFO - Epoch [78][50/87]	lr: 5.000e-04, eta: 0:47:32, time: 0.425, data_time: 0.256, memory: 1583, reg_loss: 8.6043, acc_pose: 0.6929, loss: 8.6043
+2022-07-17 06:30:29,864 - mmpose - INFO - Epoch [79][50/87]	lr: 5.000e-04, eta: 0:47:10, time: 0.427, data_time: 0.347, memory: 1583, reg_loss: 8.7251, acc_pose: 0.6932, loss: 8.7251
+2022-07-17 06:31:04,179 - mmpose - INFO - Epoch [80][50/87]	lr: 5.000e-04, eta: 0:46:48, time: 0.425, data_time: 0.180, memory: 1583, reg_loss: 8.7486, acc_pose: 0.6946, loss: 8.7486
+2022-07-17 06:31:17,732 - mmpose - INFO - Saving checkpoint at 80 epochs
+2022-07-17 06:31:22,597 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_70.pth was removed
+2022-07-17 06:31:22,661 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_80.pth.
+2022-07-17 06:31:22,662 - mmpose - INFO - Best PCKh is 72.3679 at 80 epoch.
+2022-07-17 06:31:22,662 - mmpose - INFO - Epoch(val) [80][24]	Head: 89.9045, Shoulder: 88.0605, Elbow: 72.7803, Wrist: 61.0099, Hip: 78.7606, Knee: 59.3605, Ankle: 44.5204, PCKh: 72.3679, PCKh@0.1: 11.7356
+2022-07-17 06:31:44,400 - mmpose - INFO - Epoch [81][50/87]	lr: 5.000e-04, eta: 0:46:27, time: 0.435, data_time: 0.374, memory: 1583, reg_loss: 8.6115, acc_pose: 0.6947, loss: 8.6115
+2022-07-17 06:32:18,855 - mmpose - INFO - Epoch [82][50/87]	lr: 5.000e-04, eta: 0:46:05, time: 0.429, data_time: 0.229, memory: 1583, reg_loss: 8.6927, acc_pose: 0.6942, loss: 8.6927
+2022-07-17 06:32:53,381 - mmpose - INFO - Epoch [83][50/87]	lr: 5.000e-04, eta: 0:45:44, time: 0.431, data_time: 0.255, memory: 1583, reg_loss: 8.5506, acc_pose: 0.6940, loss: 8.5506
+2022-07-17 06:33:27,695 - mmpose - INFO - Epoch [84][50/87]	lr: 5.000e-04, eta: 0:45:22, time: 0.426, data_time: 0.282, memory: 1583, reg_loss: 8.6133, acc_pose: 0.6963, loss: 8.6133
+2022-07-17 06:34:02,200 - mmpose - INFO - Epoch [85][50/87]	lr: 5.000e-04, eta: 0:45:00, time: 0.431, data_time: 0.281, memory: 1583, reg_loss: 8.4956, acc_pose: 0.7026, loss: 8.4956
+2022-07-17 06:34:36,961 - mmpose - INFO - Epoch [86][50/87]	lr: 5.000e-04, eta: 0:44:39, time: 0.434, data_time: 0.302, memory: 1583, reg_loss: 8.4808, acc_pose: 0.7010, loss: 8.4808
+2022-07-17 06:35:11,787 - mmpose - INFO - Epoch [87][50/87]	lr: 5.000e-04, eta: 0:44:17, time: 0.428, data_time: 0.290, memory: 1583, reg_loss: 8.4663, acc_pose: 0.7000, loss: 8.4663
+2022-07-17 06:35:46,399 - mmpose - INFO - Epoch [88][50/87]	lr: 5.000e-04, eta: 0:43:56, time: 0.428, data_time: 0.347, memory: 1583, reg_loss: 8.5687, acc_pose: 0.7014, loss: 8.5687
+2022-07-17 06:36:21,206 - mmpose - INFO - Epoch [89][50/87]	lr: 5.000e-04, eta: 0:43:34, time: 0.426, data_time: 0.312, memory: 1583, reg_loss: 8.5414, acc_pose: 0.6942, loss: 8.5414
+2022-07-17 06:36:55,540 - mmpose - INFO - Epoch [90][50/87]	lr: 5.000e-04, eta: 0:43:12, time: 0.426, data_time: 0.304, memory: 1583, reg_loss: 8.4858, acc_pose: 0.7126, loss: 8.4858
+2022-07-17 06:37:08,791 - mmpose - INFO - Saving checkpoint at 90 epochs
+2022-07-17 06:37:13,534 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_80.pth was removed
+2022-07-17 06:37:13,583 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_90.pth.
+2022-07-17 06:37:13,583 - mmpose - INFO - Best PCKh is 72.9977 at 90 epoch.
+2022-07-17 06:37:13,583 - mmpose - INFO - Epoch(val) [90][24]	Head: 89.7681, Shoulder: 88.4511, Elbow: 73.7688, Wrist: 61.7123, Hip: 78.4490, Knee: 61.9183, Ankle: 44.9213, PCKh: 72.9977, PCKh@0.1: 12.3159
+2022-07-17 06:37:34,868 - mmpose - INFO - Epoch [91][50/87]	lr: 5.000e-04, eta: 0:42:50, time: 0.426, data_time: 0.360, memory: 1583, reg_loss: 8.4923, acc_pose: 0.6988, loss: 8.4923
+2022-07-17 06:38:09,563 - mmpose - INFO - Epoch [92][50/87]	lr: 5.000e-04, eta: 0:42:28, time: 0.428, data_time: 0.333, memory: 1583, reg_loss: 8.4508, acc_pose: 0.7026, loss: 8.4508
+2022-07-17 06:38:44,366 - mmpose - INFO - Epoch [93][50/87]	lr: 5.000e-04, eta: 0:42:07, time: 0.429, data_time: 0.272, memory: 1583, reg_loss: 8.4133, acc_pose: 0.6995, loss: 8.4133
+2022-07-17 06:39:19,021 - mmpose - INFO - Epoch [94][50/87]	lr: 5.000e-04, eta: 0:41:45, time: 0.426, data_time: 0.261, memory: 1583, reg_loss: 8.3663, acc_pose: 0.7028, loss: 8.3663
+2022-07-17 06:39:53,595 - mmpose - INFO - Epoch [95][50/87]	lr: 5.000e-04, eta: 0:41:23, time: 0.427, data_time: 0.297, memory: 1583, reg_loss: 8.4119, acc_pose: 0.6997, loss: 8.4119
+2022-07-17 06:40:28,142 - mmpose - INFO - Epoch [96][50/87]	lr: 5.000e-04, eta: 0:41:02, time: 0.431, data_time: 0.249, memory: 1583, reg_loss: 8.3214, acc_pose: 0.7073, loss: 8.3214
+2022-07-17 06:41:02,474 - mmpose - INFO - Epoch [97][50/87]	lr: 5.000e-04, eta: 0:40:40, time: 0.425, data_time: 0.273, memory: 1583, reg_loss: 8.3367, acc_pose: 0.7052, loss: 8.3367
+2022-07-17 06:41:36,894 - mmpose - INFO - Epoch [98][50/87]	lr: 5.000e-04, eta: 0:40:18, time: 0.426, data_time: 0.239, memory: 1583, reg_loss: 8.3474, acc_pose: 0.7098, loss: 8.3474
+2022-07-17 06:42:11,291 - mmpose - INFO - Epoch [99][50/87]	lr: 5.000e-04, eta: 0:39:56, time: 0.424, data_time: 0.329, memory: 1583, reg_loss: 8.3029, acc_pose: 0.7044, loss: 8.3029
+2022-07-17 06:42:45,759 - mmpose - INFO - Epoch [100][50/87]	lr: 5.000e-04, eta: 0:39:35, time: 0.426, data_time: 0.316, memory: 1583, reg_loss: 8.2133, acc_pose: 0.7006, loss: 8.2133
+2022-07-17 06:42:58,849 - mmpose - INFO - Saving checkpoint at 100 epochs
+2022-07-17 06:43:03,653 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_90.pth was removed
+2022-07-17 06:43:03,700 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_100.pth.
+2022-07-17 06:43:03,700 - mmpose - INFO - Best PCKh is 73.5961 at 100 epoch.
+2022-07-17 06:43:03,700 - mmpose - INFO - Epoch(val) [100][24]	Head: 90.4843, Shoulder: 88.2812, Elbow: 73.7008, Wrist: 62.1238, Hip: 79.2107, Knee: 62.9467, Ankle: 47.2365, PCKh: 73.5961, PCKh@0.1: 12.3289
+2022-07-17 06:43:24,755 - mmpose - INFO - Epoch [101][50/87]	lr: 5.000e-04, eta: 0:39:13, time: 0.421, data_time: 0.263, memory: 1583, reg_loss: 8.3875, acc_pose: 0.7058, loss: 8.3875
+2022-07-17 06:43:59,673 - mmpose - INFO - Epoch [102][50/87]	lr: 5.000e-04, eta: 0:38:51, time: 0.431, data_time: 0.317, memory: 1583, reg_loss: 8.1822, acc_pose: 0.7110, loss: 8.1822
+2022-07-17 06:44:34,395 - mmpose - INFO - Epoch [103][50/87]	lr: 5.000e-04, eta: 0:38:30, time: 0.433, data_time: 0.271, memory: 1583, reg_loss: 8.2890, acc_pose: 0.7119, loss: 8.2890
+2022-07-17 06:45:09,140 - mmpose - INFO - Epoch [104][50/87]	lr: 5.000e-04, eta: 0:38:08, time: 0.432, data_time: 0.342, memory: 1583, reg_loss: 8.2070, acc_pose: 0.7160, loss: 8.2070
+2022-07-17 06:45:43,263 - mmpose - INFO - Epoch [105][50/87]	lr: 5.000e-04, eta: 0:37:46, time: 0.423, data_time: 0.304, memory: 1583, reg_loss: 8.2203, acc_pose: 0.7122, loss: 8.2203
+2022-07-17 06:46:17,825 - mmpose - INFO - Epoch [106][50/87]	lr: 5.000e-04, eta: 0:37:25, time: 0.425, data_time: 0.292, memory: 1583, reg_loss: 8.2268, acc_pose: 0.7115, loss: 8.2268
+2022-07-17 06:46:52,428 - mmpose - INFO - Epoch [107][50/87]	lr: 5.000e-04, eta: 0:37:03, time: 0.430, data_time: 0.363, memory: 1583, reg_loss: 8.2215, acc_pose: 0.7089, loss: 8.2215
+2022-07-17 06:47:27,134 - mmpose - INFO - Epoch [108][50/87]	lr: 5.000e-04, eta: 0:36:42, time: 0.429, data_time: 0.270, memory: 1583, reg_loss: 8.2888, acc_pose: 0.7104, loss: 8.2888
+2022-07-17 06:48:01,662 - mmpose - INFO - Epoch [109][50/87]	lr: 5.000e-04, eta: 0:36:20, time: 0.433, data_time: 0.236, memory: 1583, reg_loss: 8.1802, acc_pose: 0.7065, loss: 8.1802
+2022-07-17 06:48:35,597 - mmpose - INFO - Epoch [110][50/87]	lr: 5.000e-04, eta: 0:35:58, time: 0.419, data_time: 0.265, memory: 1583, reg_loss: 8.1414, acc_pose: 0.7112, loss: 8.1414
+2022-07-17 06:48:49,306 - mmpose - INFO - Saving checkpoint at 110 epochs
+2022-07-17 06:48:54,086 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_100.pth was removed
+2022-07-17 06:48:54,143 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_110.pth.
+2022-07-17 06:48:54,143 - mmpose - INFO - Best PCKh is 73.7523 at 110 epoch.
+2022-07-17 06:48:54,144 - mmpose - INFO - Epoch(val) [110][24]	Head: 90.4161, Shoulder: 88.5870, Elbow: 74.5870, Wrist: 62.7576, Hip: 79.2625, Knee: 62.6044, Ankle: 46.5511, PCKh: 73.7523, PCKh@0.1: 12.7973
+2022-07-17 06:49:15,619 - mmpose - INFO - Epoch [111][50/87]	lr: 5.000e-04, eta: 0:35:37, time: 0.429, data_time: 0.366, memory: 1583, reg_loss: 8.1581, acc_pose: 0.7128, loss: 8.1581
+2022-07-17 06:49:50,223 - mmpose - INFO - Epoch [112][50/87]	lr: 5.000e-04, eta: 0:35:15, time: 0.430, data_time: 0.268, memory: 1583, reg_loss: 8.0632, acc_pose: 0.7168, loss: 8.0632
+2022-07-17 06:50:24,744 - mmpose - INFO - Epoch [113][50/87]	lr: 5.000e-04, eta: 0:34:54, time: 0.425, data_time: 0.325, memory: 1583, reg_loss: 8.0883, acc_pose: 0.7131, loss: 8.0883
+2022-07-17 06:50:59,546 - mmpose - INFO - Epoch [114][50/87]	lr: 5.000e-04, eta: 0:34:32, time: 0.429, data_time: 0.326, memory: 1583, reg_loss: 8.0613, acc_pose: 0.7134, loss: 8.0613
+2022-07-17 06:51:33,744 - mmpose - INFO - Epoch [115][50/87]	lr: 5.000e-04, eta: 0:34:10, time: 0.422, data_time: 0.305, memory: 1583, reg_loss: 8.1202, acc_pose: 0.7099, loss: 8.1202
+2022-07-17 06:52:08,480 - mmpose - INFO - Epoch [116][50/87]	lr: 5.000e-04, eta: 0:33:49, time: 0.426, data_time: 0.339, memory: 1583, reg_loss: 8.0129, acc_pose: 0.7091, loss: 8.0129
+2022-07-17 06:52:43,132 - mmpose - INFO - Epoch [117][50/87]	lr: 5.000e-04, eta: 0:33:27, time: 0.429, data_time: 0.335, memory: 1583, reg_loss: 8.0852, acc_pose: 0.7079, loss: 8.0852
+2022-07-17 06:53:17,961 - mmpose - INFO - Epoch [118][50/87]	lr: 5.000e-04, eta: 0:33:06, time: 0.434, data_time: 0.290, memory: 1583, reg_loss: 8.0173, acc_pose: 0.7239, loss: 8.0173
+2022-07-17 06:53:52,783 - mmpose - INFO - Epoch [119][50/87]	lr: 5.000e-04, eta: 0:32:44, time: 0.430, data_time: 0.227, memory: 1583, reg_loss: 8.0167, acc_pose: 0.7158, loss: 8.0167
+2022-07-17 06:54:27,013 - mmpose - INFO - Epoch [120][50/87]	lr: 5.000e-04, eta: 0:32:23, time: 0.425, data_time: 0.338, memory: 1583, reg_loss: 7.9238, acc_pose: 0.7164, loss: 7.9238
+2022-07-17 06:54:40,513 - mmpose - INFO - Saving checkpoint at 120 epochs
+2022-07-17 06:54:45,348 - mmpose - INFO - Epoch(val) [120][24]	Head: 90.2797, Shoulder: 88.5020, Elbow: 74.2460, Wrist: 62.7915, Hip: 80.1454, Knee: 62.3215, Ankle: 44.4492, PCKh: 73.5831, PCKh@0.1: 12.5345
+2022-07-17 06:55:06,551 - mmpose - INFO - Epoch [121][50/87]	lr: 5.000e-04, eta: 0:32:01, time: 0.424, data_time: 0.327, memory: 1583, reg_loss: 8.0490, acc_pose: 0.7199, loss: 8.0490
+2022-07-17 06:55:41,139 - mmpose - INFO - Epoch [122][50/87]	lr: 5.000e-04, eta: 0:31:39, time: 0.428, data_time: 0.311, memory: 1583, reg_loss: 7.9829, acc_pose: 0.7214, loss: 7.9829
+2022-07-17 06:56:16,130 - mmpose - INFO - Epoch [123][50/87]	lr: 5.000e-04, eta: 0:31:18, time: 0.428, data_time: 0.272, memory: 1583, reg_loss: 8.0721, acc_pose: 0.7071, loss: 8.0721
+2022-07-17 06:56:51,201 - mmpose - INFO - Epoch [124][50/87]	lr: 5.000e-04, eta: 0:30:57, time: 0.435, data_time: 0.365, memory: 1583, reg_loss: 7.9697, acc_pose: 0.7154, loss: 7.9697
+2022-07-17 06:57:25,454 - mmpose - INFO - Epoch [125][50/87]	lr: 5.000e-04, eta: 0:30:35, time: 0.422, data_time: 0.324, memory: 1583, reg_loss: 7.9735, acc_pose: 0.7214, loss: 7.9735
+2022-07-17 06:58:00,419 - mmpose - INFO - Epoch [126][50/87]	lr: 5.000e-04, eta: 0:30:13, time: 0.431, data_time: 0.278, memory: 1583, reg_loss: 8.0516, acc_pose: 0.7219, loss: 8.0516
+2022-07-17 06:58:35,247 - mmpose - INFO - Epoch [127][50/87]	lr: 5.000e-04, eta: 0:29:52, time: 0.428, data_time: 0.339, memory: 1583, reg_loss: 7.8796, acc_pose: 0.7185, loss: 7.8796
+2022-07-17 06:59:10,169 - mmpose - INFO - Epoch [128][50/87]	lr: 5.000e-04, eta: 0:29:31, time: 0.438, data_time: 0.377, memory: 1583, reg_loss: 7.8806, acc_pose: 0.7226, loss: 7.8806
+2022-07-17 06:59:44,395 - mmpose - INFO - Epoch [129][50/87]	lr: 5.000e-04, eta: 0:29:09, time: 0.423, data_time: 0.272, memory: 1583, reg_loss: 7.9653, acc_pose: 0.7156, loss: 7.9653
+2022-07-17 07:00:19,420 - mmpose - INFO - Epoch [130][50/87]	lr: 5.000e-04, eta: 0:28:47, time: 0.432, data_time: 0.165, memory: 1583, reg_loss: 7.8681, acc_pose: 0.7240, loss: 7.8681
+2022-07-17 07:00:32,638 - mmpose - INFO - Saving checkpoint at 130 epochs
+2022-07-17 07:00:37,405 - mmpose - INFO - Epoch(val) [130][24]	Head: 89.5293, Shoulder: 88.5190, Elbow: 74.5016, Wrist: 63.7849, Hip: 79.5568, Knee: 61.1122, Ankle: 46.0794, PCKh: 73.5857, PCKh@0.1: 12.8077
+2022-07-17 07:00:58,824 - mmpose - INFO - Epoch [131][50/87]	lr: 5.000e-04, eta: 0:28:26, time: 0.428, data_time: 0.250, memory: 1583, reg_loss: 7.8626, acc_pose: 0.7237, loss: 7.8626
+2022-07-17 07:01:33,712 - mmpose - INFO - Epoch [132][50/87]	lr: 5.000e-04, eta: 0:28:05, time: 0.438, data_time: 0.375, memory: 1583, reg_loss: 7.7975, acc_pose: 0.7182, loss: 7.7975
+2022-07-17 07:02:07,777 - mmpose - INFO - Epoch [133][50/87]	lr: 5.000e-04, eta: 0:27:43, time: 0.430, data_time: 0.346, memory: 1583, reg_loss: 7.8716, acc_pose: 0.7244, loss: 7.8716
+2022-07-17 07:02:42,439 - mmpose - INFO - Epoch [134][50/87]	lr: 5.000e-04, eta: 0:27:22, time: 0.428, data_time: 0.252, memory: 1583, reg_loss: 7.8710, acc_pose: 0.7250, loss: 7.8710
+2022-07-17 07:03:16,707 - mmpose - INFO - Epoch [135][50/87]	lr: 5.000e-04, eta: 0:27:00, time: 0.428, data_time: 0.128, memory: 1583, reg_loss: 7.7380, acc_pose: 0.7265, loss: 7.7380
+2022-07-17 07:03:51,090 - mmpose - INFO - Epoch [136][50/87]	lr: 5.000e-04, eta: 0:26:39, time: 0.429, data_time: 0.238, memory: 1583, reg_loss: 7.7619, acc_pose: 0.7278, loss: 7.7619
+2022-07-17 07:04:25,534 - mmpose - INFO - Epoch [137][50/87]	lr: 5.000e-04, eta: 0:26:17, time: 0.427, data_time: 0.305, memory: 1583, reg_loss: 7.8434, acc_pose: 0.7135, loss: 7.8434
+2022-07-17 07:04:59,752 - mmpose - INFO - Epoch [138][50/87]	lr: 5.000e-04, eta: 0:25:56, time: 0.426, data_time: 0.190, memory: 1583, reg_loss: 7.8209, acc_pose: 0.7229, loss: 7.8209
+2022-07-17 07:05:34,429 - mmpose - INFO - Epoch [139][50/87]	lr: 5.000e-04, eta: 0:25:34, time: 0.427, data_time: 0.297, memory: 1583, reg_loss: 7.7816, acc_pose: 0.7258, loss: 7.7816
+2022-07-17 07:06:09,364 - mmpose - INFO - Epoch [140][50/87]	lr: 5.000e-04, eta: 0:25:13, time: 0.433, data_time: 0.254, memory: 1583, reg_loss: 7.7928, acc_pose: 0.7232, loss: 7.7928
+2022-07-17 07:06:22,323 - mmpose - INFO - Saving checkpoint at 140 epochs
+2022-07-17 07:06:27,136 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_110.pth was removed
+2022-07-17 07:06:27,184 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_140.pth.
+2022-07-17 07:06:27,184 - mmpose - INFO - Best PCKh is 73.9787 at 140 epoch.
+2022-07-17 07:06:27,184 - mmpose - INFO - Epoch(val) [140][24]	Head: 90.4161, Shoulder: 89.1814, Elbow: 75.6268, Wrist: 63.7509, Hip: 79.4183, Knee: 62.6032, Ankle: 44.9219, PCKh: 73.9787, PCKh@0.1: 13.0003
+2022-07-17 07:06:48,473 - mmpose - INFO - Epoch [141][50/87]	lr: 5.000e-04, eta: 0:24:51, time: 0.426, data_time: 0.263, memory: 1583, reg_loss: 7.7932, acc_pose: 0.7220, loss: 7.7932
+2022-07-17 07:07:22,920 - mmpose - INFO - Epoch [142][50/87]	lr: 5.000e-04, eta: 0:24:29, time: 0.427, data_time: 0.351, memory: 1583, reg_loss: 7.7311, acc_pose: 0.7274, loss: 7.7311
+2022-07-17 07:07:57,192 - mmpose - INFO - Epoch [143][50/87]	lr: 5.000e-04, eta: 0:24:08, time: 0.425, data_time: 0.285, memory: 1583, reg_loss: 7.6982, acc_pose: 0.7325, loss: 7.6982
+2022-07-17 07:08:32,026 - mmpose - INFO - Epoch [144][50/87]	lr: 5.000e-04, eta: 0:23:46, time: 0.431, data_time: 0.227, memory: 1583, reg_loss: 7.7917, acc_pose: 0.7319, loss: 7.7917
+2022-07-17 07:09:06,695 - mmpose - INFO - Epoch [145][50/87]	lr: 5.000e-04, eta: 0:23:25, time: 0.428, data_time: 0.319, memory: 1583, reg_loss: 7.6290, acc_pose: 0.7204, loss: 7.6290
+2022-07-17 07:09:40,917 - mmpose - INFO - Epoch [146][50/87]	lr: 5.000e-04, eta: 0:23:03, time: 0.422, data_time: 0.274, memory: 1583, reg_loss: 7.6754, acc_pose: 0.7280, loss: 7.6754
+2022-07-17 07:10:15,541 - mmpose - INFO - Epoch [147][50/87]	lr: 5.000e-04, eta: 0:22:42, time: 0.432, data_time: 0.351, memory: 1583, reg_loss: 7.7344, acc_pose: 0.7324, loss: 7.7344
+2022-07-17 07:10:50,029 - mmpose - INFO - Epoch [148][50/87]	lr: 5.000e-04, eta: 0:22:20, time: 0.429, data_time: 0.296, memory: 1583, reg_loss: 7.6591, acc_pose: 0.7290, loss: 7.6591
+2022-07-17 07:11:24,626 - mmpose - INFO - Epoch [149][50/87]	lr: 5.000e-04, eta: 0:21:59, time: 0.425, data_time: 0.238, memory: 1583, reg_loss: 7.5936, acc_pose: 0.7328, loss: 7.5936
+2022-07-17 07:11:59,556 - mmpose - INFO - Epoch [150][50/87]	lr: 5.000e-04, eta: 0:21:37, time: 0.433, data_time: 0.275, memory: 1583, reg_loss: 7.6156, acc_pose: 0.7340, loss: 7.6156
+2022-07-17 07:12:12,633 - mmpose - INFO - Saving checkpoint at 150 epochs
+2022-07-17 07:12:17,427 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_140.pth was removed
+2022-07-17 07:12:17,484 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_150.pth.
+2022-07-17 07:12:17,484 - mmpose - INFO - Best PCKh is 74.2337 at 150 epoch.
+2022-07-17 07:12:17,484 - mmpose - INFO - Epoch(val) [150][24]	Head: 90.8595, Shoulder: 88.7908, Elbow: 75.1494, Wrist: 63.5622, Hip: 79.2625, Knee: 63.1677, Ankle: 47.6612, PCKh: 74.2337, PCKh@0.1: 13.0835
+2022-07-17 07:12:38,699 - mmpose - INFO - Epoch [151][50/87]	lr: 5.000e-04, eta: 0:21:16, time: 0.424, data_time: 0.355, memory: 1583, reg_loss: 7.7053, acc_pose: 0.7262, loss: 7.7053
+2022-07-17 07:13:13,480 - mmpose - INFO - Epoch [152][50/87]	lr: 5.000e-04, eta: 0:20:54, time: 0.434, data_time: 0.234, memory: 1583, reg_loss: 7.6819, acc_pose: 0.7270, loss: 7.6819
+2022-07-17 07:13:47,686 - mmpose - INFO - Epoch [153][50/87]	lr: 5.000e-04, eta: 0:20:33, time: 0.426, data_time: 0.299, memory: 1583, reg_loss: 7.6163, acc_pose: 0.7345, loss: 7.6163
+2022-07-17 07:14:21,816 - mmpose - INFO - Epoch [154][50/87]	lr: 5.000e-04, eta: 0:20:11, time: 0.421, data_time: 0.300, memory: 1583, reg_loss: 7.6823, acc_pose: 0.7285, loss: 7.6823
+2022-07-17 07:14:56,255 - mmpose - INFO - Epoch [155][50/87]	lr: 5.000e-04, eta: 0:19:50, time: 0.425, data_time: 0.222, memory: 1583, reg_loss: 7.6340, acc_pose: 0.7238, loss: 7.6340
+2022-07-17 07:15:31,011 - mmpose - INFO - Epoch [156][50/87]	lr: 5.000e-04, eta: 0:19:28, time: 0.431, data_time: 0.366, memory: 1583, reg_loss: 7.5845, acc_pose: 0.7306, loss: 7.5845
+2022-07-17 07:16:05,261 - mmpose - INFO - Epoch [157][50/87]	lr: 5.000e-04, eta: 0:19:07, time: 0.425, data_time: 0.268, memory: 1583, reg_loss: 7.5344, acc_pose: 0.7324, loss: 7.5344
+2022-07-17 07:16:40,121 - mmpose - INFO - Epoch [158][50/87]	lr: 5.000e-04, eta: 0:18:45, time: 0.431, data_time: 0.365, memory: 1583, reg_loss: 7.5836, acc_pose: 0.7298, loss: 7.5836
+2022-07-17 07:17:15,112 - mmpose - INFO - Epoch [159][50/87]	lr: 5.000e-04, eta: 0:18:24, time: 0.428, data_time: 0.289, memory: 1583, reg_loss: 7.5792, acc_pose: 0.7278, loss: 7.5792
+2022-07-17 07:17:49,535 - mmpose - INFO - Epoch [160][50/87]	lr: 5.000e-04, eta: 0:18:02, time: 0.425, data_time: 0.221, memory: 1583, reg_loss: 7.5679, acc_pose: 0.7297, loss: 7.5679
+2022-07-17 07:18:02,750 - mmpose - INFO - Saving checkpoint at 160 epochs
+2022-07-17 07:18:07,412 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_150.pth was removed
+2022-07-17 07:18:07,460 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_160.pth.
+2022-07-17 07:18:07,460 - mmpose - INFO - Best PCKh is 74.3195 at 160 epoch.
+2022-07-17 07:18:07,460 - mmpose - INFO - Epoch(val) [160][24]	Head: 90.2115, Shoulder: 88.2812, Elbow: 75.0815, Wrist: 63.9755, Hip: 79.4703, Knee: 64.1557, Ankle: 47.8030, PCKh: 74.3195, PCKh@0.1: 13.2266
+2022-07-17 07:18:28,720 - mmpose - INFO - Epoch [161][50/87]	lr: 5.000e-04, eta: 0:17:41, time: 0.425, data_time: 0.345, memory: 1583, reg_loss: 7.5090, acc_pose: 0.7362, loss: 7.5090
+2022-07-17 07:19:03,235 - mmpose - INFO - Epoch [162][50/87]	lr: 5.000e-04, eta: 0:17:19, time: 0.429, data_time: 0.281, memory: 1583, reg_loss: 7.5134, acc_pose: 0.7379, loss: 7.5134
+2022-07-17 07:19:37,448 - mmpose - INFO - Epoch [163][50/87]	lr: 5.000e-04, eta: 0:16:58, time: 0.422, data_time: 0.332, memory: 1583, reg_loss: 7.5332, acc_pose: 0.7340, loss: 7.5332
+2022-07-17 07:20:12,128 - mmpose - INFO - Epoch [164][50/87]	lr: 5.000e-04, eta: 0:16:36, time: 0.424, data_time: 0.309, memory: 1583, reg_loss: 7.5000, acc_pose: 0.7383, loss: 7.5000
+2022-07-17 07:20:46,617 - mmpose - INFO - Epoch [165][50/87]	lr: 5.000e-04, eta: 0:16:14, time: 0.428, data_time: 0.299, memory: 1583, reg_loss: 7.4794, acc_pose: 0.7304, loss: 7.4794
+2022-07-17 07:21:21,139 - mmpose - INFO - Epoch [166][50/87]	lr: 5.000e-04, eta: 0:15:53, time: 0.426, data_time: 0.307, memory: 1583, reg_loss: 7.4595, acc_pose: 0.7369, loss: 7.4595
+2022-07-17 07:21:56,248 - mmpose - INFO - Epoch [167][50/87]	lr: 5.000e-04, eta: 0:15:32, time: 0.429, data_time: 0.286, memory: 1583, reg_loss: 7.4943, acc_pose: 0.7381, loss: 7.4943
+2022-07-17 07:22:30,679 - mmpose - INFO - Epoch [168][50/87]	lr: 5.000e-04, eta: 0:15:10, time: 0.423, data_time: 0.305, memory: 1583, reg_loss: 7.4764, acc_pose: 0.7375, loss: 7.4764
+2022-07-17 07:23:05,085 - mmpose - INFO - Epoch [169][50/87]	lr: 5.000e-04, eta: 0:14:49, time: 0.428, data_time: 0.166, memory: 1583, reg_loss: 7.4378, acc_pose: 0.7307, loss: 7.4378
+2022-07-17 07:23:39,612 - mmpose - INFO - Epoch [170][50/87]	lr: 5.000e-04, eta: 0:14:27, time: 0.431, data_time: 0.345, memory: 1583, reg_loss: 7.3874, acc_pose: 0.7403, loss: 7.3874
+2022-07-17 07:23:52,539 - mmpose - INFO - Saving checkpoint at 170 epochs
+2022-07-17 07:23:57,375 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_160.pth was removed
+2022-07-17 07:23:57,426 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_170.pth.
+2022-07-17 07:23:57,426 - mmpose - INFO - Best PCKh is 74.3378 at 170 epoch.
+2022-07-17 07:23:57,427 - mmpose - INFO - Epoch(val) [170][24]	Head: 90.3820, Shoulder: 88.5870, Elbow: 75.6265, Wrist: 64.4373, Hip: 80.2146, Knee: 63.4703, Ankle: 46.0087, PCKh: 74.3378, PCKh@0.1: 13.3620
+2022-07-17 07:24:19,265 - mmpose - INFO - Epoch [171][50/87]	lr: 5.000e-05, eta: 0:14:06, time: 0.437, data_time: 0.301, memory: 1583, reg_loss: 7.3141, acc_pose: 0.7371, loss: 7.3141
+2022-07-17 07:24:53,369 - mmpose - INFO - Epoch [172][50/87]	lr: 5.000e-05, eta: 0:13:44, time: 0.423, data_time: 0.220, memory: 1583, reg_loss: 7.2839, acc_pose: 0.7349, loss: 7.2839
+2022-07-17 07:25:28,585 - mmpose - INFO - Epoch [173][50/87]	lr: 5.000e-05, eta: 0:13:23, time: 0.435, data_time: 0.267, memory: 1583, reg_loss: 7.0905, acc_pose: 0.7436, loss: 7.0905
+2022-07-17 07:26:02,825 - mmpose - INFO - Epoch [174][50/87]	lr: 5.000e-05, eta: 0:13:01, time: 0.425, data_time: 0.315, memory: 1583, reg_loss: 7.0626, acc_pose: 0.7527, loss: 7.0626
+2022-07-17 07:26:37,639 - mmpose - INFO - Epoch [175][50/87]	lr: 5.000e-05, eta: 0:12:40, time: 0.435, data_time: 0.284, memory: 1583, reg_loss: 6.9952, acc_pose: 0.7521, loss: 6.9952
+2022-07-17 07:27:11,965 - mmpose - INFO - Epoch [176][50/87]	lr: 5.000e-05, eta: 0:12:18, time: 0.427, data_time: 0.237, memory: 1583, reg_loss: 7.0110, acc_pose: 0.7536, loss: 7.0110
+2022-07-17 07:27:46,305 - mmpose - INFO - Epoch [177][50/87]	lr: 5.000e-05, eta: 0:11:57, time: 0.423, data_time: 0.335, memory: 1583, reg_loss: 7.0075, acc_pose: 0.7544, loss: 7.0075
+2022-07-17 07:28:20,535 - mmpose - INFO - Epoch [178][50/87]	lr: 5.000e-05, eta: 0:11:35, time: 0.420, data_time: 0.305, memory: 1583, reg_loss: 6.9883, acc_pose: 0.7514, loss: 6.9883
+2022-07-17 07:28:55,334 - mmpose - INFO - Epoch [179][50/87]	lr: 5.000e-05, eta: 0:11:14, time: 0.426, data_time: 0.338, memory: 1583, reg_loss: 7.0286, acc_pose: 0.7465, loss: 7.0286
+2022-07-17 07:29:30,178 - mmpose - INFO - Epoch [180][50/87]	lr: 5.000e-05, eta: 0:10:52, time: 0.432, data_time: 0.364, memory: 1583, reg_loss: 6.8971, acc_pose: 0.7503, loss: 6.8971
+2022-07-17 07:29:43,169 - mmpose - INFO - Saving checkpoint at 180 epochs
+2022-07-17 07:29:47,949 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_170.pth was removed
+2022-07-17 07:29:47,998 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_180.pth.
+2022-07-17 07:29:47,998 - mmpose - INFO - Best PCKh is 75.6753 at 180 epoch.
+2022-07-17 07:29:47,999 - mmpose - INFO - Epoch(val) [180][24]	Head: 90.8595, Shoulder: 89.3003, Elbow: 76.5299, Wrist: 65.9443, Hip: 81.1147, Knee: 65.8684, Ankle: 48.9841, PCKh: 75.6753, PCKh@0.1: 14.0255
+2022-07-17 07:30:09,487 - mmpose - INFO - Epoch [181][50/87]	lr: 5.000e-05, eta: 0:10:31, time: 0.430, data_time: 0.354, memory: 1583, reg_loss: 6.8371, acc_pose: 0.7569, loss: 6.8371
+2022-07-17 07:30:43,959 - mmpose - INFO - Epoch [182][50/87]	lr: 5.000e-05, eta: 0:10:09, time: 0.431, data_time: 0.324, memory: 1583, reg_loss: 6.9466, acc_pose: 0.7540, loss: 6.9466
+2022-07-17 07:31:18,220 - mmpose - INFO - Epoch [183][50/87]	lr: 5.000e-05, eta: 0:09:48, time: 0.430, data_time: 0.305, memory: 1583, reg_loss: 6.9070, acc_pose: 0.7511, loss: 6.9070
+2022-07-17 07:31:52,888 - mmpose - INFO - Epoch [184][50/87]	lr: 5.000e-05, eta: 0:09:27, time: 0.432, data_time: 0.282, memory: 1583, reg_loss: 6.8991, acc_pose: 0.7508, loss: 6.8991
+2022-07-17 07:32:27,311 - mmpose - INFO - Epoch [185][50/87]	lr: 5.000e-05, eta: 0:09:05, time: 0.428, data_time: 0.338, memory: 1583, reg_loss: 6.9254, acc_pose: 0.7539, loss: 6.9254
+2022-07-17 07:33:01,814 - mmpose - INFO - Epoch [186][50/87]	lr: 5.000e-05, eta: 0:08:44, time: 0.431, data_time: 0.360, memory: 1583, reg_loss: 6.8198, acc_pose: 0.7517, loss: 6.8198
+2022-07-17 07:33:35,775 - mmpose - INFO - Epoch [187][50/87]	lr: 5.000e-05, eta: 0:08:22, time: 0.417, data_time: 0.335, memory: 1583, reg_loss: 6.7762, acc_pose: 0.7557, loss: 6.7762
+2022-07-17 07:34:11,061 - mmpose - INFO - Epoch [188][50/87]	lr: 5.000e-05, eta: 0:08:01, time: 0.434, data_time: 0.224, memory: 1583, reg_loss: 6.8714, acc_pose: 0.7532, loss: 6.8714
+2022-07-17 07:34:45,916 - mmpose - INFO - Epoch [189][50/87]	lr: 5.000e-05, eta: 0:07:39, time: 0.442, data_time: 0.373, memory: 1583, reg_loss: 6.9516, acc_pose: 0.7511, loss: 6.9516
+2022-07-17 07:35:20,519 - mmpose - INFO - Epoch [190][50/87]	lr: 5.000e-05, eta: 0:07:18, time: 0.433, data_time: 0.305, memory: 1583, reg_loss: 6.8400, acc_pose: 0.7558, loss: 6.8400
+2022-07-17 07:35:33,438 - mmpose - INFO - Saving checkpoint at 190 epochs
+2022-07-17 07:35:38,082 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_180.pth was removed
+2022-07-17 07:35:38,130 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_190.pth.
+2022-07-17 07:35:38,130 - mmpose - INFO - Best PCKh is 75.9147 at 190 epoch.
+2022-07-17 07:35:38,131 - mmpose - INFO - Epoch(val) [190][24]	Head: 91.1323, Shoulder: 89.6909, Elbow: 76.7686, Wrist: 65.7728, Hip: 81.7033, Knee: 66.1508, Ankle: 49.2199, PCKh: 75.9147, PCKh@0.1: 14.1426
+2022-07-17 07:35:59,444 - mmpose - INFO - Epoch [191][50/87]	lr: 5.000e-05, eta: 0:06:56, time: 0.426, data_time: 0.358, memory: 1583, reg_loss: 6.8833, acc_pose: 0.7503, loss: 6.8833
+2022-07-17 07:36:34,428 - mmpose - INFO - Epoch [192][50/87]	lr: 5.000e-05, eta: 0:06:35, time: 0.432, data_time: 0.251, memory: 1583, reg_loss: 6.9028, acc_pose: 0.7542, loss: 6.9028
+2022-07-17 07:37:09,178 - mmpose - INFO - Epoch [193][50/87]	lr: 5.000e-05, eta: 0:06:13, time: 0.426, data_time: 0.366, memory: 1583, reg_loss: 6.8856, acc_pose: 0.7619, loss: 6.8856
+2022-07-17 07:37:44,250 - mmpose - INFO - Epoch [194][50/87]	lr: 5.000e-05, eta: 0:05:52, time: 0.431, data_time: 0.303, memory: 1583, reg_loss: 6.9318, acc_pose: 0.7606, loss: 6.9318
+2022-07-17 07:38:18,739 - mmpose - INFO - Epoch [195][50/87]	lr: 5.000e-05, eta: 0:05:31, time: 0.429, data_time: 0.355, memory: 1583, reg_loss: 6.8023, acc_pose: 0.7546, loss: 6.8023
+2022-07-17 07:38:53,549 - mmpose - INFO - Epoch [196][50/87]	lr: 5.000e-05, eta: 0:05:09, time: 0.433, data_time: 0.258, memory: 1583, reg_loss: 6.8030, acc_pose: 0.7602, loss: 6.8030
+2022-07-17 07:39:27,689 - mmpose - INFO - Epoch [197][50/87]	lr: 5.000e-05, eta: 0:04:48, time: 0.425, data_time: 0.336, memory: 1583, reg_loss: 6.8139, acc_pose: 0.7475, loss: 6.8139
+2022-07-17 07:40:02,623 - mmpose - INFO - Epoch [198][50/87]	lr: 5.000e-05, eta: 0:04:26, time: 0.426, data_time: 0.274, memory: 1583, reg_loss: 6.8598, acc_pose: 0.7529, loss: 6.8598
+2022-07-17 07:40:37,362 - mmpose - INFO - Epoch [199][50/87]	lr: 5.000e-05, eta: 0:04:05, time: 0.431, data_time: 0.268, memory: 1583, reg_loss: 6.8400, acc_pose: 0.7523, loss: 6.8400
+2022-07-17 07:41:11,517 - mmpose - INFO - Epoch [200][50/87]	lr: 5.000e-05, eta: 0:03:43, time: 0.425, data_time: 0.358, memory: 1583, reg_loss: 6.8010, acc_pose: 0.7537, loss: 6.8010
+2022-07-17 07:41:24,505 - mmpose - INFO - Saving checkpoint at 200 epochs
+2022-07-17 07:41:29,283 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/9_reg_shufflenetv2_mpii_256x256_dsnt/best_PCKh_epoch_190.pth was removed
+2022-07-17 07:41:29,342 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_200.pth.
+2022-07-17 07:41:29,343 - mmpose - INFO - Best PCKh is 75.9953 at 200 epoch.
+2022-07-17 07:41:29,343 - mmpose - INFO - Epoch(val) [200][24]	Head: 91.3029, Shoulder: 89.8438, Elbow: 76.5300, Wrist: 65.8753, Hip: 81.5994, Knee: 66.5939, Ankle: 49.3379, PCKh: 75.9953, PCKh@0.1: 14.1114
+2022-07-17 07:41:50,822 - mmpose - INFO - Epoch [201][50/87]	lr: 5.000e-06, eta: 0:03:22, time: 0.429, data_time: 0.294, memory: 1583, reg_loss: 6.7972, acc_pose: 0.7604, loss: 6.7972
+2022-07-17 07:42:24,941 - mmpose - INFO - Epoch [202][50/87]	lr: 5.000e-06, eta: 0:03:00, time: 0.424, data_time: 0.193, memory: 1583, reg_loss: 6.8407, acc_pose: 0.7604, loss: 6.8407
+2022-07-17 07:42:59,667 - mmpose - INFO - Epoch [203][50/87]	lr: 5.000e-06, eta: 0:02:39, time: 0.425, data_time: 0.346, memory: 1583, reg_loss: 6.6970, acc_pose: 0.7621, loss: 6.6970
+2022-07-17 07:43:34,278 - mmpose - INFO - Epoch [204][50/87]	lr: 5.000e-06, eta: 0:02:17, time: 0.426, data_time: 0.298, memory: 1583, reg_loss: 6.7945, acc_pose: 0.7627, loss: 6.7945
+2022-07-17 07:44:08,694 - mmpose - INFO - Epoch [205][50/87]	lr: 5.000e-06, eta: 0:01:56, time: 0.427, data_time: 0.329, memory: 1583, reg_loss: 6.8387, acc_pose: 0.7578, loss: 6.8387
+2022-07-17 07:44:43,197 - mmpose - INFO - Epoch [206][50/87]	lr: 5.000e-06, eta: 0:01:34, time: 0.428, data_time: 0.362, memory: 1583, reg_loss: 6.8077, acc_pose: 0.7583, loss: 6.8077
+2022-07-17 07:45:17,348 - mmpose - INFO - Epoch [207][50/87]	lr: 5.000e-06, eta: 0:01:13, time: 0.423, data_time: 0.266, memory: 1583, reg_loss: 6.7539, acc_pose: 0.7602, loss: 6.7539
+2022-07-17 07:45:51,797 - mmpose - INFO - Epoch [208][50/87]	lr: 5.000e-06, eta: 0:00:52, time: 0.430, data_time: 0.295, memory: 1583, reg_loss: 6.8277, acc_pose: 0.7626, loss: 6.8277
+2022-07-17 07:46:26,804 - mmpose - INFO - Epoch [209][50/87]	lr: 5.000e-06, eta: 0:00:30, time: 0.434, data_time: 0.317, memory: 1583, reg_loss: 6.8233, acc_pose: 0.7600, loss: 6.8233
+2022-07-17 07:47:01,506 - mmpose - INFO - Epoch [210][50/87]	lr: 5.000e-06, eta: 0:00:09, time: 0.431, data_time: 0.338, memory: 1583, reg_loss: 6.7106, acc_pose: 0.7570, loss: 6.7106
+2022-07-17 07:47:14,594 - mmpose - INFO - Saving checkpoint at 210 epochs
+2022-07-17 07:47:19,323 - mmpose - INFO - Epoch(val) [210][24]	Head: 91.1323, Shoulder: 89.9626, Elbow: 76.5980, Wrist: 66.2190, Hip: 81.4090, Knee: 66.4527, Ankle: 49.0781, PCKh: 75.9849, PCKh@0.1: 14.1712

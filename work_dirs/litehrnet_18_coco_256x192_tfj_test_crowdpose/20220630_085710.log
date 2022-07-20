@@ -1,0 +1,1312 @@
+2022-06-30 08:57:10,364 - mmpose - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.9.7 (default, Sep 16 2021, 13:09:58) [GCC 7.5.0]
+CUDA available: True
+GPU 0,1,2,3,4,5,6,7: NVIDIA GeForce RTX 3090
+CUDA_HOME: /usr/local/cuda-11.1
+NVCC: Cuda compilation tools, release 11.1, V11.1.74
+GCC: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+PyTorch: 1.9.1+cu111
+PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.1.2 (Git Hash 98be7e8afa711dc9b66c8ff3504129cb82013cdb)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.1
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86
+  - CuDNN 8.0.5
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.1, CUDNN_VERSION=8.0.5, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.9.1, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+TorchVision: 0.10.1+cu111
+OpenCV: 4.5.5
+MMCV: 1.5.1
+MMCV Compiler: GCC 7.5
+MMCV CUDA Compiler: 11.1
+MMPose: 0.27.0+
+------------------------------------------------------------
+
+2022-06-30 08:57:10,365 - mmpose - INFO - Distributed training: True
+2022-06-30 08:57:13,133 - mmpose - INFO - Config:
+checkpoint_config = dict(interval=10)
+log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
+log_level = 'INFO'
+load_from = None
+resume_from = None
+dist_params = dict(backend='nccl')
+workflow = [('train', 1)]
+opencv_num_threads = 0
+mp_start_method = 'fork'
+dataset_info = dict(
+    dataset_name='coco13',
+    paper_info=dict(
+        author=
+        'Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence',
+        title='Microsoft coco: Common objects in context',
+        container='European conference on computer vision',
+        year='2014',
+        homepage='http://cocodataset.org/'),
+    keypoint_info=dict({
+        0:
+        dict(
+            name='mid_head', id=0, color=[51, 153, 255], type='upper',
+            swap=''),
+        1:
+        dict(
+            name='left_shoulder',
+            id=1,
+            color=[0, 255, 0],
+            type='upper',
+            swap='right_shoulder'),
+        2:
+        dict(
+            name='right_shoulder',
+            id=2,
+            color=[255, 128, 0],
+            type='upper',
+            swap='left_shoulder'),
+        3:
+        dict(
+            name='left_elbow',
+            id=3,
+            color=[0, 255, 0],
+            type='upper',
+            swap='right_elbow'),
+        4:
+        dict(
+            name='right_elbow',
+            id=4,
+            color=[255, 128, 0],
+            type='upper',
+            swap='left_elbow'),
+        5:
+        dict(
+            name='left_wrist',
+            id=5,
+            color=[0, 255, 0],
+            type='upper',
+            swap='right_wrist'),
+        6:
+        dict(
+            name='right_wrist',
+            id=6,
+            color=[255, 128, 0],
+            type='upper',
+            swap='left_wrist'),
+        7:
+        dict(
+            name='left_hip',
+            id=7,
+            color=[0, 255, 0],
+            type='lower',
+            swap='right_hip'),
+        8:
+        dict(
+            name='right_hip',
+            id=8,
+            color=[255, 128, 0],
+            type='lower',
+            swap='left_hip'),
+        9:
+        dict(
+            name='left_knee',
+            id=9,
+            color=[0, 255, 0],
+            type='lower',
+            swap='right_knee'),
+        10:
+        dict(
+            name='right_knee',
+            id=10,
+            color=[255, 128, 0],
+            type='lower',
+            swap='left_knee'),
+        11:
+        dict(
+            name='left_ankle',
+            id=11,
+            color=[0, 255, 0],
+            type='lower',
+            swap='right_ankle'),
+        12:
+        dict(
+            name='right_ankle',
+            id=12,
+            color=[255, 128, 0],
+            type='lower',
+            swap='left_ankle')
+    }),
+    skeleton_info=dict({
+        0:
+        dict(link=('left_ankle', 'left_knee'), id=0, color=[0, 255, 0]),
+        1:
+        dict(link=('left_knee', 'left_hip'), id=1, color=[0, 255, 0]),
+        2:
+        dict(link=('left_hip', 'right_hip'), id=4, color=[51, 153, 255]),
+        3:
+        dict(link=('right_ankle', 'right_knee'), id=2, color=[255, 128, 0]),
+        4:
+        dict(link=('right_knee', 'right_hip'), id=3, color=[255, 128, 0]),
+        5:
+        dict(link=('right_hip', 'right_shoulder'), id=5, color=[51, 153, 255]),
+        6:
+        dict(link=('right_wrist', 'right_elbow'), id=6, color=[51, 153, 255]),
+        7:
+        dict(
+            link=('right_elbow', 'right_shoulder'), id=7, color=[51, 153,
+                                                                 255]),
+        8:
+        dict(link=('right_shoulder', 'mid_head'), id=8, color=[0, 255, 0]),
+        9:
+        dict(link=('left_hip', 'left_shoulder'), id=9, color=[255, 128, 0]),
+        10:
+        dict(link=('left_wrist', 'left_elbow'), id=10, color=[0, 255, 0]),
+        11:
+        dict(link=('left_elbow', 'left_shoulder'), id=11, color=[255, 128, 0]),
+        12:
+        dict(link=('left_shoulder', 'mid_head'), id=12, color=[51, 153, 255]),
+        13:
+        dict(
+            link=('left_shoulder', 'right_shoulder'),
+            id=13,
+            color=[51, 153, 255])
+    }),
+    joint_weights=[
+        1.0, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5
+    ],
+    sigmas=[
+        0.09, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107, 0.087,
+        0.087, 0.089, 0.089
+    ])
+evaluation = dict(interval=10, metric='mAP', save_best='AP')
+optimizer = dict(type='Adam', lr=0.0005)
+optimizer_config = dict(grad_clip=None)
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=500,
+    warmup_ratio=0.001,
+    step=[170, 200])
+total_epochs = 210
+channel_cfg = dict(
+    num_output_channels=13,
+    dataset_joints=13,
+    dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+    inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+model = dict(
+    type='TopDown',
+    pretrained=None,
+    backbone=dict(
+        type='LiteHRNet',
+        in_channels=3,
+        extra=dict(
+            stem=dict(stem_channels=32, out_channels=32, expand_ratio=1),
+            num_stages=3,
+            stages_spec=dict(
+                num_modules=(2, 4, 2),
+                num_branches=(2, 3, 4),
+                num_blocks=(2, 2, 2),
+                module_type=('LITE', 'LITE', 'LITE'),
+                with_fuse=(True, True, True),
+                reduce_ratios=(8, 8, 8),
+                num_channels=((40, 80), (40, 80, 160), (40, 80, 160, 320))),
+            with_head=True)),
+    keypoint_head=dict(
+        type='TopdownHeatmapSimpleHead',
+        in_channels=40,
+        out_channels=13,
+        num_deconv_layers=0,
+        extra=dict(final_conv_kernel=1),
+        loss_keypoint=dict(type='JointsMSELoss', use_target_weight=True)),
+    train_cfg=dict(),
+    test_cfg=dict(
+        flip_test=True,
+        post_process='default',
+        shift_heatmap=True,
+        modulate_kernel=11))
+data_cfg = dict(
+    image_size=[192, 256],
+    heatmap_size=[48, 64],
+    num_output_channels=13,
+    num_joints=13,
+    dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+    inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    soft_nms=False,
+    nms_thr=1.0,
+    oks_thr=0.9,
+    vis_thr=0.2,
+    use_gt_bbox=True,
+    det_bbox_thr=0.0,
+    bbox_file='')
+train_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='TopDownGetBboxCenterScale', padding=1.25),
+    dict(type='TopDownRandomShiftBboxCenter', shift_factor=0.16, prob=0.3),
+    dict(type='TopDownRandomFlip', flip_prob=0.5),
+    dict(
+        type='TopDownHalfBodyTransform',
+        num_joints_half_body=8,
+        prob_half_body=0.3),
+    dict(
+        type='TopDownGetRandomScaleRotation', rot_factor=30,
+        scale_factor=0.25),
+    dict(type='TopDownAffine'),
+    dict(type='ToTensor'),
+    dict(
+        type='NormalizeTensor',
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]),
+    dict(type='TopDownGenerateTarget', sigma=2),
+    dict(
+        type='Collect',
+        keys=['img', 'target', 'target_weight'],
+        meta_keys=[
+            'image_file', 'joints_3d', 'joints_3d_visible', 'center', 'scale',
+            'rotation', 'bbox_score', 'flip_pairs'
+        ])
+]
+val_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='TopDownGetBboxCenterScale', padding=1.25),
+    dict(type='TopDownAffine'),
+    dict(type='ToTensor'),
+    dict(
+        type='NormalizeTensor',
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]),
+    dict(
+        type='Collect',
+        keys=['img'],
+        meta_keys=[
+            'image_file', 'center', 'scale', 'rotation', 'bbox_score',
+            'flip_pairs'
+        ])
+]
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='TopDownGetBboxCenterScale', padding=1.25),
+    dict(type='TopDownAffine'),
+    dict(type='ToTensor'),
+    dict(
+        type='NormalizeTensor',
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]),
+    dict(
+        type='Collect',
+        keys=['img'],
+        meta_keys=[
+            'image_file', 'center', 'scale', 'rotation', 'bbox_score',
+            'flip_pairs'
+        ])
+]
+data_root = '/data/tfj/workspace/datasets/CrowdPose'
+data = dict(
+    samples_per_gpu=64,
+    workers_per_gpu=2,
+    val_dataloader=dict(samples_per_gpu=32),
+    test_dataloader=dict(samples_per_gpu=32),
+    train=dict(
+        type='TopDownCoco13Dataset',
+        ann_file=
+        '/data/tfj/workspace/datasets/CrowdPose/annotations/my_label/converted_label/crowdpose_coco_format_train_13points_tmp.json',
+        img_prefix='/data/tfj/workspace/datasets/CrowdPose/images/',
+        data_cfg=dict(
+            image_size=[192, 256],
+            heatmap_size=[48, 64],
+            num_output_channels=13,
+            num_joints=13,
+            dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+            inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            soft_nms=False,
+            nms_thr=1.0,
+            oks_thr=0.9,
+            vis_thr=0.2,
+            use_gt_bbox=True,
+            det_bbox_thr=0.0,
+            bbox_file=''),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='TopDownGetBboxCenterScale', padding=1.25),
+            dict(
+                type='TopDownRandomShiftBboxCenter',
+                shift_factor=0.16,
+                prob=0.3),
+            dict(type='TopDownRandomFlip', flip_prob=0.5),
+            dict(
+                type='TopDownHalfBodyTransform',
+                num_joints_half_body=8,
+                prob_half_body=0.3),
+            dict(
+                type='TopDownGetRandomScaleRotation',
+                rot_factor=30,
+                scale_factor=0.25),
+            dict(type='TopDownAffine'),
+            dict(type='ToTensor'),
+            dict(
+                type='NormalizeTensor',
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]),
+            dict(type='TopDownGenerateTarget', sigma=2),
+            dict(
+                type='Collect',
+                keys=['img', 'target', 'target_weight'],
+                meta_keys=[
+                    'image_file', 'joints_3d', 'joints_3d_visible', 'center',
+                    'scale', 'rotation', 'bbox_score', 'flip_pairs'
+                ])
+        ],
+        dataset_info=dict(
+            dataset_name='coco13',
+            paper_info=dict(
+                author=
+                'Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence',
+                title='Microsoft coco: Common objects in context',
+                container='European conference on computer vision',
+                year='2014',
+                homepage='http://cocodataset.org/'),
+            keypoint_info=dict({
+                0:
+                dict(
+                    name='mid_head',
+                    id=0,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                1:
+                dict(
+                    name='left_shoulder',
+                    id=1,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_shoulder'),
+                2:
+                dict(
+                    name='right_shoulder',
+                    id=2,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_shoulder'),
+                3:
+                dict(
+                    name='left_elbow',
+                    id=3,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_elbow'),
+                4:
+                dict(
+                    name='right_elbow',
+                    id=4,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_elbow'),
+                5:
+                dict(
+                    name='left_wrist',
+                    id=5,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_wrist'),
+                6:
+                dict(
+                    name='right_wrist',
+                    id=6,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_wrist'),
+                7:
+                dict(
+                    name='left_hip',
+                    id=7,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_hip'),
+                8:
+                dict(
+                    name='right_hip',
+                    id=8,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_hip'),
+                9:
+                dict(
+                    name='left_knee',
+                    id=9,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_knee'),
+                10:
+                dict(
+                    name='right_knee',
+                    id=10,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_knee'),
+                11:
+                dict(
+                    name='left_ankle',
+                    id=11,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_ankle'),
+                12:
+                dict(
+                    name='right_ankle',
+                    id=12,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_ankle')
+            }),
+            skeleton_info=dict({
+                0:
+                dict(
+                    link=('left_ankle', 'left_knee'), id=0, color=[0, 255, 0]),
+                1:
+                dict(link=('left_knee', 'left_hip'), id=1, color=[0, 255, 0]),
+                2:
+                dict(
+                    link=('left_hip', 'right_hip'), id=4, color=[51, 153,
+                                                                 255]),
+                3:
+                dict(
+                    link=('right_ankle', 'right_knee'),
+                    id=2,
+                    color=[255, 128, 0]),
+                4:
+                dict(
+                    link=('right_knee', 'right_hip'),
+                    id=3,
+                    color=[255, 128, 0]),
+                5:
+                dict(
+                    link=('right_hip', 'right_shoulder'),
+                    id=5,
+                    color=[51, 153, 255]),
+                6:
+                dict(
+                    link=('right_wrist', 'right_elbow'),
+                    id=6,
+                    color=[51, 153, 255]),
+                7:
+                dict(
+                    link=('right_elbow', 'right_shoulder'),
+                    id=7,
+                    color=[51, 153, 255]),
+                8:
+                dict(
+                    link=('right_shoulder', 'mid_head'),
+                    id=8,
+                    color=[0, 255, 0]),
+                9:
+                dict(
+                    link=('left_hip', 'left_shoulder'),
+                    id=9,
+                    color=[255, 128, 0]),
+                10:
+                dict(
+                    link=('left_wrist', 'left_elbow'),
+                    id=10,
+                    color=[0, 255, 0]),
+                11:
+                dict(
+                    link=('left_elbow', 'left_shoulder'),
+                    id=11,
+                    color=[255, 128, 0]),
+                12:
+                dict(
+                    link=('left_shoulder', 'mid_head'),
+                    id=12,
+                    color=[51, 153, 255]),
+                13:
+                dict(
+                    link=('left_shoulder', 'right_shoulder'),
+                    id=13,
+                    color=[51, 153, 255])
+            }),
+            joint_weights=[
+                1.0, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5
+            ],
+            sigmas=[
+                0.09, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107,
+                0.087, 0.087, 0.089, 0.089
+            ])),
+    val=dict(
+        type='TopDownCoco13Dataset',
+        ann_file=
+        '/data/tfj/workspace/datasets/CrowdPose/annotations/my_label/converted_label/crowdpose_coco_format_val_13points_tmp.json',
+        img_prefix='/data/tfj/workspace/datasets/CrowdPose/images/',
+        data_cfg=dict(
+            image_size=[192, 256],
+            heatmap_size=[48, 64],
+            num_output_channels=13,
+            num_joints=13,
+            dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+            inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            soft_nms=False,
+            nms_thr=1.0,
+            oks_thr=0.9,
+            vis_thr=0.2,
+            use_gt_bbox=True,
+            det_bbox_thr=0.0,
+            bbox_file=''),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='TopDownGetBboxCenterScale', padding=1.25),
+            dict(type='TopDownAffine'),
+            dict(type='ToTensor'),
+            dict(
+                type='NormalizeTensor',
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]),
+            dict(
+                type='Collect',
+                keys=['img'],
+                meta_keys=[
+                    'image_file', 'center', 'scale', 'rotation', 'bbox_score',
+                    'flip_pairs'
+                ])
+        ],
+        dataset_info=dict(
+            dataset_name='coco13',
+            paper_info=dict(
+                author=
+                'Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence',
+                title='Microsoft coco: Common objects in context',
+                container='European conference on computer vision',
+                year='2014',
+                homepage='http://cocodataset.org/'),
+            keypoint_info=dict({
+                0:
+                dict(
+                    name='mid_head',
+                    id=0,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                1:
+                dict(
+                    name='left_shoulder',
+                    id=1,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_shoulder'),
+                2:
+                dict(
+                    name='right_shoulder',
+                    id=2,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_shoulder'),
+                3:
+                dict(
+                    name='left_elbow',
+                    id=3,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_elbow'),
+                4:
+                dict(
+                    name='right_elbow',
+                    id=4,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_elbow'),
+                5:
+                dict(
+                    name='left_wrist',
+                    id=5,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_wrist'),
+                6:
+                dict(
+                    name='right_wrist',
+                    id=6,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_wrist'),
+                7:
+                dict(
+                    name='left_hip',
+                    id=7,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_hip'),
+                8:
+                dict(
+                    name='right_hip',
+                    id=8,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_hip'),
+                9:
+                dict(
+                    name='left_knee',
+                    id=9,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_knee'),
+                10:
+                dict(
+                    name='right_knee',
+                    id=10,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_knee'),
+                11:
+                dict(
+                    name='left_ankle',
+                    id=11,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_ankle'),
+                12:
+                dict(
+                    name='right_ankle',
+                    id=12,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_ankle')
+            }),
+            skeleton_info=dict({
+                0:
+                dict(
+                    link=('left_ankle', 'left_knee'), id=0, color=[0, 255, 0]),
+                1:
+                dict(link=('left_knee', 'left_hip'), id=1, color=[0, 255, 0]),
+                2:
+                dict(
+                    link=('left_hip', 'right_hip'), id=4, color=[51, 153,
+                                                                 255]),
+                3:
+                dict(
+                    link=('right_ankle', 'right_knee'),
+                    id=2,
+                    color=[255, 128, 0]),
+                4:
+                dict(
+                    link=('right_knee', 'right_hip'),
+                    id=3,
+                    color=[255, 128, 0]),
+                5:
+                dict(
+                    link=('right_hip', 'right_shoulder'),
+                    id=5,
+                    color=[51, 153, 255]),
+                6:
+                dict(
+                    link=('right_wrist', 'right_elbow'),
+                    id=6,
+                    color=[51, 153, 255]),
+                7:
+                dict(
+                    link=('right_elbow', 'right_shoulder'),
+                    id=7,
+                    color=[51, 153, 255]),
+                8:
+                dict(
+                    link=('right_shoulder', 'mid_head'),
+                    id=8,
+                    color=[0, 255, 0]),
+                9:
+                dict(
+                    link=('left_hip', 'left_shoulder'),
+                    id=9,
+                    color=[255, 128, 0]),
+                10:
+                dict(
+                    link=('left_wrist', 'left_elbow'),
+                    id=10,
+                    color=[0, 255, 0]),
+                11:
+                dict(
+                    link=('left_elbow', 'left_shoulder'),
+                    id=11,
+                    color=[255, 128, 0]),
+                12:
+                dict(
+                    link=('left_shoulder', 'mid_head'),
+                    id=12,
+                    color=[51, 153, 255]),
+                13:
+                dict(
+                    link=('left_shoulder', 'right_shoulder'),
+                    id=13,
+                    color=[51, 153, 255])
+            }),
+            joint_weights=[
+                1.0, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5
+            ],
+            sigmas=[
+                0.09, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107,
+                0.087, 0.087, 0.089, 0.089
+            ])),
+    test=dict(
+        type='TopDownCoco13Dataset',
+        ann_file=
+        '/data/tfj/workspace/datasets/CrowdPose/annotations/my_label/converted_label/coco2017_val_keypoints_label_13points.json',
+        img_prefix='/data/tfj/workspace/datasets/CrowdPose/images/val2017/',
+        data_cfg=dict(
+            image_size=[192, 256],
+            heatmap_size=[48, 64],
+            num_output_channels=13,
+            num_joints=13,
+            dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+            inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            soft_nms=False,
+            nms_thr=1.0,
+            oks_thr=0.9,
+            vis_thr=0.2,
+            use_gt_bbox=True,
+            det_bbox_thr=0.0,
+            bbox_file=''),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='TopDownGetBboxCenterScale', padding=1.25),
+            dict(type='TopDownAffine'),
+            dict(type='ToTensor'),
+            dict(
+                type='NormalizeTensor',
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]),
+            dict(
+                type='Collect',
+                keys=['img'],
+                meta_keys=[
+                    'image_file', 'center', 'scale', 'rotation', 'bbox_score',
+                    'flip_pairs'
+                ])
+        ],
+        dataset_info=dict(
+            dataset_name='coco13',
+            paper_info=dict(
+                author=
+                'Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence',
+                title='Microsoft coco: Common objects in context',
+                container='European conference on computer vision',
+                year='2014',
+                homepage='http://cocodataset.org/'),
+            keypoint_info=dict({
+                0:
+                dict(
+                    name='mid_head',
+                    id=0,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                1:
+                dict(
+                    name='left_shoulder',
+                    id=1,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_shoulder'),
+                2:
+                dict(
+                    name='right_shoulder',
+                    id=2,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_shoulder'),
+                3:
+                dict(
+                    name='left_elbow',
+                    id=3,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_elbow'),
+                4:
+                dict(
+                    name='right_elbow',
+                    id=4,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_elbow'),
+                5:
+                dict(
+                    name='left_wrist',
+                    id=5,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_wrist'),
+                6:
+                dict(
+                    name='right_wrist',
+                    id=6,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_wrist'),
+                7:
+                dict(
+                    name='left_hip',
+                    id=7,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_hip'),
+                8:
+                dict(
+                    name='right_hip',
+                    id=8,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_hip'),
+                9:
+                dict(
+                    name='left_knee',
+                    id=9,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_knee'),
+                10:
+                dict(
+                    name='right_knee',
+                    id=10,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_knee'),
+                11:
+                dict(
+                    name='left_ankle',
+                    id=11,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_ankle'),
+                12:
+                dict(
+                    name='right_ankle',
+                    id=12,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_ankle')
+            }),
+            skeleton_info=dict({
+                0:
+                dict(
+                    link=('left_ankle', 'left_knee'), id=0, color=[0, 255, 0]),
+                1:
+                dict(link=('left_knee', 'left_hip'), id=1, color=[0, 255, 0]),
+                2:
+                dict(
+                    link=('left_hip', 'right_hip'), id=4, color=[51, 153,
+                                                                 255]),
+                3:
+                dict(
+                    link=('right_ankle', 'right_knee'),
+                    id=2,
+                    color=[255, 128, 0]),
+                4:
+                dict(
+                    link=('right_knee', 'right_hip'),
+                    id=3,
+                    color=[255, 128, 0]),
+                5:
+                dict(
+                    link=('right_hip', 'right_shoulder'),
+                    id=5,
+                    color=[51, 153, 255]),
+                6:
+                dict(
+                    link=('right_wrist', 'right_elbow'),
+                    id=6,
+                    color=[51, 153, 255]),
+                7:
+                dict(
+                    link=('right_elbow', 'right_shoulder'),
+                    id=7,
+                    color=[51, 153, 255]),
+                8:
+                dict(
+                    link=('right_shoulder', 'mid_head'),
+                    id=8,
+                    color=[0, 255, 0]),
+                9:
+                dict(
+                    link=('left_hip', 'left_shoulder'),
+                    id=9,
+                    color=[255, 128, 0]),
+                10:
+                dict(
+                    link=('left_wrist', 'left_elbow'),
+                    id=10,
+                    color=[0, 255, 0]),
+                11:
+                dict(
+                    link=('left_elbow', 'left_shoulder'),
+                    id=11,
+                    color=[255, 128, 0]),
+                12:
+                dict(
+                    link=('left_shoulder', 'mid_head'),
+                    id=12,
+                    color=[51, 153, 255]),
+                13:
+                dict(
+                    link=('left_shoulder', 'right_shoulder'),
+                    id=13,
+                    color=[51, 153, 255])
+            }),
+            joint_weights=[
+                1.0, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5
+            ],
+            sigmas=[
+                0.09, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107,
+                0.087, 0.087, 0.089, 0.089
+            ])))
+work_dir = './work_dirs/litehrnet_18_coco_256x192_tfj_test'
+gpu_ids = range(0, 6)
+
+2022-06-30 08:57:17,714 - mmpose - INFO - Set random seed to 1894212863, deterministic: False
+2022-06-30 08:57:21,486 - mmpose - INFO - Start running, host: tianfj@qwe, work_dir: /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test
+2022-06-30 08:57:21,486 - mmpose - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) DistSamplerSeedHook                
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook                      
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_run:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+2022-06-30 08:57:21,486 - mmpose - INFO - workflow: [('train', 1)], max: 210 epochs
+2022-06-30 08:57:21,486 - mmpose - INFO - Checkpoints will be saved to /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test by HardDiskBackend.
+2022-06-30 08:57:41,161 - mmpose - INFO - Epoch [1][50/51]	lr: 4.945e-05, eta: 1:09:53, time: 0.393, data_time: 0.060, memory: 6136, heatmap_loss: 0.0034, acc_pose: 0.0514, loss: 0.0034
+2022-06-30 08:58:00,465 - mmpose - INFO - Epoch [2][50/51]	lr: 1.004e-04, eta: 1:07:35, time: 0.379, data_time: 0.057, memory: 6136, heatmap_loss: 0.0031, acc_pose: 0.1813, loss: 0.0031
+2022-06-30 08:58:19,864 - mmpose - INFO - Epoch [3][50/51]	lr: 1.513e-04, eta: 1:06:47, time: 0.382, data_time: 0.058, memory: 6136, heatmap_loss: 0.0029, acc_pose: 0.2520, loss: 0.0029
+2022-06-30 08:58:38,777 - mmpose - INFO - Epoch [4][50/51]	lr: 2.023e-04, eta: 1:05:50, time: 0.372, data_time: 0.097, memory: 6136, heatmap_loss: 0.0027, acc_pose: 0.3050, loss: 0.0027
+2022-06-30 08:58:58,906 - mmpose - INFO - Epoch [5][50/51]	lr: 2.532e-04, eta: 1:05:57, time: 0.396, data_time: 0.057, memory: 6136, heatmap_loss: 0.0026, acc_pose: 0.3436, loss: 0.0026
+2022-06-30 08:59:18,468 - mmpose - INFO - Epoch [6][50/51]	lr: 3.042e-04, eta: 1:05:36, time: 0.385, data_time: 0.057, memory: 6136, heatmap_loss: 0.0026, acc_pose: 0.3678, loss: 0.0026
+2022-06-30 08:59:37,534 - mmpose - INFO - Epoch [7][50/51]	lr: 3.551e-04, eta: 1:05:00, time: 0.375, data_time: 0.093, memory: 6136, heatmap_loss: 0.0025, acc_pose: 0.3808, loss: 0.0025
+2022-06-30 08:59:56,931 - mmpose - INFO - Epoch [8][50/51]	lr: 4.061e-04, eta: 1:04:38, time: 0.382, data_time: 0.058, memory: 6136, heatmap_loss: 0.0025, acc_pose: 0.4000, loss: 0.0025
+2022-06-30 09:00:15,968 - mmpose - INFO - Epoch [9][50/51]	lr: 4.570e-04, eta: 1:04:08, time: 0.374, data_time: 0.057, memory: 6136, heatmap_loss: 0.0024, acc_pose: 0.4152, loss: 0.0024
+2022-06-30 09:00:34,877 - mmpose - INFO - Epoch [10][50/51]	lr: 5.000e-04, eta: 1:03:38, time: 0.372, data_time: 0.057, memory: 6136, heatmap_loss: 0.0024, acc_pose: 0.4375, loss: 0.0024
+2022-06-30 09:00:35,168 - mmpose - INFO - Saving checkpoint at 10 epochs
+2022-06-30 09:00:40,042 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_10.pth.
+2022-06-30 09:00:40,042 - mmpose - INFO - Best AP is 0.4347 at 10 epoch.
+2022-06-30 09:00:40,043 - mmpose - INFO - Epoch(val) [10][20]	AP: 0.4347, AP .5: 0.7763, AP .75: 0.4111, AP (M): 0.4045, AP (L): 0.4409, AR: 0.5124, AR .5: 0.8291, AR .75: 0.5107, AR (M): 0.5207, AR (L): 0.5112
+2022-06-30 09:00:58,897 - mmpose - INFO - Epoch [11][50/51]	lr: 5.000e-04, eta: 1:03:15, time: 0.377, data_time: 0.104, memory: 6136, heatmap_loss: 0.0024, acc_pose: 0.4411, loss: 0.0024
+2022-06-30 09:01:18,312 - mmpose - INFO - Epoch [12][50/51]	lr: 5.000e-04, eta: 1:02:56, time: 0.382, data_time: 0.058, memory: 6136, heatmap_loss: 0.0023, acc_pose: 0.4608, loss: 0.0023
+2022-06-30 09:01:37,996 - mmpose - INFO - Epoch [13][50/51]	lr: 5.000e-04, eta: 1:02:42, time: 0.388, data_time: 0.057, memory: 6136, heatmap_loss: 0.0023, acc_pose: 0.4577, loss: 0.0023
+2022-06-30 09:01:57,523 - mmpose - INFO - Epoch [14][50/51]	lr: 5.000e-04, eta: 1:02:25, time: 0.385, data_time: 0.074, memory: 6136, heatmap_loss: 0.0023, acc_pose: 0.4695, loss: 0.0023
+2022-06-30 09:02:16,592 - mmpose - INFO - Epoch [15][50/51]	lr: 5.000e-04, eta: 1:02:01, time: 0.375, data_time: 0.059, memory: 6136, heatmap_loss: 0.0022, acc_pose: 0.4779, loss: 0.0022
+2022-06-30 09:02:35,771 - mmpose - INFO - Epoch [16][50/51]	lr: 5.000e-04, eta: 1:01:39, time: 0.377, data_time: 0.079, memory: 6136, heatmap_loss: 0.0022, acc_pose: 0.4921, loss: 0.0022
+2022-06-30 09:02:55,054 - mmpose - INFO - Epoch [17][50/51]	lr: 5.000e-04, eta: 1:01:19, time: 0.379, data_time: 0.098, memory: 6136, heatmap_loss: 0.0022, acc_pose: 0.4870, loss: 0.0022
+2022-06-30 09:03:14,329 - mmpose - INFO - Epoch [18][50/51]	lr: 5.000e-04, eta: 1:00:59, time: 0.379, data_time: 0.059, memory: 6136, heatmap_loss: 0.0022, acc_pose: 0.4950, loss: 0.0022
+2022-06-30 09:03:33,503 - mmpose - INFO - Epoch [19][50/51]	lr: 5.000e-04, eta: 1:00:38, time: 0.377, data_time: 0.057, memory: 6136, heatmap_loss: 0.0022, acc_pose: 0.5005, loss: 0.0022
+2022-06-30 09:03:53,092 - mmpose - INFO - Epoch [20][50/51]	lr: 5.000e-04, eta: 1:00:21, time: 0.386, data_time: 0.111, memory: 6136, heatmap_loss: 0.0021, acc_pose: 0.5089, loss: 0.0021
+2022-06-30 09:03:53,370 - mmpose - INFO - Saving checkpoint at 20 epochs
+2022-06-30 09:03:58,144 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_10.pth was removed
+2022-06-30 09:03:58,272 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_20.pth.
+2022-06-30 09:03:58,273 - mmpose - INFO - Best AP is 0.5634 at 20 epoch.
+2022-06-30 09:03:58,273 - mmpose - INFO - Epoch(val) [20][20]	AP: 0.5634, AP .5: 0.8641, AP .75: 0.5809, AP (M): 0.5576, AP (L): 0.5664, AR: 0.6171, AR .5: 0.8896, AR .75: 0.6443, AR (M): 0.6330, AR (L): 0.6147
+2022-06-30 09:04:17,090 - mmpose - INFO - Epoch [21][50/51]	lr: 5.000e-04, eta: 1:00:00, time: 0.376, data_time: 0.094, memory: 6136, heatmap_loss: 0.0021, acc_pose: 0.5202, loss: 0.0021
+2022-06-30 09:04:36,328 - mmpose - INFO - Epoch [22][50/51]	lr: 5.000e-04, eta: 0:59:40, time: 0.379, data_time: 0.057, memory: 6136, heatmap_loss: 0.0021, acc_pose: 0.5259, loss: 0.0021
+2022-06-30 09:04:56,186 - mmpose - INFO - Epoch [23][50/51]	lr: 5.000e-04, eta: 0:59:25, time: 0.391, data_time: 0.060, memory: 6136, heatmap_loss: 0.0021, acc_pose: 0.5225, loss: 0.0021
+2022-06-30 09:05:15,319 - mmpose - INFO - Epoch [24][50/51]	lr: 5.000e-04, eta: 0:59:04, time: 0.376, data_time: 0.062, memory: 6136, heatmap_loss: 0.0021, acc_pose: 0.5248, loss: 0.0021
+2022-06-30 09:05:34,787 - mmpose - INFO - Epoch [25][50/51]	lr: 5.000e-04, eta: 0:58:46, time: 0.383, data_time: 0.058, memory: 6136, heatmap_loss: 0.0021, acc_pose: 0.5361, loss: 0.0021
+2022-06-30 09:05:53,830 - mmpose - INFO - Epoch [26][50/51]	lr: 5.000e-04, eta: 0:58:25, time: 0.374, data_time: 0.059, memory: 6136, heatmap_loss: 0.0021, acc_pose: 0.5384, loss: 0.0021
+2022-06-30 09:06:12,968 - mmpose - INFO - Epoch [27][50/51]	lr: 5.000e-04, eta: 0:58:04, time: 0.377, data_time: 0.057, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5333, loss: 0.0020
+2022-06-30 09:06:31,979 - mmpose - INFO - Epoch [28][50/51]	lr: 5.000e-04, eta: 0:57:43, time: 0.374, data_time: 0.078, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5405, loss: 0.0020
+2022-06-30 09:06:51,211 - mmpose - INFO - Epoch [29][50/51]	lr: 5.000e-04, eta: 0:57:23, time: 0.378, data_time: 0.057, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5491, loss: 0.0020
+2022-06-30 09:07:10,281 - mmpose - INFO - Epoch [30][50/51]	lr: 5.000e-04, eta: 0:57:03, time: 0.375, data_time: 0.088, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5484, loss: 0.0020
+2022-06-30 09:07:10,566 - mmpose - INFO - Saving checkpoint at 30 epochs
+2022-06-30 09:07:15,572 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_20.pth was removed
+2022-06-30 09:07:15,700 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_30.pth.
+2022-06-30 09:07:15,701 - mmpose - INFO - Best AP is 0.6009 at 30 epoch.
+2022-06-30 09:07:15,701 - mmpose - INFO - Epoch(val) [30][20]	AP: 0.6009, AP .5: 0.8777, AP .75: 0.6353, AP (M): 0.6036, AP (L): 0.6005, AR: 0.6445, AR .5: 0.8980, AR .75: 0.6822, AR (M): 0.6639, AR (L): 0.6417
+2022-06-30 09:07:34,224 - mmpose - INFO - Epoch [31][50/51]	lr: 5.000e-04, eta: 0:56:41, time: 0.370, data_time: 0.102, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5446, loss: 0.0020
+2022-06-30 09:07:53,218 - mmpose - INFO - Epoch [32][50/51]	lr: 5.000e-04, eta: 0:56:20, time: 0.374, data_time: 0.094, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5544, loss: 0.0020
+2022-06-30 09:08:12,483 - mmpose - INFO - Epoch [33][50/51]	lr: 5.000e-04, eta: 0:56:01, time: 0.378, data_time: 0.057, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5613, loss: 0.0020
+2022-06-30 09:08:31,958 - mmpose - INFO - Epoch [34][50/51]	lr: 5.000e-04, eta: 0:55:42, time: 0.382, data_time: 0.058, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5615, loss: 0.0020
+2022-06-30 09:08:51,488 - mmpose - INFO - Epoch [35][50/51]	lr: 5.000e-04, eta: 0:55:24, time: 0.384, data_time: 0.058, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5606, loss: 0.0020
+2022-06-30 09:09:10,287 - mmpose - INFO - Epoch [36][50/51]	lr: 5.000e-04, eta: 0:55:03, time: 0.370, data_time: 0.058, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5536, loss: 0.0020
+2022-06-30 09:09:29,552 - mmpose - INFO - Epoch [37][50/51]	lr: 5.000e-04, eta: 0:54:44, time: 0.379, data_time: 0.062, memory: 6136, heatmap_loss: 0.0020, acc_pose: 0.5631, loss: 0.0020
+2022-06-30 09:09:48,561 - mmpose - INFO - Epoch [38][50/51]	lr: 5.000e-04, eta: 0:54:24, time: 0.374, data_time: 0.056, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5644, loss: 0.0019
+2022-06-30 09:10:07,669 - mmpose - INFO - Epoch [39][50/51]	lr: 5.000e-04, eta: 0:54:04, time: 0.376, data_time: 0.060, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5714, loss: 0.0019
+2022-06-30 09:10:26,768 - mmpose - INFO - Epoch [40][50/51]	lr: 5.000e-04, eta: 0:53:44, time: 0.375, data_time: 0.071, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5662, loss: 0.0019
+2022-06-30 09:10:27,087 - mmpose - INFO - Saving checkpoint at 40 epochs
+2022-06-30 09:10:31,962 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_30.pth was removed
+2022-06-30 09:10:32,084 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_40.pth.
+2022-06-30 09:10:32,085 - mmpose - INFO - Best AP is 0.6243 at 40 epoch.
+2022-06-30 09:10:32,085 - mmpose - INFO - Epoch(val) [40][20]	AP: 0.6243, AP .5: 0.8979, AP .75: 0.6646, AP (M): 0.6319, AP (L): 0.6226, AR: 0.6705, AR .5: 0.9123, AR .75: 0.7153, AR (M): 0.6990, AR (L): 0.6661
+2022-06-30 09:10:50,616 - mmpose - INFO - Epoch [41][50/51]	lr: 5.000e-04, eta: 0:53:23, time: 0.370, data_time: 0.106, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5631, loss: 0.0019
+2022-06-30 09:11:09,594 - mmpose - INFO - Epoch [42][50/51]	lr: 5.000e-04, eta: 0:53:03, time: 0.373, data_time: 0.058, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5697, loss: 0.0019
+2022-06-30 09:11:28,818 - mmpose - INFO - Epoch [43][50/51]	lr: 5.000e-04, eta: 0:52:44, time: 0.379, data_time: 0.058, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5762, loss: 0.0019
+2022-06-30 09:11:47,965 - mmpose - INFO - Epoch [44][50/51]	lr: 5.000e-04, eta: 0:52:25, time: 0.376, data_time: 0.060, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5789, loss: 0.0019
+2022-06-30 09:12:06,998 - mmpose - INFO - Epoch [45][50/51]	lr: 5.000e-04, eta: 0:52:05, time: 0.375, data_time: 0.058, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5752, loss: 0.0019
+2022-06-30 09:12:26,206 - mmpose - INFO - Epoch [46][50/51]	lr: 5.000e-04, eta: 0:51:46, time: 0.379, data_time: 0.066, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5831, loss: 0.0019
+2022-06-30 09:12:45,772 - mmpose - INFO - Epoch [47][50/51]	lr: 5.000e-04, eta: 0:51:28, time: 0.384, data_time: 0.057, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5815, loss: 0.0019
+2022-06-30 09:13:05,512 - mmpose - INFO - Epoch [48][50/51]	lr: 5.000e-04, eta: 0:51:11, time: 0.389, data_time: 0.075, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5828, loss: 0.0019
+2022-06-30 09:13:24,522 - mmpose - INFO - Epoch [49][50/51]	lr: 5.000e-04, eta: 0:50:51, time: 0.374, data_time: 0.067, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5796, loss: 0.0019
+2022-06-30 09:13:44,020 - mmpose - INFO - Epoch [50][50/51]	lr: 5.000e-04, eta: 0:50:33, time: 0.383, data_time: 0.084, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5979, loss: 0.0019
+2022-06-30 09:13:44,324 - mmpose - INFO - Saving checkpoint at 50 epochs
+2022-06-30 09:13:49,188 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_40.pth was removed
+2022-06-30 09:13:49,314 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_50.pth.
+2022-06-30 09:13:49,315 - mmpose - INFO - Best AP is 0.6449 at 50 epoch.
+2022-06-30 09:13:49,315 - mmpose - INFO - Epoch(val) [50][20]	AP: 0.6449, AP .5: 0.8997, AP .75: 0.6910, AP (M): 0.6478, AP (L): 0.6436, AR: 0.6860, AR .5: 0.9154, AR .75: 0.7312, AR (M): 0.7092, AR (L): 0.6825
+2022-06-30 09:14:08,012 - mmpose - INFO - Epoch [51][50/51]	lr: 5.000e-04, eta: 0:50:13, time: 0.374, data_time: 0.101, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5835, loss: 0.0019
+2022-06-30 09:14:27,446 - mmpose - INFO - Epoch [52][50/51]	lr: 5.000e-04, eta: 0:49:54, time: 0.382, data_time: 0.058, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5893, loss: 0.0019
+2022-06-30 09:14:46,290 - mmpose - INFO - Epoch [53][50/51]	lr: 5.000e-04, eta: 0:49:34, time: 0.371, data_time: 0.064, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5941, loss: 0.0019
+2022-06-30 09:15:05,348 - mmpose - INFO - Epoch [54][50/51]	lr: 5.000e-04, eta: 0:49:15, time: 0.375, data_time: 0.058, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5888, loss: 0.0019
+2022-06-30 09:15:24,501 - mmpose - INFO - Epoch [55][50/51]	lr: 5.000e-04, eta: 0:48:55, time: 0.376, data_time: 0.057, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5910, loss: 0.0019
+2022-06-30 09:15:43,936 - mmpose - INFO - Epoch [56][50/51]	lr: 5.000e-04, eta: 0:48:37, time: 0.383, data_time: 0.082, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.6013, loss: 0.0019
+2022-06-30 09:16:03,229 - mmpose - INFO - Epoch [57][50/51]	lr: 5.000e-04, eta: 0:48:18, time: 0.380, data_time: 0.058, memory: 6136, heatmap_loss: 0.0019, acc_pose: 0.5980, loss: 0.0019
+2022-06-30 09:16:22,595 - mmpose - INFO - Epoch [58][50/51]	lr: 5.000e-04, eta: 0:48:00, time: 0.381, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.5945, loss: 0.0018
+2022-06-30 09:16:42,065 - mmpose - INFO - Epoch [59][50/51]	lr: 5.000e-04, eta: 0:47:41, time: 0.384, data_time: 0.056, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6015, loss: 0.0018
+2022-06-30 09:17:01,112 - mmpose - INFO - Epoch [60][50/51]	lr: 5.000e-04, eta: 0:47:22, time: 0.375, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6025, loss: 0.0018
+2022-06-30 09:17:01,441 - mmpose - INFO - Saving checkpoint at 60 epochs
+2022-06-30 09:17:06,129 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_50.pth was removed
+2022-06-30 09:17:06,251 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_60.pth.
+2022-06-30 09:17:06,251 - mmpose - INFO - Best AP is 0.6643 at 60 epoch.
+2022-06-30 09:17:06,252 - mmpose - INFO - Epoch(val) [60][20]	AP: 0.6643, AP .5: 0.9115, AP .75: 0.7169, AP (M): 0.6630, AP (L): 0.6641, AR: 0.7029, AR .5: 0.9220, AR .75: 0.7508, AR (M): 0.7191, AR (L): 0.7005
+2022-06-30 09:17:24,770 - mmpose - INFO - Epoch [61][50/51]	lr: 5.000e-04, eta: 0:47:02, time: 0.370, data_time: 0.100, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6051, loss: 0.0018
+2022-06-30 09:17:44,299 - mmpose - INFO - Epoch [62][50/51]	lr: 5.000e-04, eta: 0:46:44, time: 0.385, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.5954, loss: 0.0018
+2022-06-30 09:18:03,376 - mmpose - INFO - Epoch [63][50/51]	lr: 5.000e-04, eta: 0:46:24, time: 0.375, data_time: 0.061, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6019, loss: 0.0018
+2022-06-30 09:18:23,053 - mmpose - INFO - Epoch [64][50/51]	lr: 5.000e-04, eta: 0:46:06, time: 0.386, data_time: 0.058, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6096, loss: 0.0018
+2022-06-30 09:18:42,106 - mmpose - INFO - Epoch [65][50/51]	lr: 5.000e-04, eta: 0:45:47, time: 0.374, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6039, loss: 0.0018
+2022-06-30 09:19:01,409 - mmpose - INFO - Epoch [66][50/51]	lr: 5.000e-04, eta: 0:45:28, time: 0.380, data_time: 0.059, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6012, loss: 0.0018
+2022-06-30 09:19:20,798 - mmpose - INFO - Epoch [67][50/51]	lr: 5.000e-04, eta: 0:45:09, time: 0.381, data_time: 0.059, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6072, loss: 0.0018
+2022-06-30 09:19:40,024 - mmpose - INFO - Epoch [68][50/51]	lr: 5.000e-04, eta: 0:44:50, time: 0.378, data_time: 0.065, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6050, loss: 0.0018
+2022-06-30 09:19:59,174 - mmpose - INFO - Epoch [69][50/51]	lr: 5.000e-04, eta: 0:44:31, time: 0.377, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6075, loss: 0.0018
+2022-06-30 09:20:18,332 - mmpose - INFO - Epoch [70][50/51]	lr: 5.000e-04, eta: 0:44:12, time: 0.378, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6055, loss: 0.0018
+2022-06-30 09:20:18,598 - mmpose - INFO - Saving checkpoint at 70 epochs
+2022-06-30 09:20:23,356 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_60.pth was removed
+2022-06-30 09:20:23,480 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_70.pth.
+2022-06-30 09:20:23,481 - mmpose - INFO - Best AP is 0.6783 at 70 epoch.
+2022-06-30 09:20:23,481 - mmpose - INFO - Epoch(val) [70][20]	AP: 0.6783, AP .5: 0.9230, AP .75: 0.7264, AP (M): 0.6793, AP (L): 0.6781, AR: 0.7192, AR .5: 0.9319, AR .75: 0.7691, AR (M): 0.7369, AR (L): 0.7166
+2022-06-30 09:20:41,993 - mmpose - INFO - Epoch [71][50/51]	lr: 5.000e-04, eta: 0:43:52, time: 0.370, data_time: 0.065, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6115, loss: 0.0018
+2022-06-30 09:21:01,091 - mmpose - INFO - Epoch [72][50/51]	lr: 5.000e-04, eta: 0:43:33, time: 0.376, data_time: 0.056, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6143, loss: 0.0018
+2022-06-30 09:21:20,373 - mmpose - INFO - Epoch [73][50/51]	lr: 5.000e-04, eta: 0:43:14, time: 0.380, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6206, loss: 0.0018
+2022-06-30 09:21:39,343 - mmpose - INFO - Epoch [74][50/51]	lr: 5.000e-04, eta: 0:42:55, time: 0.373, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6087, loss: 0.0018
+2022-06-30 09:21:58,338 - mmpose - INFO - Epoch [75][50/51]	lr: 5.000e-04, eta: 0:42:35, time: 0.374, data_time: 0.085, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6144, loss: 0.0018
+2022-06-30 09:22:17,125 - mmpose - INFO - Epoch [76][50/51]	lr: 5.000e-04, eta: 0:42:16, time: 0.370, data_time: 0.066, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6113, loss: 0.0018
+2022-06-30 09:22:36,251 - mmpose - INFO - Epoch [77][50/51]	lr: 5.000e-04, eta: 0:41:57, time: 0.376, data_time: 0.059, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6089, loss: 0.0018
+2022-06-30 09:22:55,406 - mmpose - INFO - Epoch [78][50/51]	lr: 5.000e-04, eta: 0:41:38, time: 0.377, data_time: 0.059, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6202, loss: 0.0018
+2022-06-30 09:23:14,317 - mmpose - INFO - Epoch [79][50/51]	lr: 5.000e-04, eta: 0:41:18, time: 0.372, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6177, loss: 0.0018
+2022-06-30 09:23:33,438 - mmpose - INFO - Epoch [80][50/51]	lr: 5.000e-04, eta: 0:40:59, time: 0.376, data_time: 0.082, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6204, loss: 0.0018
+2022-06-30 09:23:33,703 - mmpose - INFO - Saving checkpoint at 80 epochs
+2022-06-30 09:23:38,507 - mmpose - INFO - Epoch(val) [80][20]	AP: 0.6757, AP .5: 0.9120, AP .75: 0.7273, AP (M): 0.6809, AP (L): 0.6730, AR: 0.7141, AR .5: 0.9233, AR .75: 0.7657, AR (M): 0.7357, AR (L): 0.7108
+2022-06-30 09:23:56,991 - mmpose - INFO - Epoch [81][50/51]	lr: 5.000e-04, eta: 0:40:39, time: 0.369, data_time: 0.097, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6212, loss: 0.0018
+2022-06-30 09:24:16,196 - mmpose - INFO - Epoch [82][50/51]	lr: 5.000e-04, eta: 0:40:21, time: 0.378, data_time: 0.057, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6111, loss: 0.0018
+2022-06-30 09:24:35,599 - mmpose - INFO - Epoch [83][50/51]	lr: 5.000e-04, eta: 0:40:02, time: 0.382, data_time: 0.059, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6180, loss: 0.0018
+2022-06-30 09:24:54,561 - mmpose - INFO - Epoch [84][50/51]	lr: 5.000e-04, eta: 0:39:43, time: 0.374, data_time: 0.058, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6193, loss: 0.0018
+2022-06-30 09:25:13,799 - mmpose - INFO - Epoch [85][50/51]	lr: 5.000e-04, eta: 0:39:24, time: 0.379, data_time: 0.058, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6231, loss: 0.0018
+2022-06-30 09:25:33,063 - mmpose - INFO - Epoch [86][50/51]	lr: 5.000e-04, eta: 0:39:05, time: 0.380, data_time: 0.065, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6283, loss: 0.0017
+2022-06-30 09:25:52,086 - mmpose - INFO - Epoch [87][50/51]	lr: 5.000e-04, eta: 0:38:46, time: 0.375, data_time: 0.106, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6278, loss: 0.0017
+2022-06-30 09:26:11,173 - mmpose - INFO - Epoch [88][50/51]	lr: 5.000e-04, eta: 0:38:27, time: 0.375, data_time: 0.106, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6218, loss: 0.0018
+2022-06-30 09:26:30,609 - mmpose - INFO - Epoch [89][50/51]	lr: 5.000e-04, eta: 0:38:08, time: 0.382, data_time: 0.064, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6261, loss: 0.0017
+2022-06-30 09:26:49,770 - mmpose - INFO - Epoch [90][50/51]	lr: 5.000e-04, eta: 0:37:49, time: 0.378, data_time: 0.103, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6299, loss: 0.0017
+2022-06-30 09:26:50,042 - mmpose - INFO - Saving checkpoint at 90 epochs
+2022-06-30 09:26:54,903 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_70.pth was removed
+2022-06-30 09:26:55,034 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_90.pth.
+2022-06-30 09:26:55,034 - mmpose - INFO - Best AP is 0.6910 at 90 epoch.
+2022-06-30 09:26:55,035 - mmpose - INFO - Epoch(val) [90][20]	AP: 0.6910, AP .5: 0.9235, AP .75: 0.7413, AP (M): 0.7023, AP (L): 0.6896, AR: 0.7281, AR .5: 0.9327, AR .75: 0.7766, AR (M): 0.7547, AR (L): 0.7241
+2022-06-30 09:27:13,526 - mmpose - INFO - Epoch [91][50/51]	lr: 5.000e-04, eta: 0:37:30, time: 0.370, data_time: 0.080, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6230, loss: 0.0017
+2022-06-30 09:27:32,986 - mmpose - INFO - Epoch [92][50/51]	lr: 5.000e-04, eta: 0:37:11, time: 0.383, data_time: 0.060, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6280, loss: 0.0017
+2022-06-30 09:27:51,850 - mmpose - INFO - Epoch [93][50/51]	lr: 5.000e-04, eta: 0:36:52, time: 0.372, data_time: 0.069, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6362, loss: 0.0017
+2022-06-30 09:28:10,739 - mmpose - INFO - Epoch [94][50/51]	lr: 5.000e-04, eta: 0:36:33, time: 0.372, data_time: 0.058, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6228, loss: 0.0017
+2022-06-30 09:28:29,797 - mmpose - INFO - Epoch [95][50/51]	lr: 5.000e-04, eta: 0:36:14, time: 0.376, data_time: 0.058, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6250, loss: 0.0017
+2022-06-30 09:28:49,007 - mmpose - INFO - Epoch [96][50/51]	lr: 5.000e-04, eta: 0:35:55, time: 0.378, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6259, loss: 0.0017
+2022-06-30 09:29:08,183 - mmpose - INFO - Epoch [97][50/51]	lr: 5.000e-04, eta: 0:35:36, time: 0.377, data_time: 0.058, memory: 6136, heatmap_loss: 0.0018, acc_pose: 0.6203, loss: 0.0018
+2022-06-30 09:29:27,629 - mmpose - INFO - Epoch [98][50/51]	lr: 5.000e-04, eta: 0:35:17, time: 0.383, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6299, loss: 0.0017
+2022-06-30 09:29:46,959 - mmpose - INFO - Epoch [99][50/51]	lr: 5.000e-04, eta: 0:34:58, time: 0.380, data_time: 0.102, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6338, loss: 0.0017
+2022-06-30 09:30:05,960 - mmpose - INFO - Epoch [100][50/51]	lr: 5.000e-04, eta: 0:34:39, time: 0.374, data_time: 0.066, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6398, loss: 0.0017
+2022-06-30 09:30:06,226 - mmpose - INFO - Saving checkpoint at 100 epochs
+2022-06-30 09:30:10,962 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_90.pth was removed
+2022-06-30 09:30:11,085 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_100.pth.
+2022-06-30 09:30:11,086 - mmpose - INFO - Best AP is 0.6917 at 100 epoch.
+2022-06-30 09:30:11,086 - mmpose - INFO - Epoch(val) [100][20]	AP: 0.6917, AP .5: 0.9135, AP .75: 0.7411, AP (M): 0.6920, AP (L): 0.6915, AR: 0.7287, AR .5: 0.9295, AR .75: 0.7751, AR (M): 0.7395, AR (L): 0.7270
+2022-06-30 09:30:29,635 - mmpose - INFO - Epoch [101][50/51]	lr: 5.000e-04, eta: 0:34:20, time: 0.371, data_time: 0.102, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6320, loss: 0.0017
+2022-06-30 09:30:48,539 - mmpose - INFO - Epoch [102][50/51]	lr: 5.000e-04, eta: 0:34:01, time: 0.371, data_time: 0.075, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6277, loss: 0.0017
+2022-06-30 09:31:07,531 - mmpose - INFO - Epoch [103][50/51]	lr: 5.000e-04, eta: 0:33:41, time: 0.374, data_time: 0.058, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6396, loss: 0.0017
+2022-06-30 09:31:26,582 - mmpose - INFO - Epoch [104][50/51]	lr: 5.000e-04, eta: 0:33:22, time: 0.375, data_time: 0.093, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6305, loss: 0.0017
+2022-06-30 09:31:45,674 - mmpose - INFO - Epoch [105][50/51]	lr: 5.000e-04, eta: 0:33:03, time: 0.375, data_time: 0.095, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6338, loss: 0.0017
+2022-06-30 09:32:04,763 - mmpose - INFO - Epoch [106][50/51]	lr: 5.000e-04, eta: 0:32:44, time: 0.376, data_time: 0.056, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6294, loss: 0.0017
+2022-06-30 09:32:23,700 - mmpose - INFO - Epoch [107][50/51]	lr: 5.000e-04, eta: 0:32:25, time: 0.373, data_time: 0.058, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6448, loss: 0.0017
+2022-06-30 09:32:42,731 - mmpose - INFO - Epoch [108][50/51]	lr: 5.000e-04, eta: 0:32:06, time: 0.375, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6333, loss: 0.0017
+2022-06-30 09:33:01,972 - mmpose - INFO - Epoch [109][50/51]	lr: 5.000e-04, eta: 0:31:47, time: 0.379, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6359, loss: 0.0017
+2022-06-30 09:33:20,902 - mmpose - INFO - Epoch [110][50/51]	lr: 5.000e-04, eta: 0:31:28, time: 0.373, data_time: 0.102, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6285, loss: 0.0017
+2022-06-30 09:33:21,204 - mmpose - INFO - Saving checkpoint at 110 epochs
+2022-06-30 09:33:25,893 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_100.pth was removed
+2022-06-30 09:33:26,018 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_110.pth.
+2022-06-30 09:33:26,018 - mmpose - INFO - Best AP is 0.7014 at 110 epoch.
+2022-06-30 09:33:26,018 - mmpose - INFO - Epoch(val) [110][20]	AP: 0.7014, AP .5: 0.9250, AP .75: 0.7565, AP (M): 0.7071, AP (L): 0.7015, AR: 0.7365, AR .5: 0.9350, AR .75: 0.7894, AR (M): 0.7547, AR (L): 0.7338
+2022-06-30 09:33:44,488 - mmpose - INFO - Epoch [111][50/51]	lr: 5.000e-04, eta: 0:31:09, time: 0.369, data_time: 0.100, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6370, loss: 0.0017
+2022-06-30 09:34:03,422 - mmpose - INFO - Epoch [112][50/51]	lr: 5.000e-04, eta: 0:30:50, time: 0.373, data_time: 0.080, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6386, loss: 0.0017
+2022-06-30 09:34:23,055 - mmpose - INFO - Epoch [113][50/51]	lr: 5.000e-04, eta: 0:30:31, time: 0.386, data_time: 0.068, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6395, loss: 0.0017
+2022-06-30 09:34:42,311 - mmpose - INFO - Epoch [114][50/51]	lr: 5.000e-04, eta: 0:30:13, time: 0.380, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6453, loss: 0.0017
+2022-06-30 09:35:01,570 - mmpose - INFO - Epoch [115][50/51]	lr: 5.000e-04, eta: 0:29:54, time: 0.379, data_time: 0.061, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6323, loss: 0.0017
+2022-06-30 09:35:20,617 - mmpose - INFO - Epoch [116][50/51]	lr: 5.000e-04, eta: 0:29:35, time: 0.374, data_time: 0.064, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6433, loss: 0.0017
+2022-06-30 09:35:39,545 - mmpose - INFO - Epoch [117][50/51]	lr: 5.000e-04, eta: 0:29:16, time: 0.373, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6408, loss: 0.0017
+2022-06-30 09:35:58,756 - mmpose - INFO - Epoch [118][50/51]	lr: 5.000e-04, eta: 0:28:57, time: 0.377, data_time: 0.087, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6432, loss: 0.0017
+2022-06-30 09:36:17,965 - mmpose - INFO - Epoch [119][50/51]	lr: 5.000e-04, eta: 0:28:38, time: 0.377, data_time: 0.061, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6428, loss: 0.0017
+2022-06-30 09:36:36,969 - mmpose - INFO - Epoch [120][50/51]	lr: 5.000e-04, eta: 0:28:19, time: 0.375, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6469, loss: 0.0017
+2022-06-30 09:36:37,238 - mmpose - INFO - Saving checkpoint at 120 epochs
+2022-06-30 09:36:41,769 - mmpose - INFO - Epoch(val) [120][20]	AP: 0.6934, AP .5: 0.9238, AP .75: 0.7422, AP (M): 0.6929, AP (L): 0.6945, AR: 0.7292, AR .5: 0.9316, AR .75: 0.7764, AR (M): 0.7434, AR (L): 0.7272
+2022-06-30 09:37:00,133 - mmpose - INFO - Epoch [121][50/51]	lr: 5.000e-04, eta: 0:28:00, time: 0.367, data_time: 0.098, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6324, loss: 0.0017
+2022-06-30 09:37:19,258 - mmpose - INFO - Epoch [122][50/51]	lr: 5.000e-04, eta: 0:27:41, time: 0.377, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6441, loss: 0.0017
+2022-06-30 09:37:38,348 - mmpose - INFO - Epoch [123][50/51]	lr: 5.000e-04, eta: 0:27:22, time: 0.376, data_time: 0.111, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6541, loss: 0.0017
+2022-06-30 09:37:57,572 - mmpose - INFO - Epoch [124][50/51]	lr: 5.000e-04, eta: 0:27:03, time: 0.378, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6424, loss: 0.0017
+2022-06-30 09:38:16,912 - mmpose - INFO - Epoch [125][50/51]	lr: 5.000e-04, eta: 0:26:44, time: 0.380, data_time: 0.070, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6469, loss: 0.0017
+2022-06-30 09:38:36,224 - mmpose - INFO - Epoch [126][50/51]	lr: 5.000e-04, eta: 0:26:25, time: 0.381, data_time: 0.062, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6517, loss: 0.0017
+2022-06-30 09:38:55,612 - mmpose - INFO - Epoch [127][50/51]	lr: 5.000e-04, eta: 0:26:07, time: 0.382, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6389, loss: 0.0017
+2022-06-30 09:39:14,596 - mmpose - INFO - Epoch [128][50/51]	lr: 5.000e-04, eta: 0:25:48, time: 0.374, data_time: 0.063, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6440, loss: 0.0017
+2022-06-30 09:39:33,431 - mmpose - INFO - Epoch [129][50/51]	lr: 5.000e-04, eta: 0:25:29, time: 0.371, data_time: 0.091, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6491, loss: 0.0017
+2022-06-30 09:39:52,377 - mmpose - INFO - Epoch [130][50/51]	lr: 5.000e-04, eta: 0:25:10, time: 0.373, data_time: 0.077, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6413, loss: 0.0017
+2022-06-30 09:39:52,671 - mmpose - INFO - Saving checkpoint at 130 epochs
+2022-06-30 09:39:57,168 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_110.pth was removed
+2022-06-30 09:39:57,296 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_130.pth.
+2022-06-30 09:39:57,296 - mmpose - INFO - Best AP is 0.7070 at 130 epoch.
+2022-06-30 09:39:57,297 - mmpose - INFO - Epoch(val) [130][20]	AP: 0.7070, AP .5: 0.9241, AP .75: 0.7650, AP (M): 0.7075, AP (L): 0.7073, AR: 0.7416, AR .5: 0.9353, AR .75: 0.7946, AR (M): 0.7549, AR (L): 0.7397
+2022-06-30 09:40:15,762 - mmpose - INFO - Epoch [131][50/51]	lr: 5.000e-04, eta: 0:24:50, time: 0.369, data_time: 0.101, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6416, loss: 0.0017
+2022-06-30 09:40:35,062 - mmpose - INFO - Epoch [132][50/51]	lr: 5.000e-04, eta: 0:24:32, time: 0.381, data_time: 0.058, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6394, loss: 0.0017
+2022-06-30 09:40:54,089 - mmpose - INFO - Epoch [133][50/51]	lr: 5.000e-04, eta: 0:24:13, time: 0.375, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6539, loss: 0.0017
+2022-06-30 09:41:12,987 - mmpose - INFO - Epoch [134][50/51]	lr: 5.000e-04, eta: 0:23:54, time: 0.372, data_time: 0.060, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6463, loss: 0.0017
+2022-06-30 09:41:32,427 - mmpose - INFO - Epoch [135][50/51]	lr: 5.000e-04, eta: 0:23:35, time: 0.383, data_time: 0.058, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6513, loss: 0.0017
+2022-06-30 09:41:51,539 - mmpose - INFO - Epoch [136][50/51]	lr: 5.000e-04, eta: 0:23:16, time: 0.377, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6479, loss: 0.0017
+2022-06-30 09:42:10,801 - mmpose - INFO - Epoch [137][50/51]	lr: 5.000e-04, eta: 0:22:57, time: 0.380, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6482, loss: 0.0017
+2022-06-30 09:42:29,873 - mmpose - INFO - Epoch [138][50/51]	lr: 5.000e-04, eta: 0:22:38, time: 0.376, data_time: 0.056, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6587, loss: 0.0016
+2022-06-30 09:42:49,020 - mmpose - INFO - Epoch [139][50/51]	lr: 5.000e-04, eta: 0:22:20, time: 0.377, data_time: 0.073, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6573, loss: 0.0017
+2022-06-30 09:43:08,182 - mmpose - INFO - Epoch [140][50/51]	lr: 5.000e-04, eta: 0:22:01, time: 0.377, data_time: 0.057, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6544, loss: 0.0016
+2022-06-30 09:43:08,465 - mmpose - INFO - Saving checkpoint at 140 epochs
+2022-06-30 09:43:13,103 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_130.pth was removed
+2022-06-30 09:43:13,233 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_140.pth.
+2022-06-30 09:43:13,233 - mmpose - INFO - Best AP is 0.7132 at 140 epoch.
+2022-06-30 09:43:13,234 - mmpose - INFO - Epoch(val) [140][20]	AP: 0.7132, AP .5: 0.9343, AP .75: 0.7646, AP (M): 0.7169, AP (L): 0.7134, AR: 0.7487, AR .5: 0.9405, AR .75: 0.7980, AR (M): 0.7676, AR (L): 0.7459
+2022-06-30 09:43:32,024 - mmpose - INFO - Epoch [141][50/51]	lr: 5.000e-04, eta: 0:21:42, time: 0.376, data_time: 0.104, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6490, loss: 0.0017
+2022-06-30 09:43:51,042 - mmpose - INFO - Epoch [142][50/51]	lr: 5.000e-04, eta: 0:21:23, time: 0.374, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6548, loss: 0.0017
+2022-06-30 09:44:10,095 - mmpose - INFO - Epoch [143][50/51]	lr: 5.000e-04, eta: 0:21:04, time: 0.375, data_time: 0.066, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6501, loss: 0.0017
+2022-06-30 09:44:29,305 - mmpose - INFO - Epoch [144][50/51]	lr: 5.000e-04, eta: 0:20:45, time: 0.378, data_time: 0.057, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6529, loss: 0.0017
+2022-06-30 09:44:48,378 - mmpose - INFO - Epoch [145][50/51]	lr: 5.000e-04, eta: 0:20:26, time: 0.376, data_time: 0.065, memory: 6136, heatmap_loss: 0.0017, acc_pose: 0.6494, loss: 0.0017
+2022-06-30 09:45:07,698 - mmpose - INFO - Epoch [146][50/51]	lr: 5.000e-04, eta: 0:20:07, time: 0.380, data_time: 0.079, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6579, loss: 0.0016
+2022-06-30 09:45:26,838 - mmpose - INFO - Epoch [147][50/51]	lr: 5.000e-04, eta: 0:19:48, time: 0.376, data_time: 0.057, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6536, loss: 0.0016
+2022-06-30 09:45:45,794 - mmpose - INFO - Epoch [148][50/51]	lr: 5.000e-04, eta: 0:19:30, time: 0.373, data_time: 0.061, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6604, loss: 0.0016
+2022-06-30 09:46:04,790 - mmpose - INFO - Epoch [149][50/51]	lr: 5.000e-04, eta: 0:19:11, time: 0.374, data_time: 0.075, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6595, loss: 0.0016
+2022-06-30 09:46:23,845 - mmpose - INFO - Epoch [150][50/51]	lr: 5.000e-04, eta: 0:18:52, time: 0.375, data_time: 0.059, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6624, loss: 0.0016
+2022-06-30 09:46:24,104 - mmpose - INFO - Saving checkpoint at 150 epochs
+2022-06-30 09:46:28,895 - mmpose - INFO - Epoch(val) [150][20]	AP: 0.7045, AP .5: 0.9243, AP .75: 0.7555, AP (M): 0.7029, AP (L): 0.7065, AR: 0.7404, AR .5: 0.9316, AR .75: 0.7871, AR (M): 0.7514, AR (L): 0.7388
+2022-06-30 09:46:47,178 - mmpose - INFO - Epoch [151][50/51]	lr: 5.000e-04, eta: 0:18:33, time: 0.365, data_time: 0.100, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6672, loss: 0.0016
+2022-06-30 09:47:06,174 - mmpose - INFO - Epoch [152][50/51]	lr: 5.000e-04, eta: 0:18:14, time: 0.374, data_time: 0.065, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6596, loss: 0.0016
+2022-06-30 09:47:25,772 - mmpose - INFO - Epoch [153][50/51]	lr: 5.000e-04, eta: 0:17:55, time: 0.386, data_time: 0.058, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6567, loss: 0.0016
+2022-06-30 09:47:45,108 - mmpose - INFO - Epoch [154][50/51]	lr: 5.000e-04, eta: 0:17:36, time: 0.381, data_time: 0.056, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6505, loss: 0.0016
+2022-06-30 09:48:04,579 - mmpose - INFO - Epoch [155][50/51]	lr: 5.000e-04, eta: 0:17:17, time: 0.383, data_time: 0.058, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6591, loss: 0.0016
+2022-06-30 09:48:23,672 - mmpose - INFO - Epoch [156][50/51]	lr: 5.000e-04, eta: 0:16:59, time: 0.376, data_time: 0.058, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6608, loss: 0.0016
+2022-06-30 09:48:42,707 - mmpose - INFO - Epoch [157][50/51]	lr: 5.000e-04, eta: 0:16:40, time: 0.375, data_time: 0.100, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6581, loss: 0.0016
+2022-06-30 09:49:02,684 - mmpose - INFO - Epoch [158][50/51]	lr: 5.000e-04, eta: 0:16:21, time: 0.394, data_time: 0.059, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6620, loss: 0.0016
+2022-06-30 09:49:22,075 - mmpose - INFO - Epoch [159][50/51]	lr: 5.000e-04, eta: 0:16:02, time: 0.382, data_time: 0.063, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6537, loss: 0.0016
+2022-06-30 09:49:41,098 - mmpose - INFO - Epoch [160][50/51]	lr: 5.000e-04, eta: 0:15:43, time: 0.375, data_time: 0.057, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6567, loss: 0.0016
+2022-06-30 09:49:41,361 - mmpose - INFO - Saving checkpoint at 160 epochs
+2022-06-30 09:49:45,897 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_140.pth was removed
+2022-06-30 09:49:46,023 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_160.pth.
+2022-06-30 09:49:46,023 - mmpose - INFO - Best AP is 0.7196 at 160 epoch.
+2022-06-30 09:49:46,023 - mmpose - INFO - Epoch(val) [160][20]	AP: 0.7196, AP .5: 0.9248, AP .75: 0.7764, AP (M): 0.7144, AP (L): 0.7198, AR: 0.7513, AR .5: 0.9350, AR .75: 0.8017, AR (M): 0.7611, AR (L): 0.7499
+2022-06-30 09:50:04,697 - mmpose - INFO - Epoch [161][50/51]	lr: 5.000e-04, eta: 0:15:24, time: 0.373, data_time: 0.103, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6674, loss: 0.0016
+2022-06-30 09:50:23,670 - mmpose - INFO - Epoch [162][50/51]	lr: 5.000e-04, eta: 0:15:05, time: 0.374, data_time: 0.057, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6654, loss: 0.0016
+2022-06-30 09:50:42,667 - mmpose - INFO - Epoch [163][50/51]	lr: 5.000e-04, eta: 0:14:47, time: 0.374, data_time: 0.084, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6638, loss: 0.0016
+2022-06-30 09:51:01,600 - mmpose - INFO - Epoch [164][50/51]	lr: 5.000e-04, eta: 0:14:28, time: 0.373, data_time: 0.059, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6543, loss: 0.0016
+2022-06-30 09:51:20,548 - mmpose - INFO - Epoch [165][50/51]	lr: 5.000e-04, eta: 0:14:09, time: 0.373, data_time: 0.072, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6634, loss: 0.0016
+2022-06-30 09:51:39,660 - mmpose - INFO - Epoch [166][50/51]	lr: 5.000e-04, eta: 0:13:50, time: 0.376, data_time: 0.067, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6656, loss: 0.0016
+2022-06-30 09:51:58,571 - mmpose - INFO - Epoch [167][50/51]	lr: 5.000e-04, eta: 0:13:31, time: 0.372, data_time: 0.086, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6712, loss: 0.0016
+2022-06-30 09:52:17,898 - mmpose - INFO - Epoch [168][50/51]	lr: 5.000e-04, eta: 0:13:12, time: 0.381, data_time: 0.056, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6644, loss: 0.0016
+2022-06-30 09:52:36,771 - mmpose - INFO - Epoch [169][50/51]	lr: 5.000e-04, eta: 0:12:53, time: 0.371, data_time: 0.098, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6742, loss: 0.0016
+2022-06-30 09:52:55,740 - mmpose - INFO - Epoch [170][50/51]	lr: 5.000e-04, eta: 0:12:34, time: 0.373, data_time: 0.057, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6682, loss: 0.0016
+2022-06-30 09:52:56,019 - mmpose - INFO - Saving checkpoint at 170 epochs
+2022-06-30 09:53:00,838 - mmpose - INFO - Epoch(val) [170][20]	AP: 0.7191, AP .5: 0.9241, AP .75: 0.7765, AP (M): 0.7146, AP (L): 0.7213, AR: 0.7536, AR .5: 0.9368, AR .75: 0.8032, AR (M): 0.7633, AR (L): 0.7523
+2022-06-30 09:53:19,351 - mmpose - INFO - Epoch [171][50/51]	lr: 5.000e-05, eta: 0:12:15, time: 0.370, data_time: 0.091, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6728, loss: 0.0016
+2022-06-30 09:53:38,161 - mmpose - INFO - Epoch [172][50/51]	lr: 5.000e-05, eta: 0:11:56, time: 0.370, data_time: 0.057, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6752, loss: 0.0016
+2022-06-30 09:53:57,052 - mmpose - INFO - Epoch [173][50/51]	lr: 5.000e-05, eta: 0:11:37, time: 0.372, data_time: 0.058, memory: 6136, heatmap_loss: 0.0016, acc_pose: 0.6860, loss: 0.0016
+2022-06-30 09:54:16,198 - mmpose - INFO - Epoch [174][50/51]	lr: 5.000e-05, eta: 0:11:19, time: 0.377, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6774, loss: 0.0015
+2022-06-30 09:54:35,057 - mmpose - INFO - Epoch [175][50/51]	lr: 5.000e-05, eta: 0:11:00, time: 0.372, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6789, loss: 0.0015
+2022-06-30 09:54:54,344 - mmpose - INFO - Epoch [176][50/51]	lr: 5.000e-05, eta: 0:10:41, time: 0.380, data_time: 0.056, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6770, loss: 0.0015
+2022-06-30 09:55:13,235 - mmpose - INFO - Epoch [177][50/51]	lr: 5.000e-05, eta: 0:10:22, time: 0.372, data_time: 0.060, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6821, loss: 0.0015
+2022-06-30 09:55:32,386 - mmpose - INFO - Epoch [178][50/51]	lr: 5.000e-05, eta: 0:10:03, time: 0.377, data_time: 0.063, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6858, loss: 0.0015
+2022-06-30 09:55:51,411 - mmpose - INFO - Epoch [179][50/51]	lr: 5.000e-05, eta: 0:09:44, time: 0.373, data_time: 0.088, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6852, loss: 0.0015
+2022-06-30 09:56:10,620 - mmpose - INFO - Epoch [180][50/51]	lr: 5.000e-05, eta: 0:09:25, time: 0.378, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6869, loss: 0.0015
+2022-06-30 09:56:10,889 - mmpose - INFO - Saving checkpoint at 180 epochs
+2022-06-30 09:56:15,377 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_160.pth was removed
+2022-06-30 09:56:15,678 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_180.pth.
+2022-06-30 09:56:15,678 - mmpose - INFO - Best AP is 0.7407 at 180 epoch.
+2022-06-30 09:56:15,678 - mmpose - INFO - Epoch(val) [180][20]	AP: 0.7407, AP .5: 0.9356, AP .75: 0.8002, AP (M): 0.7432, AP (L): 0.7388, AR: 0.7705, AR .5: 0.9439, AR .75: 0.8205, AR (M): 0.7850, AR (L): 0.7683
+2022-06-30 09:56:34,551 - mmpose - INFO - Epoch [181][50/51]	lr: 5.000e-05, eta: 0:09:07, time: 0.377, data_time: 0.105, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6814, loss: 0.0015
+2022-06-30 09:56:53,565 - mmpose - INFO - Epoch [182][50/51]	lr: 5.000e-05, eta: 0:08:48, time: 0.374, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6775, loss: 0.0015
+2022-06-30 09:57:13,044 - mmpose - INFO - Epoch [183][50/51]	lr: 5.000e-05, eta: 0:08:29, time: 0.384, data_time: 0.062, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6890, loss: 0.0015
+2022-06-30 09:57:32,090 - mmpose - INFO - Epoch [184][50/51]	lr: 5.000e-05, eta: 0:08:10, time: 0.375, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6829, loss: 0.0015
+2022-06-30 09:57:50,953 - mmpose - INFO - Epoch [185][50/51]	lr: 5.000e-05, eta: 0:07:51, time: 0.371, data_time: 0.068, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6831, loss: 0.0015
+2022-06-30 09:58:09,845 - mmpose - INFO - Epoch [186][50/51]	lr: 5.000e-05, eta: 0:07:32, time: 0.371, data_time: 0.078, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6862, loss: 0.0015
+2022-06-30 09:58:28,814 - mmpose - INFO - Epoch [187][50/51]	lr: 5.000e-05, eta: 0:07:13, time: 0.374, data_time: 0.073, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6910, loss: 0.0015
+2022-06-30 09:58:47,752 - mmpose - INFO - Epoch [188][50/51]	lr: 5.000e-05, eta: 0:06:54, time: 0.372, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6826, loss: 0.0015
+2022-06-30 09:59:06,708 - mmpose - INFO - Epoch [189][50/51]	lr: 5.000e-05, eta: 0:06:36, time: 0.373, data_time: 0.082, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6915, loss: 0.0015
+2022-06-30 09:59:25,640 - mmpose - INFO - Epoch [190][50/51]	lr: 5.000e-05, eta: 0:06:17, time: 0.373, data_time: 0.059, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6911, loss: 0.0015
+2022-06-30 09:59:25,954 - mmpose - INFO - Saving checkpoint at 190 epochs
+2022-06-30 09:59:30,916 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_180.pth was removed
+2022-06-30 09:59:31,051 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_190.pth.
+2022-06-30 09:59:31,051 - mmpose - INFO - Best AP is 0.7437 at 190 epoch.
+2022-06-30 09:59:31,051 - mmpose - INFO - Epoch(val) [190][20]	AP: 0.7437, AP .5: 0.9353, AP .75: 0.8004, AP (M): 0.7430, AP (L): 0.7418, AR: 0.7730, AR .5: 0.9444, AR .75: 0.8254, AR (M): 0.7859, AR (L): 0.7710
+2022-06-30 09:59:49,500 - mmpose - INFO - Epoch [191][50/51]	lr: 5.000e-05, eta: 0:05:58, time: 0.369, data_time: 0.102, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6896, loss: 0.0015
+2022-06-30 10:00:08,300 - mmpose - INFO - Epoch [192][50/51]	lr: 5.000e-05, eta: 0:05:39, time: 0.370, data_time: 0.059, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6780, loss: 0.0015
+2022-06-30 10:00:27,326 - mmpose - INFO - Epoch [193][50/51]	lr: 5.000e-05, eta: 0:05:20, time: 0.375, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6877, loss: 0.0015
+2022-06-30 10:00:46,306 - mmpose - INFO - Epoch [194][50/51]	lr: 5.000e-05, eta: 0:05:01, time: 0.374, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6942, loss: 0.0015
+2022-06-30 10:01:05,102 - mmpose - INFO - Epoch [195][50/51]	lr: 5.000e-05, eta: 0:04:42, time: 0.371, data_time: 0.095, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6867, loss: 0.0015
+2022-06-30 10:01:24,198 - mmpose - INFO - Epoch [196][50/51]	lr: 5.000e-05, eta: 0:04:24, time: 0.376, data_time: 0.078, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6934, loss: 0.0015
+2022-06-30 10:01:43,172 - mmpose - INFO - Epoch [197][50/51]	lr: 5.000e-05, eta: 0:04:05, time: 0.373, data_time: 0.076, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6922, loss: 0.0015
+2022-06-30 10:02:01,987 - mmpose - INFO - Epoch [198][50/51]	lr: 5.000e-05, eta: 0:03:46, time: 0.370, data_time: 0.078, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6907, loss: 0.0015
+2022-06-30 10:02:21,899 - mmpose - INFO - Epoch [199][50/51]	lr: 5.000e-05, eta: 0:03:27, time: 0.392, data_time: 0.056, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6887, loss: 0.0015
+2022-06-30 10:02:40,919 - mmpose - INFO - Epoch [200][50/51]	lr: 5.000e-05, eta: 0:03:08, time: 0.375, data_time: 0.105, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6862, loss: 0.0015
+2022-06-30 10:02:41,191 - mmpose - INFO - Saving checkpoint at 200 epochs
+2022-06-30 10:02:45,941 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test/best_AP_epoch_190.pth was removed
+2022-06-30 10:02:46,066 - mmpose - INFO - Now best checkpoint is saved as best_AP_epoch_200.pth.
+2022-06-30 10:02:46,066 - mmpose - INFO - Best AP is 0.7446 at 200 epoch.
+2022-06-30 10:02:46,067 - mmpose - INFO - Epoch(val) [200][20]	AP: 0.7446, AP .5: 0.9361, AP .75: 0.8015, AP (M): 0.7490, AP (L): 0.7459, AR: 0.7749, AR .5: 0.9452, AR .75: 0.8267, AR (M): 0.7900, AR (L): 0.7726
+2022-06-30 10:03:04,293 - mmpose - INFO - Epoch [201][50/51]	lr: 5.000e-06, eta: 0:02:49, time: 0.364, data_time: 0.086, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6872, loss: 0.0015
+2022-06-30 10:03:23,236 - mmpose - INFO - Epoch [202][50/51]	lr: 5.000e-06, eta: 0:02:31, time: 0.373, data_time: 0.059, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6904, loss: 0.0015
+2022-06-30 10:03:42,321 - mmpose - INFO - Epoch [203][50/51]	lr: 5.000e-06, eta: 0:02:12, time: 0.376, data_time: 0.058, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6838, loss: 0.0015
+2022-06-30 10:04:01,224 - mmpose - INFO - Epoch [204][50/51]	lr: 5.000e-06, eta: 0:01:53, time: 0.372, data_time: 0.096, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6880, loss: 0.0015
+2022-06-30 10:04:20,063 - mmpose - INFO - Epoch [205][50/51]	lr: 5.000e-06, eta: 0:01:34, time: 0.371, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6978, loss: 0.0015
+2022-06-30 10:04:39,534 - mmpose - INFO - Epoch [206][50/51]	lr: 5.000e-06, eta: 0:01:15, time: 0.383, data_time: 0.058, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6901, loss: 0.0015
+2022-06-30 10:04:58,393 - mmpose - INFO - Epoch [207][50/51]	lr: 5.000e-06, eta: 0:00:56, time: 0.372, data_time: 0.074, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6922, loss: 0.0015
+2022-06-30 10:05:17,320 - mmpose - INFO - Epoch [208][50/51]	lr: 5.000e-06, eta: 0:00:38, time: 0.372, data_time: 0.058, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6916, loss: 0.0015
+2022-06-30 10:05:36,536 - mmpose - INFO - Epoch [209][50/51]	lr: 5.000e-06, eta: 0:00:19, time: 0.377, data_time: 0.062, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6903, loss: 0.0015
+2022-06-30 10:05:55,824 - mmpose - INFO - Epoch [210][50/51]	lr: 5.000e-06, eta: 0:00:00, time: 0.380, data_time: 0.057, memory: 6136, heatmap_loss: 0.0015, acc_pose: 0.6949, loss: 0.0015
+2022-06-30 10:05:56,092 - mmpose - INFO - Saving checkpoint at 210 epochs
+2022-06-30 10:06:00,941 - mmpose - INFO - Epoch(val) [210][20]	AP: 0.7444, AP .5: 0.9358, AP .75: 0.8022, AP (M): 0.7498, AP (L): 0.7458, AR: 0.7748, AR .5: 0.9436, AR .75: 0.8288, AR (M): 0.7916, AR (L): 0.7723

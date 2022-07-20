@@ -1,0 +1,1014 @@
+2022-07-01 06:49:09,218 - mmpose - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.9.7 (default, Sep 16 2021, 13:09:58) [GCC 7.5.0]
+CUDA available: True
+GPU 0,1,2,3,4,5,6,7: NVIDIA GeForce RTX 3090
+CUDA_HOME: /usr/local/cuda-11.1
+NVCC: Cuda compilation tools, release 11.1, V11.1.74
+GCC: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
+PyTorch: 1.9.1+cu111
+PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.1.2 (Git Hash 98be7e8afa711dc9b66c8ff3504129cb82013cdb)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.1
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86
+  - CuDNN 8.0.5
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.1, CUDNN_VERSION=8.0.5, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.9.1, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
+
+TorchVision: 0.10.1+cu111
+OpenCV: 4.5.5
+MMCV: 1.5.1
+MMCV Compiler: GCC 7.5
+MMCV CUDA Compiler: 11.1
+MMPose: 0.27.0+
+------------------------------------------------------------
+
+2022-07-01 06:49:09,218 - mmpose - INFO - Distributed training: True
+2022-07-01 06:49:12,021 - mmpose - INFO - Config:
+checkpoint_config = dict(interval=10)
+log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
+log_level = 'INFO'
+load_from = None
+resume_from = None
+dist_params = dict(backend='nccl')
+workflow = [('train', 1)]
+opencv_num_threads = 0
+mp_start_method = 'fork'
+dataset_info = dict(
+    dataset_name='coco13',
+    paper_info=dict(
+        author=
+        'Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence',
+        title='Microsoft coco: Common objects in context',
+        container='European conference on computer vision',
+        year='2014',
+        homepage='http://cocodataset.org/'),
+    keypoint_info=dict({
+        0:
+        dict(
+            name='mid_head', id=0, color=[51, 153, 255], type='upper',
+            swap=''),
+        1:
+        dict(
+            name='left_shoulder',
+            id=1,
+            color=[0, 255, 0],
+            type='upper',
+            swap='right_shoulder'),
+        2:
+        dict(
+            name='right_shoulder',
+            id=2,
+            color=[255, 128, 0],
+            type='upper',
+            swap='left_shoulder'),
+        3:
+        dict(
+            name='left_elbow',
+            id=3,
+            color=[0, 255, 0],
+            type='upper',
+            swap='right_elbow'),
+        4:
+        dict(
+            name='right_elbow',
+            id=4,
+            color=[255, 128, 0],
+            type='upper',
+            swap='left_elbow'),
+        5:
+        dict(
+            name='left_wrist',
+            id=5,
+            color=[0, 255, 0],
+            type='upper',
+            swap='right_wrist'),
+        6:
+        dict(
+            name='right_wrist',
+            id=6,
+            color=[255, 128, 0],
+            type='upper',
+            swap='left_wrist'),
+        7:
+        dict(
+            name='left_hip',
+            id=7,
+            color=[0, 255, 0],
+            type='lower',
+            swap='right_hip'),
+        8:
+        dict(
+            name='right_hip',
+            id=8,
+            color=[255, 128, 0],
+            type='lower',
+            swap='left_hip'),
+        9:
+        dict(
+            name='left_knee',
+            id=9,
+            color=[0, 255, 0],
+            type='lower',
+            swap='right_knee'),
+        10:
+        dict(
+            name='right_knee',
+            id=10,
+            color=[255, 128, 0],
+            type='lower',
+            swap='left_knee'),
+        11:
+        dict(
+            name='left_ankle',
+            id=11,
+            color=[0, 255, 0],
+            type='lower',
+            swap='right_ankle'),
+        12:
+        dict(
+            name='right_ankle',
+            id=12,
+            color=[255, 128, 0],
+            type='lower',
+            swap='left_ankle')
+    }),
+    skeleton_info=dict({
+        0:
+        dict(link=('left_ankle', 'left_knee'), id=0, color=[0, 255, 0]),
+        1:
+        dict(link=('left_knee', 'left_hip'), id=1, color=[0, 255, 0]),
+        2:
+        dict(link=('left_hip', 'right_hip'), id=4, color=[51, 153, 255]),
+        3:
+        dict(link=('right_ankle', 'right_knee'), id=2, color=[255, 128, 0]),
+        4:
+        dict(link=('right_knee', 'right_hip'), id=3, color=[255, 128, 0]),
+        5:
+        dict(link=('right_hip', 'right_shoulder'), id=5, color=[51, 153, 255]),
+        6:
+        dict(link=('right_wrist', 'right_elbow'), id=6, color=[51, 153, 255]),
+        7:
+        dict(
+            link=('right_elbow', 'right_shoulder'), id=7, color=[51, 153,
+                                                                 255]),
+        8:
+        dict(link=('right_shoulder', 'mid_head'), id=8, color=[0, 255, 0]),
+        9:
+        dict(link=('left_hip', 'left_shoulder'), id=9, color=[255, 128, 0]),
+        10:
+        dict(link=('left_wrist', 'left_elbow'), id=10, color=[0, 255, 0]),
+        11:
+        dict(link=('left_elbow', 'left_shoulder'), id=11, color=[255, 128, 0]),
+        12:
+        dict(link=('left_shoulder', 'mid_head'), id=12, color=[51, 153, 255]),
+        13:
+        dict(
+            link=('left_shoulder', 'right_shoulder'),
+            id=13,
+            color=[51, 153, 255])
+    }),
+    joint_weights=[
+        1.0, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5
+    ],
+    sigmas=[
+        0.09, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107, 0.087,
+        0.087, 0.089, 0.089
+    ])
+evaluation = dict(interval=10, metric='mAP', save_best='AP')
+optimizer = dict(type='Adam', lr=0.0005)
+optimizer_config = dict(grad_clip=None)
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=500,
+    warmup_ratio=0.001,
+    step=[170, 200])
+total_epochs = 210
+channel_cfg = dict(
+    num_output_channels=13,
+    dataset_joints=13,
+    dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+    inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+model = dict(
+    type='TopDown',
+    pretrained=None,
+    backbone=dict(
+        type='LiteHRNet',
+        in_channels=3,
+        extra=dict(
+            stem=dict(stem_channels=32, out_channels=32, expand_ratio=1),
+            num_stages=3,
+            stages_spec=dict(
+                num_modules=(2, 4, 2),
+                num_branches=(2, 3, 4),
+                num_blocks=(2, 2, 2),
+                module_type=('LITE', 'LITE', 'LITE'),
+                with_fuse=(True, True, True),
+                reduce_ratios=(8, 8, 8),
+                num_channels=((40, 80), (40, 80, 160), (40, 80, 160, 320))),
+            with_head=True)),
+    keypoint_head=dict(
+        type='TopdownHeatmapSimpleHead',
+        in_channels=40,
+        out_channels=13,
+        num_deconv_layers=0,
+        extra=dict(final_conv_kernel=1),
+        loss_keypoint=dict(type='JointsMSELoss', use_target_weight=True)),
+    train_cfg=dict(),
+    test_cfg=dict(
+        flip_test=True,
+        post_process='default',
+        shift_heatmap=True,
+        modulate_kernel=11))
+data_cfg = dict(
+    image_size=[192, 256],
+    heatmap_size=[48, 64],
+    num_output_channels=13,
+    num_joints=13,
+    dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+    inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    soft_nms=False,
+    nms_thr=1.0,
+    oks_thr=0.9,
+    vis_thr=0.2,
+    use_gt_bbox=True,
+    det_bbox_thr=0.0,
+    bbox_file='')
+train_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='TopDownGetBboxCenterScale', padding=1.25),
+    dict(type='TopDownRandomShiftBboxCenter', shift_factor=0.16, prob=0.3),
+    dict(type='TopDownRandomFlip', flip_prob=0.5),
+    dict(
+        type='TopDownHalfBodyTransform',
+        num_joints_half_body=8,
+        prob_half_body=0.3),
+    dict(
+        type='TopDownGetRandomScaleRotation', rot_factor=30,
+        scale_factor=0.25),
+    dict(type='TopDownAffine'),
+    dict(type='ToTensor'),
+    dict(
+        type='NormalizeTensor',
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]),
+    dict(type='TopDownGenerateTarget', sigma=2),
+    dict(
+        type='Collect',
+        keys=['img', 'target', 'target_weight'],
+        meta_keys=[
+            'image_file', 'joints_3d', 'joints_3d_visible', 'center', 'scale',
+            'rotation', 'bbox_score', 'flip_pairs'
+        ])
+]
+val_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='TopDownGetBboxCenterScale', padding=1.25),
+    dict(type='TopDownAffine'),
+    dict(type='ToTensor'),
+    dict(
+        type='NormalizeTensor',
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]),
+    dict(
+        type='Collect',
+        keys=['img'],
+        meta_keys=[
+            'image_file', 'center', 'scale', 'rotation', 'bbox_score',
+            'flip_pairs'
+        ])
+]
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='TopDownGetBboxCenterScale', padding=1.25),
+    dict(type='TopDownAffine'),
+    dict(type='ToTensor'),
+    dict(
+        type='NormalizeTensor',
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]),
+    dict(
+        type='Collect',
+        keys=['img'],
+        meta_keys=[
+            'image_file', 'center', 'scale', 'rotation', 'bbox_score',
+            'flip_pairs'
+        ])
+]
+data_root = '/data/tfj/workspace/datasets/PoseDatasets'
+data = dict(
+    samples_per_gpu=64,
+    workers_per_gpu=4,
+    val_dataloader=dict(samples_per_gpu=32),
+    test_dataloader=dict(samples_per_gpu=32),
+    train=dict(
+        type='TopDown13JointsDataset',
+        ann_file=
+        '/data/tfj/workspace/datasets/PoseDatasets/annotations/CocoTrain_MpiiTrain_13points.json',
+        img_prefix='/data/tfj/workspace/datasets/PoseDatasets/images/',
+        data_cfg=dict(
+            image_size=[192, 256],
+            heatmap_size=[48, 64],
+            num_output_channels=13,
+            num_joints=13,
+            dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+            inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            soft_nms=False,
+            nms_thr=1.0,
+            oks_thr=0.9,
+            vis_thr=0.2,
+            use_gt_bbox=True,
+            det_bbox_thr=0.0,
+            bbox_file=''),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='TopDownGetBboxCenterScale', padding=1.25),
+            dict(
+                type='TopDownRandomShiftBboxCenter',
+                shift_factor=0.16,
+                prob=0.3),
+            dict(type='TopDownRandomFlip', flip_prob=0.5),
+            dict(
+                type='TopDownHalfBodyTransform',
+                num_joints_half_body=8,
+                prob_half_body=0.3),
+            dict(
+                type='TopDownGetRandomScaleRotation',
+                rot_factor=30,
+                scale_factor=0.25),
+            dict(type='TopDownAffine'),
+            dict(type='ToTensor'),
+            dict(
+                type='NormalizeTensor',
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]),
+            dict(type='TopDownGenerateTarget', sigma=2),
+            dict(
+                type='Collect',
+                keys=['img', 'target', 'target_weight'],
+                meta_keys=[
+                    'image_file', 'joints_3d', 'joints_3d_visible', 'center',
+                    'scale', 'rotation', 'bbox_score', 'flip_pairs'
+                ])
+        ],
+        dataset_info=dict(
+            dataset_name='coco13',
+            paper_info=dict(
+                author=
+                'Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence',
+                title='Microsoft coco: Common objects in context',
+                container='European conference on computer vision',
+                year='2014',
+                homepage='http://cocodataset.org/'),
+            keypoint_info=dict({
+                0:
+                dict(
+                    name='mid_head',
+                    id=0,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                1:
+                dict(
+                    name='left_shoulder',
+                    id=1,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_shoulder'),
+                2:
+                dict(
+                    name='right_shoulder',
+                    id=2,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_shoulder'),
+                3:
+                dict(
+                    name='left_elbow',
+                    id=3,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_elbow'),
+                4:
+                dict(
+                    name='right_elbow',
+                    id=4,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_elbow'),
+                5:
+                dict(
+                    name='left_wrist',
+                    id=5,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_wrist'),
+                6:
+                dict(
+                    name='right_wrist',
+                    id=6,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_wrist'),
+                7:
+                dict(
+                    name='left_hip',
+                    id=7,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_hip'),
+                8:
+                dict(
+                    name='right_hip',
+                    id=8,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_hip'),
+                9:
+                dict(
+                    name='left_knee',
+                    id=9,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_knee'),
+                10:
+                dict(
+                    name='right_knee',
+                    id=10,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_knee'),
+                11:
+                dict(
+                    name='left_ankle',
+                    id=11,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_ankle'),
+                12:
+                dict(
+                    name='right_ankle',
+                    id=12,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_ankle')
+            }),
+            skeleton_info=dict({
+                0:
+                dict(
+                    link=('left_ankle', 'left_knee'), id=0, color=[0, 255, 0]),
+                1:
+                dict(link=('left_knee', 'left_hip'), id=1, color=[0, 255, 0]),
+                2:
+                dict(
+                    link=('left_hip', 'right_hip'), id=4, color=[51, 153,
+                                                                 255]),
+                3:
+                dict(
+                    link=('right_ankle', 'right_knee'),
+                    id=2,
+                    color=[255, 128, 0]),
+                4:
+                dict(
+                    link=('right_knee', 'right_hip'),
+                    id=3,
+                    color=[255, 128, 0]),
+                5:
+                dict(
+                    link=('right_hip', 'right_shoulder'),
+                    id=5,
+                    color=[51, 153, 255]),
+                6:
+                dict(
+                    link=('right_wrist', 'right_elbow'),
+                    id=6,
+                    color=[51, 153, 255]),
+                7:
+                dict(
+                    link=('right_elbow', 'right_shoulder'),
+                    id=7,
+                    color=[51, 153, 255]),
+                8:
+                dict(
+                    link=('right_shoulder', 'mid_head'),
+                    id=8,
+                    color=[0, 255, 0]),
+                9:
+                dict(
+                    link=('left_hip', 'left_shoulder'),
+                    id=9,
+                    color=[255, 128, 0]),
+                10:
+                dict(
+                    link=('left_wrist', 'left_elbow'),
+                    id=10,
+                    color=[0, 255, 0]),
+                11:
+                dict(
+                    link=('left_elbow', 'left_shoulder'),
+                    id=11,
+                    color=[255, 128, 0]),
+                12:
+                dict(
+                    link=('left_shoulder', 'mid_head'),
+                    id=12,
+                    color=[51, 153, 255]),
+                13:
+                dict(
+                    link=('left_shoulder', 'right_shoulder'),
+                    id=13,
+                    color=[51, 153, 255])
+            }),
+            joint_weights=[
+                1.0, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5
+            ],
+            sigmas=[
+                0.09, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107,
+                0.087, 0.087, 0.089, 0.089
+            ])),
+    val=dict(
+        type='TopDown13JointsDataset',
+        ann_file=
+        '/data/tfj/workspace/datasets/PoseDatasets/annotations/coco2017_val_keypoints_label_13points.json',
+        img_prefix='/data/tfj/workspace/datasets/PoseDatasets/images/',
+        data_cfg=dict(
+            image_size=[192, 256],
+            heatmap_size=[48, 64],
+            num_output_channels=13,
+            num_joints=13,
+            dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+            inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            soft_nms=False,
+            nms_thr=1.0,
+            oks_thr=0.9,
+            vis_thr=0.2,
+            use_gt_bbox=True,
+            det_bbox_thr=0.0,
+            bbox_file=''),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='TopDownGetBboxCenterScale', padding=1.25),
+            dict(type='TopDownAffine'),
+            dict(type='ToTensor'),
+            dict(
+                type='NormalizeTensor',
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]),
+            dict(
+                type='Collect',
+                keys=['img'],
+                meta_keys=[
+                    'image_file', 'center', 'scale', 'rotation', 'bbox_score',
+                    'flip_pairs'
+                ])
+        ],
+        dataset_info=dict(
+            dataset_name='coco13',
+            paper_info=dict(
+                author=
+                'Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence',
+                title='Microsoft coco: Common objects in context',
+                container='European conference on computer vision',
+                year='2014',
+                homepage='http://cocodataset.org/'),
+            keypoint_info=dict({
+                0:
+                dict(
+                    name='mid_head',
+                    id=0,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                1:
+                dict(
+                    name='left_shoulder',
+                    id=1,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_shoulder'),
+                2:
+                dict(
+                    name='right_shoulder',
+                    id=2,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_shoulder'),
+                3:
+                dict(
+                    name='left_elbow',
+                    id=3,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_elbow'),
+                4:
+                dict(
+                    name='right_elbow',
+                    id=4,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_elbow'),
+                5:
+                dict(
+                    name='left_wrist',
+                    id=5,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_wrist'),
+                6:
+                dict(
+                    name='right_wrist',
+                    id=6,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_wrist'),
+                7:
+                dict(
+                    name='left_hip',
+                    id=7,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_hip'),
+                8:
+                dict(
+                    name='right_hip',
+                    id=8,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_hip'),
+                9:
+                dict(
+                    name='left_knee',
+                    id=9,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_knee'),
+                10:
+                dict(
+                    name='right_knee',
+                    id=10,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_knee'),
+                11:
+                dict(
+                    name='left_ankle',
+                    id=11,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_ankle'),
+                12:
+                dict(
+                    name='right_ankle',
+                    id=12,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_ankle')
+            }),
+            skeleton_info=dict({
+                0:
+                dict(
+                    link=('left_ankle', 'left_knee'), id=0, color=[0, 255, 0]),
+                1:
+                dict(link=('left_knee', 'left_hip'), id=1, color=[0, 255, 0]),
+                2:
+                dict(
+                    link=('left_hip', 'right_hip'), id=4, color=[51, 153,
+                                                                 255]),
+                3:
+                dict(
+                    link=('right_ankle', 'right_knee'),
+                    id=2,
+                    color=[255, 128, 0]),
+                4:
+                dict(
+                    link=('right_knee', 'right_hip'),
+                    id=3,
+                    color=[255, 128, 0]),
+                5:
+                dict(
+                    link=('right_hip', 'right_shoulder'),
+                    id=5,
+                    color=[51, 153, 255]),
+                6:
+                dict(
+                    link=('right_wrist', 'right_elbow'),
+                    id=6,
+                    color=[51, 153, 255]),
+                7:
+                dict(
+                    link=('right_elbow', 'right_shoulder'),
+                    id=7,
+                    color=[51, 153, 255]),
+                8:
+                dict(
+                    link=('right_shoulder', 'mid_head'),
+                    id=8,
+                    color=[0, 255, 0]),
+                9:
+                dict(
+                    link=('left_hip', 'left_shoulder'),
+                    id=9,
+                    color=[255, 128, 0]),
+                10:
+                dict(
+                    link=('left_wrist', 'left_elbow'),
+                    id=10,
+                    color=[0, 255, 0]),
+                11:
+                dict(
+                    link=('left_elbow', 'left_shoulder'),
+                    id=11,
+                    color=[255, 128, 0]),
+                12:
+                dict(
+                    link=('left_shoulder', 'mid_head'),
+                    id=12,
+                    color=[51, 153, 255]),
+                13:
+                dict(
+                    link=('left_shoulder', 'right_shoulder'),
+                    id=13,
+                    color=[51, 153, 255])
+            }),
+            joint_weights=[
+                1.0, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5
+            ],
+            sigmas=[
+                0.09, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107,
+                0.087, 0.087, 0.089, 0.089
+            ])),
+    test=dict(
+        type='TopDown13JointsDataset',
+        ann_file=
+        '/data/tfj/workspace/datasets/CoCo/annotations/my_label/converted_label/coco2017_val_keypoints_label_13points.json',
+        img_prefix='/data/tfj/workspace/datasets/CoCo/images/val2017/',
+        data_cfg=dict(
+            image_size=[192, 256],
+            heatmap_size=[48, 64],
+            num_output_channels=13,
+            num_joints=13,
+            dataset_channel=[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
+            inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            soft_nms=False,
+            nms_thr=1.0,
+            oks_thr=0.9,
+            vis_thr=0.2,
+            use_gt_bbox=True,
+            det_bbox_thr=0.0,
+            bbox_file=''),
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='TopDownGetBboxCenterScale', padding=1.25),
+            dict(type='TopDownAffine'),
+            dict(type='ToTensor'),
+            dict(
+                type='NormalizeTensor',
+                mean=[0.485, 0.456, 0.406],
+                std=[0.229, 0.224, 0.225]),
+            dict(
+                type='Collect',
+                keys=['img'],
+                meta_keys=[
+                    'image_file', 'center', 'scale', 'rotation', 'bbox_score',
+                    'flip_pairs'
+                ])
+        ],
+        dataset_info=dict(
+            dataset_name='coco13',
+            paper_info=dict(
+                author=
+                'Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Doll{\'a}r, Piotr and Zitnick, C Lawrence',
+                title='Microsoft coco: Common objects in context',
+                container='European conference on computer vision',
+                year='2014',
+                homepage='http://cocodataset.org/'),
+            keypoint_info=dict({
+                0:
+                dict(
+                    name='mid_head',
+                    id=0,
+                    color=[51, 153, 255],
+                    type='upper',
+                    swap=''),
+                1:
+                dict(
+                    name='left_shoulder',
+                    id=1,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_shoulder'),
+                2:
+                dict(
+                    name='right_shoulder',
+                    id=2,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_shoulder'),
+                3:
+                dict(
+                    name='left_elbow',
+                    id=3,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_elbow'),
+                4:
+                dict(
+                    name='right_elbow',
+                    id=4,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_elbow'),
+                5:
+                dict(
+                    name='left_wrist',
+                    id=5,
+                    color=[0, 255, 0],
+                    type='upper',
+                    swap='right_wrist'),
+                6:
+                dict(
+                    name='right_wrist',
+                    id=6,
+                    color=[255, 128, 0],
+                    type='upper',
+                    swap='left_wrist'),
+                7:
+                dict(
+                    name='left_hip',
+                    id=7,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_hip'),
+                8:
+                dict(
+                    name='right_hip',
+                    id=8,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_hip'),
+                9:
+                dict(
+                    name='left_knee',
+                    id=9,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_knee'),
+                10:
+                dict(
+                    name='right_knee',
+                    id=10,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_knee'),
+                11:
+                dict(
+                    name='left_ankle',
+                    id=11,
+                    color=[0, 255, 0],
+                    type='lower',
+                    swap='right_ankle'),
+                12:
+                dict(
+                    name='right_ankle',
+                    id=12,
+                    color=[255, 128, 0],
+                    type='lower',
+                    swap='left_ankle')
+            }),
+            skeleton_info=dict({
+                0:
+                dict(
+                    link=('left_ankle', 'left_knee'), id=0, color=[0, 255, 0]),
+                1:
+                dict(link=('left_knee', 'left_hip'), id=1, color=[0, 255, 0]),
+                2:
+                dict(
+                    link=('left_hip', 'right_hip'), id=4, color=[51, 153,
+                                                                 255]),
+                3:
+                dict(
+                    link=('right_ankle', 'right_knee'),
+                    id=2,
+                    color=[255, 128, 0]),
+                4:
+                dict(
+                    link=('right_knee', 'right_hip'),
+                    id=3,
+                    color=[255, 128, 0]),
+                5:
+                dict(
+                    link=('right_hip', 'right_shoulder'),
+                    id=5,
+                    color=[51, 153, 255]),
+                6:
+                dict(
+                    link=('right_wrist', 'right_elbow'),
+                    id=6,
+                    color=[51, 153, 255]),
+                7:
+                dict(
+                    link=('right_elbow', 'right_shoulder'),
+                    id=7,
+                    color=[51, 153, 255]),
+                8:
+                dict(
+                    link=('right_shoulder', 'mid_head'),
+                    id=8,
+                    color=[0, 255, 0]),
+                9:
+                dict(
+                    link=('left_hip', 'left_shoulder'),
+                    id=9,
+                    color=[255, 128, 0]),
+                10:
+                dict(
+                    link=('left_wrist', 'left_elbow'),
+                    id=10,
+                    color=[0, 255, 0]),
+                11:
+                dict(
+                    link=('left_elbow', 'left_shoulder'),
+                    id=11,
+                    color=[255, 128, 0]),
+                12:
+                dict(
+                    link=('left_shoulder', 'mid_head'),
+                    id=12,
+                    color=[51, 153, 255]),
+                13:
+                dict(
+                    link=('left_shoulder', 'right_shoulder'),
+                    id=13,
+                    color=[51, 153, 255])
+            }),
+            joint_weights=[
+                1.0, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5, 1.0, 1.0, 1.2, 1.2, 1.5, 1.5
+            ],
+            sigmas=[
+                0.09, 0.079, 0.079, 0.072, 0.072, 0.062, 0.062, 0.107, 0.107,
+                0.087, 0.087, 0.089, 0.089
+            ])))
+work_dir = './work_dirs/litehrnet_18_coco_256x192_tfj_test'
+gpu_ids = range(0, 6)
+
+2022-07-01 06:49:16,470 - mmpose - INFO - Set random seed to 54669404, deterministic: False
+2022-07-01 06:49:26,513 - mmpose - INFO - Start running, host: tianfj@qwe, work_dir: /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test
+2022-07-01 06:49:26,514 - mmpose - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) DistSamplerSeedHook                
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook                      
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_run:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+2022-07-01 06:49:26,514 - mmpose - INFO - workflow: [('train', 1)], max: 210 epochs
+2022-07-01 06:49:26,514 - mmpose - INFO - Checkpoints will be saved to /data/tfj/workspace/python_projects/pose/mmpose-0270/work_dirs/litehrnet_18_coco_256x192_tfj_test by HardDiskBackend.
+2022-07-01 06:49:45,605 - mmpose - INFO - Epoch [1][50/284]	lr: 4.945e-05, eta: 6:19:06, time: 0.382, data_time: 0.065, memory: 6136, heatmap_loss: 0.0031, acc_pose: 0.0389, loss: 0.0031
