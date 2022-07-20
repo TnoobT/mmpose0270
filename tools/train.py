@@ -18,7 +18,7 @@ from mmpose.apis import init_random_seed, train_model
 from mmpose.datasets import build_dataset
 from mmpose.models import build_posenet
 from mmpose.utils import collect_env, get_root_logger, setup_multi_processes
-sfd
+我丢
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a pose model')
