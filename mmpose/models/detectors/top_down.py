@@ -64,7 +64,8 @@ class TopDown(BasePose):
                     'https://github.com/open-mmlab/mmpose/pull/382'
                     ' for more information.', DeprecationWarning)
                 keypoint_head['loss_keypoint'] = loss_pose
-            self.is_dsnt = getattr(keypoint_head['loss_keypoint'],'is_dsnt',False) # 添加dsnt
+            self.is_dsnt = getattr(keypoint_head['loss_keypoint'],'is_dsnt',False)  \
+                            or getattr(keypoint_head['loss_keypoint']['dsnt_param'],'is_dsnt',False) # 添加dsnt 
            
             self.keypoint_head = builder.build_head(keypoint_head)
         self.pretrained = pretrained

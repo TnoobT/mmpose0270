@@ -13,7 +13,7 @@
             "justMyCode": false,
             "args": [
             // for train
-            "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/14_reg_shufflenetv2_mpii_256x256_dsnt.py", 
+            "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/17_reg_shufflenetv2_mpii_256x256_dsnt_rle.py", 
             "--gpu-id","4",
 
             // for test
@@ -21,8 +21,8 @@
             // "work_dirs/13_reg_shufflenetv2_mpii_256x256_dsnt/epoch_210.pth",
 
             // for img demo
-            // "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/13_reg_shufflenetv2_mpii_256x256_dsnt.py", 
-            // "work_dirs/13_reg_shufflenetv2_mpii_256x256_dsnt/epoch_210.pth",
+            // "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/16_reg_shufflenetv2_mpii_256x256_rle.py", 
+            // "work_dirs/16_reg_shufflenetv2_mpii_256x256_rle/epoch_210.pth",
             // "--img-root","/data/tfj/workspace/datasets/MPII/images",
             // "--json-file","/data/tfj/workspace/datasets/MPII/annotations/my_label/mpii_coco_format_val.json",
             // "--out-img-root","./tmp_save"

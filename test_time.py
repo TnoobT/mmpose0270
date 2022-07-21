@@ -1,5 +1,5 @@
 '''
-比较onnx和转换后的mnn模型的输出结果
+计算onnx耗时
 '''
 
 import cv2
@@ -8,7 +8,7 @@ import onnxruntime
 import torch
 import time
 
-onnx_path = './3.onnx'
+onnx_path = './15.onnx'
 
 times = []
 def get_onnx_output(img):
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     img = (img / 127.5) - 1.0
     img = img.transpose(2,0,1)[None,...]
 
-    for i in range(100):
+    for i in range(1000):
         output_onnx = get_onnx_output(img)
     print(times)
-    print('mean time: {}'.format(np.mean(times[10:90])))
+    print('mean time: {}'.format(np.mean(times[50:950])))

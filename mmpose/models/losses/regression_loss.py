@@ -580,3 +580,37 @@ class DSNTLoss(nn.Module):
         loss = self.avg(self.mse_weight*mse_loss + self.js_weight*js_loss)
 
         return loss
+
+
+@LOSSES.register_module()
+class DSNTRLELoss(nn.Module):
+    """SmoothL1Loss loss.
+
+    Args:
+        rle损失+dsnt损失
+    """
+
+    def __init__(self, dsnt_param, rle_param, dsnt_weight, rle_weight):
+        super().__init__()
+        
+        dsnt_use_target_weight = getattr(dsnt_param,'use_target_weight',True)
+        sigma = getattr(dsnt_param,'sigma',0.25)
+        mse_weight = getattr(dsnt_param,'mse_weight',1)
+        js_weight = getattr(dsnt_param,'js_weight',1)
+        self.dsnt = DSNTLoss(dsnt_use_target_weight,sigma,mse_weight,js_weight)
+
+        rle_use_target_weight = getattr(rle_param,'use_target_weight',True)
+        size_average = getattr(rle_param,'size_average',True)
+        residual = getattr(rle_param,'residual',True)
+        self.rle = RLELoss(rle_use_target_weight,size_average,residual)
+        self.dw = dsnt_weight
+        self.re = rle_weight
+
+
+    def forward(self, output, target, heatmap,target_weight=None):
+      
+        dsnt_loss = self.dsnt(output[...,:2], target, heatmap, target_weight)
+        rle_loss = self.rle(output, target, target_weight)
+        loss = self.dw*dsnt_loss + rle_loss*self.re
+
+        return loss

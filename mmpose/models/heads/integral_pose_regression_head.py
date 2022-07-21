@@ -2,6 +2,7 @@
 import numpy as np
 import torch.nn as nn
 import dsntnn
+import torch
 from mmcv.cnn import normal_init
 
 from mmpose.core.evaluation import (keypoint_pck_accuracy,
@@ -28,6 +29,7 @@ class IntegralPoseRegressionHead(nn.Module):
                  in_channels,
                  num_joints,
                  loss_keypoint=None,
+                 out_sigma=False,
                  train_cfg=None,
                  test_cfg=None):
         super().__init__()
@@ -39,8 +41,14 @@ class IntegralPoseRegressionHead(nn.Module):
 
         self.train_cfg = {} if train_cfg is None else train_cfg
         self.test_cfg = {} if test_cfg is None else test_cfg
+        self.out_sigma = True
 
-        self.conv = nn.Conv2d(self.in_channels, self.num_joints, kernel_size=1, bias=False)
+        if out_sigma:
+            self.avg = nn.AdaptiveAvgPool2d((1, 1))
+            self.fc = nn.Linear(self.in_channels, self.num_joints * 2)
+            self.conv = nn.Conv2d(self.in_channels, self.num_joints, kernel_size=1, bias=False)
+        else:
+            self.conv = nn.Conv2d(self.in_channels, self.num_joints, kernel_size=1, bias=False)
         
 
     def forward(self, x):
@@ -49,11 +57,19 @@ class IntegralPoseRegressionHead(nn.Module):
             assert len(x) == 1, ('DeepPoseRegressionHead only supports '
                                  'single-level feature.')
             x = x[0]
-
-        unnormalized_heatmaps = self.conv(x)
-        heatmaps = dsntnn.flat_softmax(unnormalized_heatmaps)
-        # 4. Calculate the coordinates
-        coords = dsntnn.dsnt(heatmaps)
+        if self.out_sigma:
+            unnormalized_heatmaps = self.conv(x) # (64,16,8,8)
+            heatmaps = dsntnn.flat_softmax(unnormalized_heatmaps) #  (64,16,8,8)
+            # 4. Calculate the coordinates
+            coords = dsntnn.dsnt(heatmaps) # (64,16,2)
+            global_feature = self.avg(x).reshape(-1,self.in_channels)
+            sigma = self.fc(global_feature).reshape(-1,self.num_joints,2)
+            coords = torch.cat([coords,sigma],dim = -1)
+        else:
+            unnormalized_heatmaps = self.conv(x)
+            heatmaps = dsntnn.flat_softmax(unnormalized_heatmaps)
+            # 4. Calculate the coordinates
+            coords = dsntnn.dsnt(heatmaps)
 
         return coords,heatmaps
 
