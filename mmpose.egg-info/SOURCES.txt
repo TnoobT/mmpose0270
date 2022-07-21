@@ -172,6 +172,9 @@ mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/coco/resnet_coco.yml
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/10_reg_shufflenetv2_mpii_256x256_dsnt.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/11_reg_shufflenetv2_mpii_256x256_dsnt.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/13_reg_shufflenetv2_mpii_256x256_dsnt.py
+mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/14_reg_shufflenetv2_mpii_256x256_dsnt.py
+mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/15_reg_shufflenetv2_mpii_256x256_rle.py
+mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/1_reg_shufflenetv2_mpii_256x256.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/3_reg_shufflenetv2_mpii_256x256_dsnt.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/4_reg_shufflenetv2_mpii_256x256_dsnt.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/5_reg_shufflenetv2_mpii_256x256_dsnt.py
@@ -179,7 +182,6 @@ mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/6_reg_shufflenetv2_m
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/7_reg_shufflenetv2_mpii_256x256_dsnt.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/8_reg_shufflenetv2_mpii_256x256_dsnt.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/9_reg_shufflenetv2_mpii_256x256_dsnt.py
-mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/reg_shufflenetv2_mpii_256x256_tfj copy.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/res101_mpii_256x256.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/res152_mpii_256x256.py
 mmpose/.mim/configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/res50_mpii_256x256.py
