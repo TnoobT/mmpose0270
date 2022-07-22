@@ -1,9 +1,9 @@
-2022-07-22 02:05:46,045 - mmpose - INFO - Environment info:
+2022-07-22 10:04:44,856 - mmpose - INFO - Environment info:
 ------------------------------------------------------------
 sys.platform: linux
 Python: 3.9.7 (default, Sep 16 2021, 13:09:58) [GCC 7.5.0]
 CUDA available: True
-GPU 0,1,2,3,4,5,6,7: NVIDIA GeForce RTX 3090
+GPU 0,1,2,3: NVIDIA GeForce RTX 3090
 CUDA_HOME: /usr/local/cuda-11.1
 NVCC: Cuda compilation tools, release 11.1, V11.1.74
 GCC: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
@@ -27,11 +27,11 @@ OpenCV: 4.5.5
 MMCV: 1.5.1
 MMCV Compiler: GCC 7.5
 MMCV CUDA Compiler: 11.1
-MMPose: 0.27.0+34d8bdb
+MMPose: 0.27.0+c0399be
 ------------------------------------------------------------
 
-2022-07-22 02:05:47,266 - mmpose - INFO - Distributed training: False
-2022-07-22 02:05:57,444 - mmpose - INFO - Config:
+2022-07-22 10:04:44,857 - mmpose - INFO - Distributed training: True
+2022-07-22 10:04:48,272 - mmpose - INFO - Config:
 checkpoint_config = dict(interval=10)
 log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
 log_level = 'INFO'
@@ -196,7 +196,7 @@ dataset_info = dict(
         0.062, 0.072, 0.179, 0.179, 0.072, 0.062
     ])
 evaluation = dict(interval=10, metric='PCKh', save_best='PCKh')
-optimizer = dict(type='AdamW', lr=0.0005)
+optimizer = dict(type='Adam', lr=0.0005)
 optimizer_config = dict(grad_clip=None)
 lr_config = dict(
     policy='step',
@@ -212,28 +212,19 @@ channel_cfg = dict(
     inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
 model = dict(
     type='TopDown',
-    pretrained=
-    'work_dirs/2_hm_shufflenetv2_mpii_256x256/best_PCKh_epoch_200.pth',
-    backbone=dict(type='ShuffleNetV2', widen_factor=1.0),
+    pretrained='mmcls://shufflenet_v2',
+    backbone=dict(type='ShuffleNetV2', widen_factor=2.0),
     keypoint_head=dict(
-        type='IntegralPoseRegressionHead',
-        in_channels=1024,
-        num_joints=16,
-        loss_keypoint=dict(
-            type='DSNTRLELoss',
-            dsnt_param=dict(
-                use_target_weight=True,
-                sigma=0.25,
-                mse_weight=1,
-                js_weight=0,
-                is_dsnt=True),
-            rle_param=dict(
-                use_target_weight=True, size_average=True, residual=True),
-            dsnt_weight=1,
-            rle_weight=1),
-        out_sigma=True),
+        type='TopdownHeatmapSimpleHead',
+        in_channels=2048,
+        out_channels=16,
+        loss_keypoint=dict(type='JointsMSELoss', use_target_weight=True)),
     train_cfg=dict(),
-    test_cfg=dict(flip_test=True))
+    test_cfg=dict(
+        flip_test=True,
+        post_process='default',
+        shift_heatmap=True,
+        modulate_kernel=11))
 data_cfg = dict(
     image_size=[256, 256],
     heatmap_size=[64, 64],
@@ -255,7 +246,7 @@ train_pipeline = [
         type='NormalizeTensor',
         mean=[0.485, 0.456, 0.406],
         std=[0.229, 0.224, 0.225]),
-    dict(type='TopDownGenerateTargetRegression'),
+    dict(type='TopDownGenerateTarget', sigma=2),
     dict(
         type='Collect',
         keys=['img', 'target', 'target_weight'],
@@ -295,7 +286,7 @@ test_pipeline = [
 data_root = '/data/tfj/workspace/datasets/MPII'
 data = dict(
     samples_per_gpu=64,
-    workers_per_gpu=4,
+    workers_per_gpu=2,
     persistent_workers=True,
     val_dataloader=dict(samples_per_gpu=32),
     test_dataloader=dict(samples_per_gpu=32),
@@ -331,7 +322,7 @@ data = dict(
                 type='NormalizeTensor',
                 mean=[0.485, 0.456, 0.406],
                 std=[0.229, 0.224, 0.225]),
-            dict(type='TopDownGenerateTargetRegression'),
+            dict(type='TopDownGenerateTarget', sigma=2),
             dict(
                 type='Collect',
                 keys=['img', 'target', 'target_weight'],
@@ -988,7 +979,78 @@ data = dict(
                 0.089, 0.083, 0.107, 0.107, 0.083, 0.089, 0.026, 0.026, 0.026,
                 0.026, 0.062, 0.072, 0.179, 0.179, 0.072, 0.062
             ])))
-work_dir = './work_dirs/19_reg_shufflenetv2_mpii_256x256_dsnt_rle'
-gpu_ids = [3]
+work_dir = './work_dirs/22_hm_shufflenetv2_mpii_256x256'
+gpu_ids = range(0, 4)
 
-2022-07-22 02:06:06,632 - mmpose - INFO - Set random seed to 2526, deterministic: False
+2022-07-22 10:04:48,274 - mmpose - INFO - Set random seed to 2526, deterministic: False
+2022-07-22 10:05:00,747 - mmpose - INFO - Start running, host: tianfj@qwe, work_dir: /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/22_hm_shufflenetv2_mpii_256x256
+2022-07-22 10:05:00,747 - mmpose - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) DistSamplerSeedHook                
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook                      
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(NORMAL      ) DistEvalHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_run:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+2022-07-22 10:05:00,747 - mmpose - INFO - workflow: [('train', 1)], max: 210 epochs
+2022-07-22 10:05:00,747 - mmpose - INFO - Checkpoints will be saved to /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/22_hm_shufflenetv2_mpii_256x256 by HardDiskBackend.
+2022-07-22 10:05:41,091 - mmpose - INFO - Epoch [1][50/87]	lr: 4.945e-05, eta: 4:05:00, time: 0.807, data_time: 0.364, memory: 5701, heatmap_loss: 0.0027, acc_pose: 0.0471, loss: 0.0027
+2022-07-22 10:06:48,012 - mmpose - INFO - Epoch [2][50/87]	lr: 1.364e-04, eta: 2:56:28, time: 0.793, data_time: 0.627, memory: 5701, heatmap_loss: 0.0025, acc_pose: 0.1606, loss: 0.0025
+2022-07-22 10:07:54,981 - mmpose - INFO - Epoch [3][50/87]	lr: 2.233e-04, eta: 2:40:31, time: 0.791, data_time: 0.318, memory: 5701, heatmap_loss: 0.0024, acc_pose: 0.1836, loss: 0.0024
+2022-07-22 10:09:02,598 - mmpose - INFO - Epoch [4][50/87]	lr: 3.102e-04, eta: 2:33:27, time: 0.798, data_time: 0.221, memory: 5701, heatmap_loss: 0.0024, acc_pose: 0.2063, loss: 0.0024
+2022-07-22 10:10:09,594 - mmpose - INFO - Epoch [5][50/87]	lr: 3.971e-04, eta: 2:29:00, time: 0.793, data_time: 0.497, memory: 5701, heatmap_loss: 0.0023, acc_pose: 0.2400, loss: 0.0023
+2022-07-22 10:11:16,223 - mmpose - INFO - Epoch [6][50/87]	lr: 4.840e-04, eta: 2:25:46, time: 0.788, data_time: 0.589, memory: 5701, heatmap_loss: 0.0023, acc_pose: 0.2804, loss: 0.0023
+2022-07-22 10:12:22,826 - mmpose - INFO - Epoch [7][50/87]	lr: 5.000e-04, eta: 2:23:14, time: 0.785, data_time: 0.570, memory: 5701, heatmap_loss: 0.0022, acc_pose: 0.3193, loss: 0.0022
+2022-07-22 10:13:30,541 - mmpose - INFO - Epoch [8][50/87]	lr: 5.000e-04, eta: 2:21:30, time: 0.799, data_time: 0.597, memory: 5701, heatmap_loss: 0.0022, acc_pose: 0.3398, loss: 0.0022
+2022-07-22 10:14:37,661 - mmpose - INFO - Epoch [9][50/87]	lr: 5.000e-04, eta: 2:19:46, time: 0.786, data_time: 0.421, memory: 5701, heatmap_loss: 0.0021, acc_pose: 0.3719, loss: 0.0021
+2022-07-22 10:15:44,618 - mmpose - INFO - Epoch [10][50/87]	lr: 5.000e-04, eta: 2:18:19, time: 0.790, data_time: 0.503, memory: 5701, heatmap_loss: 0.0021, acc_pose: 0.3886, loss: 0.0021
+2022-07-22 10:16:12,236 - mmpose - INFO - Saving checkpoint at 10 epochs
+2022-07-22 10:16:20,852 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_10.pth.
+2022-07-22 10:16:20,852 - mmpose - INFO - Best PCKh is 46.1098 at 10 epoch.
+2022-07-22 10:16:20,852 - mmpose - INFO - Epoch(val) [10][24]	Head: 73.0900, Shoulder: 58.4579, Elbow: 38.6913, Wrist: 31.1123, Hip: 44.8330, Knee: 31.2338, Ankle: 34.6715, PCKh: 46.1098, PCKh@0.1: 4.7073
+2022-07-22 10:16:59,707 - mmpose - INFO - Epoch [11][50/87]	lr: 5.000e-04, eta: 2:16:49, time: 0.777, data_time: 0.441, memory: 5701, heatmap_loss: 0.0020, acc_pose: 0.4141, loss: 0.0020
+2022-07-22 10:18:06,676 - mmpose - INFO - Epoch [12][50/87]	lr: 5.000e-04, eta: 2:15:40, time: 0.790, data_time: 0.440, memory: 5701, heatmap_loss: 0.0020, acc_pose: 0.4342, loss: 0.0020
+2022-07-22 10:19:14,045 - mmpose - INFO - Epoch [13][50/87]	lr: 5.000e-04, eta: 2:14:32, time: 0.786, data_time: 0.372, memory: 5701, heatmap_loss: 0.0019, acc_pose: 0.4613, loss: 0.0019
+2022-07-22 10:20:21,190 - mmpose - INFO - Epoch [14][50/87]	lr: 5.000e-04, eta: 2:13:36, time: 0.797, data_time: 0.312, memory: 5701, heatmap_loss: 0.0019, acc_pose: 0.4678, loss: 0.0019
+2022-07-22 10:21:28,271 - mmpose - INFO - Epoch [15][50/87]	lr: 5.000e-04, eta: 2:12:34, time: 0.785, data_time: 0.468, memory: 5701, heatmap_loss: 0.0019, acc_pose: 0.4955, loss: 0.0019
+2022-07-22 10:22:35,074 - mmpose - INFO - Epoch [16][50/87]	lr: 5.000e-04, eta: 2:11:35, time: 0.784, data_time: 0.495, memory: 5701, heatmap_loss: 0.0018, acc_pose: 0.5054, loss: 0.0018

@@ -5,7 +5,7 @@ _base_ = [
 evaluation = dict(interval=10, metric='PCKh', save_best='PCKh')
 
 optimizer = dict(
-    type='AdamW',
+    type='Adam',
     lr=5e-4,
 )
 optimizer_config = dict(grad_clip=None)
@@ -31,23 +31,19 @@ channel_cfg = dict(
 # model settings
 model = dict(
     type='TopDown',
-    pretrained='work_dirs/2_hm_shufflenetv2_mpii_256x256/best_PCKh_epoch_200.pth',
-    backbone=dict(type='ShuffleNetV2', widen_factor=1.0),
+    pretrained='mmcls://shufflenet_v2',
+    backbone=dict(type='ShuffleNetV2', widen_factor=2.0),
     keypoint_head=dict(
-        type='IntegralPoseRegressionHead',  # 对应这个头初始化的几个参数
-        in_channels=1024,
-        num_joints=channel_cfg['num_output_channels'],
-        loss_keypoint=dict(
-            type='DSNTRLELoss',
-            dsnt_param=dict(use_target_weight=True, sigma = 0.25, mse_weight=1, js_weight = 1, is_dsnt = True),
-            rle_param=dict(use_target_weight=True, size_average=True, residual=True),
-            dsnt_weight = 1, 
-            rle_weight = 1,
-            ),
-        out_sigma=True
-        ),
+        type='TopdownHeatmapSimpleHead',
+        in_channels=2048,
+        out_channels=channel_cfg['num_output_channels'],
+        loss_keypoint=dict(type='JointsMSELoss', use_target_weight=True)),
     train_cfg=dict(),
-    test_cfg=dict(flip_test=True))
+    test_cfg=dict(
+        flip_test=True,
+        post_process='default',
+        shift_heatmap=True,
+        modulate_kernel=11))
 
 data_cfg = dict(
     image_size=[256, 256],
@@ -72,8 +68,8 @@ train_pipeline = [
         type='NormalizeTensor',
         mean=[0.485, 0.456, 0.406],
         std=[0.229, 0.224, 0.225]),
-    dict(type='TopDownGenerateTargetRegression'),
-    dict(  # 收集数据
+    dict(type='TopDownGenerateTarget', sigma=2),
+    dict(
         type='Collect',
         keys=['img', 'target', 'target_weight'],
         meta_keys=[
@@ -102,8 +98,8 @@ test_pipeline = val_pipeline
 data_root = '/data/tfj/workspace/datasets/MPII'
 data = dict(
     samples_per_gpu=64,
-    workers_per_gpu=4,
-    persistent_workers=True,
+    workers_per_gpu=2,
+    persistent_workers = True,
     val_dataloader=dict(samples_per_gpu=32),
     test_dataloader=dict(samples_per_gpu=32),
     train=dict(
