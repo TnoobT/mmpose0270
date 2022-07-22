@@ -1046,3 +1046,298 @@ after_run:
 2022-07-21 07:02:18,067 - mmpose - INFO - Epoch [2][50/87]	lr: 1.364e-04, eta: 1:52:51, time: 0.538, data_time: 0.154, memory: 1599, reg_loss: -14.9800, acc_pose: 0.1981, loss: -14.9800
 2022-07-21 07:03:10,220 - mmpose - INFO - Epoch [3][50/87]	lr: 2.233e-04, eta: 1:39:50, time: 0.464, data_time: 0.322, memory: 1599, reg_loss: -37.7155, acc_pose: 0.2784, loss: -37.7155
 2022-07-21 07:04:08,091 - mmpose - INFO - Epoch [4][50/87]	lr: 3.102e-04, eta: 1:53:10, time: 0.865, data_time: 0.674, memory: 1599, reg_loss: -49.5654, acc_pose: 0.3398, loss: -49.5654
+2022-07-21 07:04:43,856 - mmpose - INFO - Epoch [5][50/87]	lr: 3.971e-04, eta: 1:44:41, time: 0.446, data_time: 0.196, memory: 1599, reg_loss: -56.3504, acc_pose: 0.3831, loss: -56.3504
+2022-07-21 07:05:21,214 - mmpose - INFO - Epoch [6][50/87]	lr: 4.840e-04, eta: 1:39:38, time: 0.463, data_time: 0.266, memory: 1599, reg_loss: -59.9089, acc_pose: 0.4271, loss: -59.9089
+2022-07-21 07:05:58,415 - mmpose - INFO - Epoch [7][50/87]	lr: 5.000e-04, eta: 1:35:53, time: 0.458, data_time: 0.344, memory: 1599, reg_loss: -64.0452, acc_pose: 0.4609, loss: -64.0452
+2022-07-21 07:06:34,774 - mmpose - INFO - Epoch [8][50/87]	lr: 5.000e-04, eta: 1:32:53, time: 0.452, data_time: 0.326, memory: 1599, reg_loss: -67.5333, acc_pose: 0.4839, loss: -67.5333
+2022-07-21 07:07:12,125 - mmpose - INFO - Epoch [9][50/87]	lr: 5.000e-04, eta: 1:30:41, time: 0.462, data_time: 0.205, memory: 1599, reg_loss: -69.5361, acc_pose: 0.4909, loss: -69.5361
+2022-07-21 07:07:47,696 - mmpose - INFO - Epoch [10][50/87]	lr: 5.000e-04, eta: 1:28:35, time: 0.445, data_time: 0.361, memory: 1599, reg_loss: -71.2599, acc_pose: 0.5064, loss: -71.2599
+2022-07-21 07:08:01,892 - mmpose - INFO - Saving checkpoint at 10 epochs
+2022-07-21 07:08:06,930 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_10.pth.
+2022-07-21 07:08:06,931 - mmpose - INFO - Best PCKh is 57.4343 at 10 epoch.
+2022-07-21 07:08:06,931 - mmpose - INFO - Epoch(val) [10][24]	Head: 83.4243, Shoulder: 77.9382, Elbow: 54.6282, Wrist: 38.0665, Hip: 65.7608, Knee: 41.0442, Ankle: 25.7919, PCKh: 57.4343, PCKh@0.1: 7.4291
+2022-07-21 07:08:29,429 - mmpose - INFO - Epoch [11][50/87]	lr: 5.000e-04, eta: 1:26:52, time: 0.450, data_time: 0.263, memory: 1599, reg_loss: -72.6474, acc_pose: 0.5273, loss: -72.6474
+2022-07-21 07:09:05,819 - mmpose - INFO - Epoch [12][50/87]	lr: 5.000e-04, eta: 1:25:22, time: 0.448, data_time: 0.201, memory: 1599, reg_loss: -74.4392, acc_pose: 0.5364, loss: -74.4392
+2022-07-21 07:09:42,080 - mmpose - INFO - Epoch [13][50/87]	lr: 5.000e-04, eta: 1:24:03, time: 0.449, data_time: 0.349, memory: 1599, reg_loss: -76.0977, acc_pose: 0.5476, loss: -76.0977
+2022-07-21 07:11:01,891 - mmpose - INFO - Epoch [14][50/87]	lr: 5.000e-04, eta: 1:33:24, time: 1.322, data_time: 0.157, memory: 1599, reg_loss: -76.5619, acc_pose: 0.5542, loss: -76.5619
+2022-07-21 07:11:36,792 - mmpose - INFO - Epoch [15][50/87]	lr: 5.000e-04, eta: 1:31:28, time: 0.440, data_time: 0.273, memory: 1599, reg_loss: -76.7496, acc_pose: 0.5568, loss: -76.7496
+2022-07-21 07:12:12,856 - mmpose - INFO - Epoch [16][50/87]	lr: 5.000e-04, eta: 1:29:41, time: 0.435, data_time: 0.209, memory: 1599, reg_loss: -78.3537, acc_pose: 0.5641, loss: -78.3537
+2022-07-21 07:12:48,310 - mmpose - INFO - Epoch [17][50/87]	lr: 5.000e-04, eta: 1:28:01, time: 0.430, data_time: 0.211, memory: 1599, reg_loss: -79.7120, acc_pose: 0.5747, loss: -79.7120
+2022-07-21 07:13:24,568 - mmpose - INFO - Epoch [18][50/87]	lr: 5.000e-04, eta: 1:26:33, time: 0.434, data_time: 0.289, memory: 1599, reg_loss: -79.3268, acc_pose: 0.5782, loss: -79.3268
+2022-07-21 07:14:00,056 - mmpose - INFO - Epoch [19][50/87]	lr: 5.000e-04, eta: 1:25:15, time: 0.441, data_time: 0.262, memory: 1599, reg_loss: -80.3475, acc_pose: 0.5813, loss: -80.3475
+2022-07-21 07:14:35,753 - mmpose - INFO - Epoch [20][50/87]	lr: 5.000e-04, eta: 1:24:03, time: 0.442, data_time: 0.274, memory: 1599, reg_loss: -81.6632, acc_pose: 0.5985, loss: -81.6632
+2022-07-21 07:14:49,070 - mmpose - INFO - Saving checkpoint at 20 epochs
+2022-07-21 07:15:20,980 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_10.pth was removed
+2022-07-21 07:15:21,074 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_20.pth.
+2022-07-21 07:15:21,075 - mmpose - INFO - Best PCKh is 65.0794 at 20 epoch.
+2022-07-21 07:15:21,075 - mmpose - INFO - Epoch(val) [20][24]	Head: 87.8240, Shoulder: 83.9164, Elbow: 62.5706, Wrist: 47.0460, Hip: 73.4638, Knee: 50.5944, Ankle: 37.0333, PCKh: 65.0794, PCKh@0.1: 10.0390
+2022-07-21 07:15:42,636 - mmpose - INFO - Epoch [21][50/87]	lr: 5.000e-04, eta: 1:22:51, time: 0.431, data_time: 0.238, memory: 1599, reg_loss: -81.3546, acc_pose: 0.5950, loss: -81.3546
+2022-07-21 07:16:18,162 - mmpose - INFO - Epoch [22][50/87]	lr: 5.000e-04, eta: 1:21:45, time: 0.433, data_time: 0.324, memory: 1599, reg_loss: -82.7004, acc_pose: 0.6007, loss: -82.7004
+2022-07-21 07:16:54,029 - mmpose - INFO - Epoch [23][50/87]	lr: 5.000e-04, eta: 1:20:46, time: 0.442, data_time: 0.228, memory: 1599, reg_loss: -83.6516, acc_pose: 0.5998, loss: -83.6516
+2022-07-21 07:18:17,886 - mmpose - INFO - Epoch [24][50/87]	lr: 5.000e-04, eta: 1:26:16, time: 1.417, data_time: 1.315, memory: 1599, reg_loss: -84.7601, acc_pose: 0.6137, loss: -84.7601
+2022-07-21 07:18:52,742 - mmpose - INFO - Epoch [25][50/87]	lr: 5.000e-04, eta: 1:25:05, time: 0.440, data_time: 0.258, memory: 1599, reg_loss: -85.6562, acc_pose: 0.6160, loss: -85.6562
+2022-07-21 07:19:28,799 - mmpose - INFO - Epoch [26][50/87]	lr: 5.000e-04, eta: 1:23:56, time: 0.437, data_time: 0.214, memory: 1599, reg_loss: -86.1010, acc_pose: 0.6173, loss: -86.1010
+2022-07-21 07:20:18,340 - mmpose - INFO - Epoch [27][50/87]	lr: 5.000e-04, eta: 1:24:28, time: 0.718, data_time: 0.138, memory: 1599, reg_loss: -86.8161, acc_pose: 0.6206, loss: -86.8161
+2022-07-21 07:20:54,483 - mmpose - INFO - Epoch [28][50/87]	lr: 5.000e-04, eta: 1:23:25, time: 0.443, data_time: 0.219, memory: 1599, reg_loss: -87.6647, acc_pose: 0.6249, loss: -87.6647
+2022-07-21 07:22:00,055 - mmpose - INFO - Epoch [29][50/87]	lr: 5.000e-04, eta: 1:25:34, time: 1.044, data_time: 0.139, memory: 1599, reg_loss: -88.4853, acc_pose: 0.6319, loss: -88.4853
+2022-07-21 07:22:35,548 - mmpose - INFO - Epoch [30][50/87]	lr: 5.000e-04, eta: 1:24:29, time: 0.444, data_time: 0.312, memory: 1599, reg_loss: -88.2374, acc_pose: 0.6287, loss: -88.2374
+2022-07-21 07:22:48,889 - mmpose - INFO - Saving checkpoint at 30 epochs
+2022-07-21 07:23:24,544 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_20.pth was removed
+2022-07-21 07:23:24,603 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_30.pth.
+2022-07-21 07:23:24,603 - mmpose - INFO - Best PCKh is 69.6253 at 30 epoch.
+2022-07-21 07:23:24,603 - mmpose - INFO - Epoch(val) [30][24]	Head: 89.0518, Shoulder: 86.6338, Elbow: 68.4165, Wrist: 54.1024, Hip: 77.6700, Knee: 57.4658, Ankle: 41.7094, PCKh: 69.6253, PCKh@0.1: 11.9178
+2022-07-21 07:23:46,516 - mmpose - INFO - Epoch [31][50/87]	lr: 5.000e-04, eta: 1:23:25, time: 0.438, data_time: 0.283, memory: 1599, reg_loss: -88.6419, acc_pose: 0.6354, loss: -88.6419
+2022-07-21 07:24:22,599 - mmpose - INFO - Epoch [32][50/87]	lr: 5.000e-04, eta: 1:22:25, time: 0.445, data_time: 0.178, memory: 1599, reg_loss: -89.4465, acc_pose: 0.6379, loss: -89.4465
+2022-07-21 07:24:57,379 - mmpose - INFO - Epoch [33][50/87]	lr: 5.000e-04, eta: 1:21:23, time: 0.430, data_time: 0.231, memory: 1599, reg_loss: -89.8265, acc_pose: 0.6455, loss: -89.8265
+2022-07-21 07:25:38,594 - mmpose - INFO - Epoch [34][50/87]	lr: 5.000e-04, eta: 1:20:57, time: 0.557, data_time: 0.103, memory: 1599, reg_loss: -90.6332, acc_pose: 0.6535, loss: -90.6332
+2022-07-21 07:26:14,015 - mmpose - INFO - Epoch [35][50/87]	lr: 5.000e-04, eta: 1:20:03, time: 0.445, data_time: 0.321, memory: 1599, reg_loss: -90.5959, acc_pose: 0.6572, loss: -90.5959
+2022-07-21 07:26:48,824 - mmpose - INFO - Epoch [36][50/87]	lr: 5.000e-04, eta: 1:19:06, time: 0.429, data_time: 0.120, memory: 1599, reg_loss: -90.9873, acc_pose: 0.6574, loss: -90.9873
+2022-07-21 07:27:23,483 - mmpose - INFO - Epoch [37][50/87]	lr: 5.000e-04, eta: 1:18:12, time: 0.430, data_time: 0.168, memory: 1599, reg_loss: -91.4752, acc_pose: 0.6542, loss: -91.4752
+2022-07-21 07:27:59,449 - mmpose - INFO - Epoch [38][50/87]	lr: 5.000e-04, eta: 1:17:23, time: 0.447, data_time: 0.282, memory: 1599, reg_loss: -91.6928, acc_pose: 0.6579, loss: -91.6928
+2022-07-21 07:28:35,205 - mmpose - INFO - Epoch [39][50/87]	lr: 5.000e-04, eta: 1:16:36, time: 0.446, data_time: 0.200, memory: 1599, reg_loss: -92.2023, acc_pose: 0.6574, loss: -92.2023
+2022-07-21 07:30:16,295 - mmpose - INFO - Epoch [40][50/87]	lr: 5.000e-04, eta: 1:15:49, time: 0.442, data_time: 0.341, memory: 1599, reg_loss: -92.6868, acc_pose: 0.6670, loss: -92.6868
+2022-07-21 07:30:29,524 - mmpose - INFO - Saving checkpoint at 40 epochs
+2022-07-21 07:31:00,879 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_30.pth was removed
+2022-07-21 07:31:00,950 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_40.pth.
+2022-07-21 07:31:00,950 - mmpose - INFO - Best PCKh is 71.3635 at 40 epoch.
+2022-07-21 07:31:00,950 - mmpose - INFO - Epoch(val) [40][24]	Head: 90.5184, Shoulder: 87.0754, Elbow: 70.2061, Wrist: 56.2965, Hip: 78.7778, Knee: 60.7296, Ankle: 44.5674, PCKh: 71.3635, PCKh@0.1: 12.1442
+2022-07-21 07:31:22,876 - mmpose - INFO - Epoch [41][50/87]	lr: 5.000e-04, eta: 1:15:02, time: 0.438, data_time: 0.313, memory: 1599, reg_loss: -92.3163, acc_pose: 0.6684, loss: -92.3163
+2022-07-21 07:31:58,165 - mmpose - INFO - Epoch [42][50/87]	lr: 5.000e-04, eta: 1:14:16, time: 0.435, data_time: 0.268, memory: 1599, reg_loss: -92.1261, acc_pose: 0.6687, loss: -92.1261
+2022-07-21 07:32:33,730 - mmpose - INFO - Epoch [43][50/87]	lr: 5.000e-04, eta: 1:13:32, time: 0.441, data_time: 0.346, memory: 1599, reg_loss: -93.6291, acc_pose: 0.6689, loss: -93.6291
+2022-07-21 07:33:08,446 - mmpose - INFO - Epoch [44][50/87]	lr: 5.000e-04, eta: 1:12:47, time: 0.427, data_time: 0.293, memory: 1599, reg_loss: -93.2135, acc_pose: 0.6686, loss: -93.2135
+2022-07-21 07:33:58,322 - mmpose - INFO - Epoch [45][50/87]	lr: 5.000e-04, eta: 1:12:59, time: 0.731, data_time: 0.096, memory: 1599, reg_loss: -93.1391, acc_pose: 0.6735, loss: -93.1391
+2022-07-21 07:34:47,243 - mmpose - INFO - Epoch [46][50/87]	lr: 5.000e-04, eta: 1:12:15, time: 0.434, data_time: 0.179, memory: 1599, reg_loss: -93.8458, acc_pose: 0.6796, loss: -93.8458
+2022-07-21 07:35:22,619 - mmpose - INFO - Epoch [47][50/87]	lr: 5.000e-04, eta: 1:11:34, time: 0.442, data_time: 0.298, memory: 1599, reg_loss: -94.4120, acc_pose: 0.6777, loss: -94.4120
+2022-07-21 07:35:57,122 - mmpose - INFO - Epoch [48][50/87]	lr: 5.000e-04, eta: 1:10:51, time: 0.428, data_time: 0.257, memory: 1599, reg_loss: -94.4125, acc_pose: 0.6729, loss: -94.4125
+2022-07-21 07:36:32,553 - mmpose - INFO - Epoch [49][50/87]	lr: 5.000e-04, eta: 1:10:11, time: 0.442, data_time: 0.200, memory: 1599, reg_loss: -95.4297, acc_pose: 0.6761, loss: -95.4297
+2022-07-21 07:37:07,845 - mmpose - INFO - Epoch [50][50/87]	lr: 5.000e-04, eta: 1:09:31, time: 0.436, data_time: 0.250, memory: 1599, reg_loss: -94.8450, acc_pose: 0.6790, loss: -94.8450
+2022-07-21 07:37:21,262 - mmpose - INFO - Saving checkpoint at 50 epochs
+2022-07-21 07:38:05,992 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_40.pth was removed
+2022-07-21 07:38:06,085 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_50.pth.
+2022-07-21 07:38:06,085 - mmpose - INFO - Best PCKh is 72.9040 at 50 epoch.
+2022-07-21 07:38:06,086 - mmpose - INFO - Epoch(val) [50][24]	Head: 90.7913, Shoulder: 89.1984, Elbow: 72.7460, Wrist: 60.2549, Hip: 79.0203, Knee: 60.8713, Ankle: 45.6065, PCKh: 72.9040, PCKh@0.1: 13.8043
+2022-07-21 07:38:28,010 - mmpose - INFO - Epoch [51][50/87]	lr: 5.000e-04, eta: 1:08:52, time: 0.438, data_time: 0.161, memory: 1599, reg_loss: -95.5397, acc_pose: 0.6758, loss: -95.5397
+2022-07-21 07:39:02,986 - mmpose - INFO - Epoch [52][50/87]	lr: 5.000e-04, eta: 1:08:14, time: 0.440, data_time: 0.201, memory: 1599, reg_loss: -95.2208, acc_pose: 0.6824, loss: -95.2208
+2022-07-21 07:39:37,729 - mmpose - INFO - Epoch [53][50/87]	lr: 5.000e-04, eta: 1:07:36, time: 0.430, data_time: 0.190, memory: 1599, reg_loss: -96.0290, acc_pose: 0.6857, loss: -96.0290
+2022-07-21 07:40:13,076 - mmpose - INFO - Epoch [54][50/87]	lr: 5.000e-04, eta: 1:06:59, time: 0.439, data_time: 0.355, memory: 1599, reg_loss: -95.8646, acc_pose: 0.6924, loss: -95.8646
+2022-07-21 07:40:48,174 - mmpose - INFO - Epoch [55][50/87]	lr: 5.000e-04, eta: 1:06:21, time: 0.431, data_time: 0.315, memory: 1599, reg_loss: -95.9336, acc_pose: 0.6906, loss: -95.9336
+2022-07-21 07:41:24,039 - mmpose - INFO - Epoch [56][50/87]	lr: 5.000e-04, eta: 1:05:46, time: 0.445, data_time: 0.253, memory: 1599, reg_loss: -96.3688, acc_pose: 0.6915, loss: -96.3688
+2022-07-21 07:41:59,460 - mmpose - INFO - Epoch [57][50/87]	lr: 5.000e-04, eta: 1:05:11, time: 0.437, data_time: 0.282, memory: 1599, reg_loss: -96.5702, acc_pose: 0.6882, loss: -96.5702
+2022-07-21 07:42:34,350 - mmpose - INFO - Epoch [58][50/87]	lr: 5.000e-04, eta: 1:04:36, time: 0.443, data_time: 0.121, memory: 1599, reg_loss: -96.4119, acc_pose: 0.6877, loss: -96.4119
+2022-07-21 07:43:09,498 - mmpose - INFO - Epoch [59][50/87]	lr: 5.000e-04, eta: 1:04:02, time: 0.440, data_time: 0.149, memory: 1599, reg_loss: -96.9357, acc_pose: 0.6951, loss: -96.9357
+2022-07-21 07:43:44,337 - mmpose - INFO - Epoch [60][50/87]	lr: 5.000e-04, eta: 1:03:27, time: 0.431, data_time: 0.099, memory: 1599, reg_loss: -96.9811, acc_pose: 0.6924, loss: -96.9811
+2022-07-21 07:43:57,732 - mmpose - INFO - Saving checkpoint at 60 epochs
+2022-07-21 07:44:22,600 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_50.pth was removed
+2022-07-21 07:44:22,664 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_60.pth.
+2022-07-21 07:44:22,664 - mmpose - INFO - Best PCKh is 73.8928 at 60 epoch.
+2022-07-21 07:44:22,664 - mmpose - INFO - Epoch(val) [60][24]	Head: 90.4502, Shoulder: 88.8757, Elbow: 74.0583, Wrist: 61.6062, Hip: 79.7472, Knee: 62.9254, Ankle: 48.4643, PCKh: 73.8928, PCKh@0.1: 14.2649
+2022-07-21 07:44:44,647 - mmpose - INFO - Epoch [61][50/87]	lr: 5.000e-04, eta: 1:02:53, time: 0.439, data_time: 0.279, memory: 1599, reg_loss: -97.8798, acc_pose: 0.6975, loss: -97.8798
+2022-07-21 07:45:19,958 - mmpose - INFO - Epoch [62][50/87]	lr: 5.000e-04, eta: 1:02:20, time: 0.440, data_time: 0.258, memory: 1599, reg_loss: -97.5272, acc_pose: 0.6911, loss: -97.5272
+2022-07-21 07:45:54,716 - mmpose - INFO - Epoch [63][50/87]	lr: 5.000e-04, eta: 1:01:47, time: 0.434, data_time: 0.282, memory: 1599, reg_loss: -97.8358, acc_pose: 0.7025, loss: -97.8358
+2022-07-21 07:46:29,636 - mmpose - INFO - Epoch [64][50/87]	lr: 5.000e-04, eta: 1:01:13, time: 0.432, data_time: 0.338, memory: 1599, reg_loss: -97.9640, acc_pose: 0.6863, loss: -97.9640
+2022-07-21 07:47:04,749 - mmpose - INFO - Epoch [65][50/87]	lr: 5.000e-04, eta: 1:00:41, time: 0.433, data_time: 0.221, memory: 1599, reg_loss: -97.3970, acc_pose: 0.6986, loss: -97.3970
+2022-07-21 07:47:39,383 - mmpose - INFO - Epoch [66][50/87]	lr: 5.000e-04, eta: 1:00:08, time: 0.431, data_time: 0.244, memory: 1599, reg_loss: -97.9645, acc_pose: 0.7027, loss: -97.9645
+2022-07-21 07:48:14,297 - mmpose - INFO - Epoch [67][50/87]	lr: 5.000e-04, eta: 0:59:36, time: 0.437, data_time: 0.305, memory: 1599, reg_loss: -98.4278, acc_pose: 0.7016, loss: -98.4278
+2022-07-21 07:48:49,106 - mmpose - INFO - Epoch [68][50/87]	lr: 5.000e-04, eta: 0:59:04, time: 0.432, data_time: 0.237, memory: 1599, reg_loss: -98.6860, acc_pose: 0.7056, loss: -98.6860
+2022-07-21 07:49:23,880 - mmpose - INFO - Epoch [69][50/87]	lr: 5.000e-04, eta: 0:58:33, time: 0.432, data_time: 0.323, memory: 1599, reg_loss: -98.4050, acc_pose: 0.6983, loss: -98.4050
+2022-07-21 07:50:16,679 - mmpose - INFO - Epoch [70][50/87]	lr: 5.000e-04, eta: 0:58:38, time: 0.792, data_time: 0.104, memory: 1599, reg_loss: -99.1096, acc_pose: 0.6964, loss: -99.1096
+2022-07-21 07:50:30,125 - mmpose - INFO - Saving checkpoint at 70 epochs
+2022-07-21 07:50:59,115 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_60.pth was removed
+2022-07-21 07:50:59,176 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_70.pth.
+2022-07-21 07:50:59,176 - mmpose - INFO - Best PCKh is 74.5693 at 70 epoch.
+2022-07-21 07:50:59,176 - mmpose - INFO - Epoch(val) [70][24]	Head: 90.6548, Shoulder: 89.7758, Elbow: 75.2344, Wrist: 62.2426, Hip: 79.9030, Knee: 64.2558, Ankle: 48.7009, PCKh: 74.5693, PCKh@0.1: 14.9597
+2022-07-21 07:51:20,437 - mmpose - INFO - Epoch [71][50/87]	lr: 5.000e-04, eta: 0:58:05, time: 0.425, data_time: 0.315, memory: 1599, reg_loss: -99.1025, acc_pose: 0.6994, loss: -99.1025
+2022-07-21 07:51:55,553 - mmpose - INFO - Epoch [72][50/87]	lr: 5.000e-04, eta: 0:57:34, time: 0.434, data_time: 0.118, memory: 1599, reg_loss: -98.5156, acc_pose: 0.7052, loss: -98.5156
+2022-07-21 07:52:30,365 - mmpose - INFO - Epoch [73][50/87]	lr: 5.000e-04, eta: 0:57:03, time: 0.434, data_time: 0.289, memory: 1599, reg_loss: -99.1642, acc_pose: 0.7028, loss: -99.1642
+2022-07-21 07:53:42,994 - mmpose - INFO - Epoch [74][50/87]	lr: 5.000e-04, eta: 0:57:42, time: 1.195, data_time: 1.105, memory: 1599, reg_loss: -99.8655, acc_pose: 0.7091, loss: -99.8655
+2022-07-21 07:54:17,609 - mmpose - INFO - Epoch [75][50/87]	lr: 5.000e-04, eta: 0:57:11, time: 0.441, data_time: 0.172, memory: 1599, reg_loss: -99.0910, acc_pose: 0.7034, loss: -99.0910
+2022-07-21 07:54:52,172 - mmpose - INFO - Epoch [76][50/87]	lr: 5.000e-04, eta: 0:56:39, time: 0.430, data_time: 0.305, memory: 1599, reg_loss: -99.7868, acc_pose: 0.7122, loss: -99.7868
+2022-07-21 07:55:26,812 - mmpose - INFO - Epoch [77][50/87]	lr: 5.000e-04, eta: 0:56:07, time: 0.429, data_time: 0.302, memory: 1599, reg_loss: -100.1048, acc_pose: 0.7128, loss: -100.1048
+2022-07-21 07:56:02,017 - mmpose - INFO - Epoch [78][50/87]	lr: 5.000e-04, eta: 0:55:35, time: 0.434, data_time: 0.225, memory: 1599, reg_loss: -100.8470, acc_pose: 0.7094, loss: -100.8470
+2022-07-21 07:57:09,358 - mmpose - INFO - Epoch [79][50/87]	lr: 5.000e-04, eta: 0:55:04, time: 0.434, data_time: 0.312, memory: 1599, reg_loss: -99.8456, acc_pose: 0.7125, loss: -99.8456
+2022-07-21 07:57:44,353 - mmpose - INFO - Epoch [80][50/87]	lr: 5.000e-04, eta: 0:54:33, time: 0.431, data_time: 0.115, memory: 1599, reg_loss: -100.0029, acc_pose: 0.7154, loss: -100.0029
+2022-07-21 07:57:57,871 - mmpose - INFO - Saving checkpoint at 80 epochs
+2022-07-21 07:58:20,757 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_70.pth was removed
+2022-07-21 07:58:20,824 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_80.pth.
+2022-07-21 07:58:20,824 - mmpose - INFO - Best PCKh is 75.4072 at 80 epoch.
+2022-07-21 07:58:20,824 - mmpose - INFO - Epoch(val) [80][24]	Head: 91.3711, Shoulder: 90.4721, Elbow: 75.1663, Wrist: 63.8691, Hip: 80.6648, Knee: 65.0820, Ankle: 50.5430, PCKh: 75.4072, PCKh@0.1: 15.4723
+2022-07-21 07:58:43,070 - mmpose - INFO - Epoch [81][50/87]	lr: 5.000e-04, eta: 0:54:04, time: 0.445, data_time: 0.355, memory: 1599, reg_loss: -100.6883, acc_pose: 0.7126, loss: -100.6883
+2022-07-21 07:59:17,822 - mmpose - INFO - Epoch [82][50/87]	lr: 5.000e-04, eta: 0:53:33, time: 0.434, data_time: 0.242, memory: 1599, reg_loss: -100.5039, acc_pose: 0.7123, loss: -100.5039
+2022-07-21 08:00:19,516 - mmpose - INFO - Epoch [83][50/87]	lr: 5.000e-04, eta: 0:53:03, time: 0.438, data_time: 0.203, memory: 1599, reg_loss: -100.6044, acc_pose: 0.7165, loss: -100.6044
+2022-07-21 08:01:05,265 - mmpose - INFO - Epoch [84][50/87]	lr: 5.000e-04, eta: 0:52:34, time: 0.439, data_time: 0.149, memory: 1599, reg_loss: -100.5110, acc_pose: 0.7137, loss: -100.5110
+2022-07-21 08:01:40,322 - mmpose - INFO - Epoch [85][50/87]	lr: 5.000e-04, eta: 0:52:04, time: 0.437, data_time: 0.239, memory: 1599, reg_loss: -101.6648, acc_pose: 0.7179, loss: -101.6648
+2022-07-21 08:02:15,559 - mmpose - INFO - Epoch [86][50/87]	lr: 5.000e-04, eta: 0:51:35, time: 0.441, data_time: 0.324, memory: 1599, reg_loss: -101.6345, acc_pose: 0.7191, loss: -101.6345
+2022-07-21 08:02:51,043 - mmpose - INFO - Epoch [87][50/87]	lr: 5.000e-04, eta: 0:51:06, time: 0.438, data_time: 0.199, memory: 1599, reg_loss: -101.3726, acc_pose: 0.7175, loss: -101.3726
+2022-07-21 08:03:26,079 - mmpose - INFO - Epoch [88][50/87]	lr: 5.000e-04, eta: 0:50:37, time: 0.430, data_time: 0.257, memory: 1599, reg_loss: -101.1333, acc_pose: 0.7221, loss: -101.1333
+2022-07-21 08:04:22,987 - mmpose - INFO - Epoch [89][50/87]	lr: 5.000e-04, eta: 0:50:07, time: 0.428, data_time: 0.302, memory: 1599, reg_loss: -101.1816, acc_pose: 0.7145, loss: -101.1816
+2022-07-21 08:04:58,164 - mmpose - INFO - Epoch [90][50/87]	lr: 5.000e-04, eta: 0:49:38, time: 0.436, data_time: 0.263, memory: 1599, reg_loss: -101.2940, acc_pose: 0.7289, loss: -101.2940
+2022-07-21 08:05:11,573 - mmpose - INFO - Saving checkpoint at 90 epochs
+2022-07-21 08:05:23,429 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_80.pth was removed
+2022-07-21 08:05:23,491 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_90.pth.
+2022-07-21 08:05:23,491 - mmpose - INFO - Best PCKh is 75.6128 at 90 epoch.
+2022-07-21 08:05:23,492 - mmpose - INFO - Epoch(val) [90][24]	Head: 91.4052, Shoulder: 90.4042, Elbow: 75.6265, Wrist: 63.5281, Hip: 80.8725, Knee: 65.8474, Ankle: 51.1329, PCKh: 75.6128, PCKh@0.1: 15.3526
+2022-07-21 08:05:45,004 - mmpose - INFO - Epoch [91][50/87]	lr: 5.000e-04, eta: 0:49:09, time: 0.430, data_time: 0.336, memory: 1599, reg_loss: -101.5281, acc_pose: 0.7155, loss: -101.5281
+2022-07-21 08:06:24,274 - mmpose - INFO - Epoch [92][50/87]	lr: 5.000e-04, eta: 0:48:46, time: 0.515, data_time: 0.219, memory: 1599, reg_loss: -101.5790, acc_pose: 0.7220, loss: -101.5790
+2022-07-21 08:06:59,613 - mmpose - INFO - Epoch [93][50/87]	lr: 5.000e-04, eta: 0:48:18, time: 0.443, data_time: 0.247, memory: 1599, reg_loss: -102.5387, acc_pose: 0.7237, loss: -102.5387
+2022-07-21 08:07:34,705 - mmpose - INFO - Epoch [94][50/87]	lr: 5.000e-04, eta: 0:47:49, time: 0.431, data_time: 0.218, memory: 1599, reg_loss: -102.2505, acc_pose: 0.7247, loss: -102.2505
+2022-07-21 08:08:32,743 - mmpose - INFO - Epoch [95][50/87]	lr: 5.000e-04, eta: 0:47:21, time: 0.435, data_time: 0.227, memory: 1599, reg_loss: -101.5040, acc_pose: 0.7162, loss: -101.5040
+2022-07-21 08:09:08,670 - mmpose - INFO - Epoch [96][50/87]	lr: 5.000e-04, eta: 0:46:54, time: 0.443, data_time: 0.156, memory: 1599, reg_loss: -102.2091, acc_pose: 0.7265, loss: -102.2091
+2022-07-21 08:09:43,429 - mmpose - INFO - Epoch [97][50/87]	lr: 5.000e-04, eta: 0:46:26, time: 0.436, data_time: 0.233, memory: 1599, reg_loss: -102.6204, acc_pose: 0.7246, loss: -102.6204
+2022-07-21 08:10:18,308 - mmpose - INFO - Epoch [98][50/87]	lr: 5.000e-04, eta: 0:45:58, time: 0.434, data_time: 0.179, memory: 1599, reg_loss: -102.8632, acc_pose: 0.7304, loss: -102.8632
+2022-07-21 08:11:14,845 - mmpose - INFO - Epoch [99][50/87]	lr: 5.000e-04, eta: 0:45:55, time: 0.868, data_time: 0.137, memory: 1599, reg_loss: -102.6848, acc_pose: 0.7243, loss: -102.6848
+2022-07-21 08:11:49,676 - mmpose - INFO - Epoch [100][50/87]	lr: 5.000e-04, eta: 0:45:27, time: 0.432, data_time: 0.242, memory: 1599, reg_loss: -103.2057, acc_pose: 0.7194, loss: -103.2057
+2022-07-21 08:12:02,827 - mmpose - INFO - Saving checkpoint at 100 epochs
+2022-07-21 08:12:28,437 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_90.pth was removed
+2022-07-21 08:12:28,503 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_100.pth.
+2022-07-21 08:12:28,504 - mmpose - INFO - Best PCKh is 75.9797 at 100 epoch.
+2022-07-21 08:12:28,504 - mmpose - INFO - Epoch(val) [100][24]	Head: 91.6780, Shoulder: 90.3702, Elbow: 75.9163, Wrist: 63.9380, Hip: 82.2053, Knee: 66.1485, Ankle: 50.9446, PCKh: 75.9797, PCKh@0.1: 15.3734
+2022-07-21 08:12:50,074 - mmpose - INFO - Epoch [101][50/87]	lr: 5.000e-04, eta: 0:44:58, time: 0.431, data_time: 0.264, memory: 1599, reg_loss: -102.2151, acc_pose: 0.7278, loss: -102.2151
+2022-07-21 08:13:53,339 - mmpose - INFO - Epoch [102][50/87]	lr: 5.000e-04, eta: 0:45:01, time: 0.997, data_time: 0.892, memory: 1599, reg_loss: -103.2613, acc_pose: 0.7260, loss: -103.2613
+2022-07-21 08:14:28,061 - mmpose - INFO - Epoch [103][50/87]	lr: 5.000e-04, eta: 0:44:32, time: 0.430, data_time: 0.301, memory: 1599, reg_loss: -103.1113, acc_pose: 0.7296, loss: -103.1113
+2022-07-21 08:15:27,286 - mmpose - INFO - Epoch [104][50/87]	lr: 5.000e-04, eta: 0:44:28, time: 0.911, data_time: 0.809, memory: 1599, reg_loss: -103.6265, acc_pose: 0.7353, loss: -103.6265
+2022-07-21 08:16:01,887 - mmpose - INFO - Epoch [105][50/87]	lr: 5.000e-04, eta: 0:44:00, time: 0.430, data_time: 0.304, memory: 1599, reg_loss: -103.3532, acc_pose: 0.7312, loss: -103.3532
+2022-07-21 08:16:37,376 - mmpose - INFO - Epoch [106][50/87]	lr: 5.000e-04, eta: 0:43:31, time: 0.434, data_time: 0.268, memory: 1599, reg_loss: -103.3161, acc_pose: 0.7309, loss: -103.3161
+2022-07-21 08:17:57,174 - mmpose - INFO - Epoch [107][50/87]	lr: 5.000e-04, eta: 0:43:47, time: 1.329, data_time: 0.075, memory: 1599, reg_loss: -103.2011, acc_pose: 0.7233, loss: -103.2011
+2022-07-21 08:18:32,743 - mmpose - INFO - Epoch [108][50/87]	lr: 5.000e-04, eta: 0:43:18, time: 0.443, data_time: 0.175, memory: 1599, reg_loss: -103.1863, acc_pose: 0.7264, loss: -103.1863
+2022-07-21 08:19:36,436 - mmpose - INFO - Epoch [109][50/87]	lr: 5.000e-04, eta: 0:42:49, time: 0.433, data_time: 0.200, memory: 1599, reg_loss: -103.6005, acc_pose: 0.7263, loss: -103.6005
+2022-07-21 08:20:11,227 - mmpose - INFO - Epoch [110][50/87]	lr: 5.000e-04, eta: 0:42:20, time: 0.428, data_time: 0.253, memory: 1599, reg_loss: -103.6966, acc_pose: 0.7299, loss: -103.6966
+2022-07-21 08:20:24,703 - mmpose - INFO - Saving checkpoint at 110 epochs
+2022-07-21 08:20:57,941 - mmpose - INFO - Epoch(val) [110][24]	Head: 91.8145, Shoulder: 90.1834, Elbow: 76.6152, Wrist: 64.1440, Hip: 80.7340, Knee: 65.9073, Ankle: 51.4400, PCKh: 75.8990, PCKh@0.1: 16.3024
+2022-07-21 08:21:19,900 - mmpose - INFO - Epoch [111][50/87]	lr: 5.000e-04, eta: 0:41:52, time: 0.439, data_time: 0.349, memory: 1599, reg_loss: -103.5597, acc_pose: 0.7324, loss: -103.5597
+2022-07-21 08:22:29,906 - mmpose - INFO - Epoch [112][50/87]	lr: 5.000e-04, eta: 0:41:41, time: 0.833, data_time: 0.685, memory: 1599, reg_loss: -104.1257, acc_pose: 0.7404, loss: -104.1257
+2022-07-21 08:23:05,075 - mmpose - INFO - Epoch [113][50/87]	lr: 5.000e-04, eta: 0:41:12, time: 0.430, data_time: 0.250, memory: 1599, reg_loss: -103.6771, acc_pose: 0.7307, loss: -103.6771
+2022-07-21 08:23:40,113 - mmpose - INFO - Epoch [114][50/87]	lr: 5.000e-04, eta: 0:40:44, time: 0.435, data_time: 0.336, memory: 1599, reg_loss: -104.1305, acc_pose: 0.7306, loss: -104.1305
+2022-07-21 08:24:14,837 - mmpose - INFO - Epoch [115][50/87]	lr: 5.000e-04, eta: 0:40:15, time: 0.433, data_time: 0.267, memory: 1599, reg_loss: -103.9103, acc_pose: 0.7300, loss: -103.9103
+2022-07-21 08:24:50,806 - mmpose - INFO - Epoch [116][50/87]	lr: 5.000e-04, eta: 0:39:47, time: 0.434, data_time: 0.254, memory: 1599, reg_loss: -104.1668, acc_pose: 0.7310, loss: -104.1668
+2022-07-21 08:25:25,400 - mmpose - INFO - Epoch [117][50/87]	lr: 5.000e-04, eta: 0:39:19, time: 0.430, data_time: 0.271, memory: 1599, reg_loss: -104.3012, acc_pose: 0.7246, loss: -104.3012
+2022-07-21 08:26:00,300 - mmpose - INFO - Epoch [118][50/87]	lr: 5.000e-04, eta: 0:38:51, time: 0.431, data_time: 0.335, memory: 1599, reg_loss: -104.8222, acc_pose: 0.7435, loss: -104.8222
+2022-07-21 08:26:35,336 - mmpose - INFO - Epoch [119][50/87]	lr: 5.000e-04, eta: 0:38:23, time: 0.436, data_time: 0.225, memory: 1599, reg_loss: -104.9690, acc_pose: 0.7367, loss: -104.9690
+2022-07-21 08:27:10,221 - mmpose - INFO - Epoch [120][50/87]	lr: 5.000e-04, eta: 0:37:55, time: 0.432, data_time: 0.244, memory: 1599, reg_loss: -104.8748, acc_pose: 0.7383, loss: -104.8748
+2022-07-21 08:27:23,522 - mmpose - INFO - Saving checkpoint at 120 epochs
+2022-07-21 08:27:47,270 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_100.pth was removed
+2022-07-21 08:27:47,343 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_120.pth.
+2022-07-21 08:27:47,343 - mmpose - INFO - Best PCKh is 76.6276 at 120 epoch.
+2022-07-21 08:27:47,343 - mmpose - INFO - Epoch(val) [120][24]	Head: 92.0532, Shoulder: 90.4212, Elbow: 76.9734, Wrist: 65.1042, Hip: 81.6514, Knee: 67.2182, Ankle: 52.9755, PCKh: 76.6276, PCKh@0.1: 16.4351
+2022-07-21 08:28:08,754 - mmpose - INFO - Epoch [121][50/87]	lr: 5.000e-04, eta: 0:37:27, time: 0.428, data_time: 0.297, memory: 1599, reg_loss: -104.3782, acc_pose: 0.7384, loss: -104.3782
+2022-07-21 08:29:36,987 - mmpose - INFO - Epoch [122][50/87]	lr: 5.000e-04, eta: 0:37:00, time: 0.438, data_time: 0.250, memory: 1599, reg_loss: -105.0397, acc_pose: 0.7454, loss: -105.0397
+2022-07-21 08:30:12,455 - mmpose - INFO - Epoch [123][50/87]	lr: 5.000e-04, eta: 0:36:32, time: 0.437, data_time: 0.253, memory: 1599, reg_loss: -104.3195, acc_pose: 0.7296, loss: -104.3195
+2022-07-21 08:30:48,200 - mmpose - INFO - Epoch [124][50/87]	lr: 5.000e-04, eta: 0:36:05, time: 0.445, data_time: 0.296, memory: 1599, reg_loss: -104.4510, acc_pose: 0.7407, loss: -104.4510
+2022-07-21 08:31:23,078 - mmpose - INFO - Epoch [125][50/87]	lr: 5.000e-04, eta: 0:35:38, time: 0.431, data_time: 0.324, memory: 1599, reg_loss: -104.7106, acc_pose: 0.7423, loss: -104.7106
+2022-07-21 08:31:58,400 - mmpose - INFO - Epoch [126][50/87]	lr: 5.000e-04, eta: 0:35:10, time: 0.437, data_time: 0.265, memory: 1599, reg_loss: -104.6811, acc_pose: 0.7455, loss: -104.6811
+2022-07-21 08:32:34,058 - mmpose - INFO - Epoch [127][50/87]	lr: 5.000e-04, eta: 0:34:43, time: 0.438, data_time: 0.309, memory: 1599, reg_loss: -105.2336, acc_pose: 0.7358, loss: -105.2336
+2022-07-21 08:33:09,179 - mmpose - INFO - Epoch [128][50/87]	lr: 5.000e-04, eta: 0:34:16, time: 0.439, data_time: 0.317, memory: 1599, reg_loss: -105.2028, acc_pose: 0.7428, loss: -105.2028
+2022-07-21 08:33:43,967 - mmpose - INFO - Epoch [129][50/87]	lr: 5.000e-04, eta: 0:33:49, time: 0.431, data_time: 0.231, memory: 1599, reg_loss: -104.4376, acc_pose: 0.7343, loss: -104.4376
+2022-07-21 08:34:19,198 - mmpose - INFO - Epoch [130][50/87]	lr: 5.000e-04, eta: 0:33:22, time: 0.435, data_time: 0.197, memory: 1599, reg_loss: -105.5569, acc_pose: 0.7436, loss: -105.5569
+2022-07-21 08:34:32,481 - mmpose - INFO - Saving checkpoint at 130 epochs
+2022-07-21 08:35:17,233 - mmpose - INFO - Epoch(val) [130][24]	Head: 92.1214, Shoulder: 90.7099, Elbow: 77.4505, Wrist: 65.7199, Hip: 80.5782, Knee: 65.9694, Ankle: 52.7154, PCKh: 76.5079, PCKh@0.1: 16.9399
+2022-07-21 08:35:39,333 - mmpose - INFO - Epoch [131][50/87]	lr: 5.000e-04, eta: 0:32:56, time: 0.442, data_time: 0.184, memory: 1599, reg_loss: -105.6267, acc_pose: 0.7427, loss: -105.6267
+2022-07-21 08:36:14,213 - mmpose - INFO - Epoch [132][50/87]	lr: 5.000e-04, eta: 0:32:29, time: 0.436, data_time: 0.346, memory: 1599, reg_loss: -106.0550, acc_pose: 0.7375, loss: -106.0550
+2022-07-21 08:37:22,954 - mmpose - INFO - Epoch [133][50/87]	lr: 5.000e-04, eta: 0:32:22, time: 1.113, data_time: 0.297, memory: 1599, reg_loss: -106.0255, acc_pose: 0.7467, loss: -106.0255
+2022-07-21 08:37:57,695 - mmpose - INFO - Epoch [134][50/87]	lr: 5.000e-04, eta: 0:31:55, time: 0.442, data_time: 0.198, memory: 1599, reg_loss: -105.7722, acc_pose: 0.7481, loss: -105.7722
+2022-07-21 08:38:52,265 - mmpose - INFO - Epoch [135][50/87]	lr: 5.000e-04, eta: 0:31:28, time: 0.435, data_time: 0.192, memory: 1599, reg_loss: -105.9213, acc_pose: 0.7437, loss: -105.9213
+2022-07-21 08:39:27,031 - mmpose - INFO - Epoch [136][50/87]	lr: 5.000e-04, eta: 0:31:02, time: 0.435, data_time: 0.168, memory: 1599, reg_loss: -106.3682, acc_pose: 0.7511, loss: -106.3682
+2022-07-21 08:40:01,907 - mmpose - INFO - Epoch [137][50/87]	lr: 5.000e-04, eta: 0:30:35, time: 0.427, data_time: 0.282, memory: 1599, reg_loss: -105.9186, acc_pose: 0.7348, loss: -105.9186
+2022-07-21 08:40:37,384 - mmpose - INFO - Epoch [138][50/87]	lr: 5.000e-04, eta: 0:30:08, time: 0.439, data_time: 0.134, memory: 1599, reg_loss: -105.8924, acc_pose: 0.7424, loss: -105.8924
+2022-07-21 08:41:12,374 - mmpose - INFO - Epoch [139][50/87]	lr: 5.000e-04, eta: 0:29:41, time: 0.434, data_time: 0.286, memory: 1599, reg_loss: -105.8323, acc_pose: 0.7513, loss: -105.8323
+2022-07-21 08:41:47,891 - mmpose - INFO - Epoch [140][50/87]	lr: 5.000e-04, eta: 0:29:15, time: 0.441, data_time: 0.139, memory: 1599, reg_loss: -105.8377, acc_pose: 0.7469, loss: -105.8377
+2022-07-21 08:42:01,007 - mmpose - INFO - Saving checkpoint at 140 epochs
+2022-07-21 08:42:21,920 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_120.pth was removed
+2022-07-21 08:42:21,983 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_140.pth.
+2022-07-21 08:42:21,983 - mmpose - INFO - Best PCKh is 77.3042 at 140 epoch.
+2022-07-21 08:42:21,983 - mmpose - INFO - Epoch(val) [140][24]	Head: 92.1214, Shoulder: 90.7439, Elbow: 78.1150, Wrist: 66.7141, Hip: 82.1881, Knee: 68.0429, Ankle: 53.1648, PCKh: 77.3042, PCKh@0.1: 17.2053
+2022-07-21 08:42:43,649 - mmpose - INFO - Epoch [141][50/87]	lr: 5.000e-04, eta: 0:28:48, time: 0.433, data_time: 0.213, memory: 1599, reg_loss: -106.1702, acc_pose: 0.7428, loss: -106.1702
+2022-07-21 08:43:18,664 - mmpose - INFO - Epoch [142][50/87]	lr: 5.000e-04, eta: 0:28:22, time: 0.436, data_time: 0.329, memory: 1599, reg_loss: -106.7974, acc_pose: 0.7506, loss: -106.7974
+2022-07-21 08:43:53,767 - mmpose - INFO - Epoch [143][50/87]	lr: 5.000e-04, eta: 0:27:56, time: 0.436, data_time: 0.259, memory: 1599, reg_loss: -106.3823, acc_pose: 0.7506, loss: -106.3823
+2022-07-21 08:44:29,436 - mmpose - INFO - Epoch [144][50/87]	lr: 5.000e-04, eta: 0:27:29, time: 0.441, data_time: 0.167, memory: 1599, reg_loss: -106.3266, acc_pose: 0.7535, loss: -106.3266
+2022-07-21 08:45:05,048 - mmpose - INFO - Epoch [145][50/87]	lr: 5.000e-04, eta: 0:27:03, time: 0.440, data_time: 0.279, memory: 1599, reg_loss: -106.7024, acc_pose: 0.7418, loss: -106.7024
+2022-07-21 08:45:40,076 - mmpose - INFO - Epoch [146][50/87]	lr: 5.000e-04, eta: 0:26:37, time: 0.433, data_time: 0.220, memory: 1599, reg_loss: -106.8696, acc_pose: 0.7474, loss: -106.8696
+2022-07-21 08:46:15,210 - mmpose - INFO - Epoch [147][50/87]	lr: 5.000e-04, eta: 0:26:11, time: 0.441, data_time: 0.317, memory: 1599, reg_loss: -106.5906, acc_pose: 0.7493, loss: -106.5906
+2022-07-21 08:47:25,938 - mmpose - INFO - Epoch [148][50/87]	lr: 5.000e-04, eta: 0:26:00, time: 1.154, data_time: 0.253, memory: 1599, reg_loss: -106.6733, acc_pose: 0.7532, loss: -106.6733
+2022-07-21 08:48:00,914 - mmpose - INFO - Epoch [149][50/87]	lr: 5.000e-04, eta: 0:25:34, time: 0.433, data_time: 0.234, memory: 1599, reg_loss: -107.4412, acc_pose: 0.7530, loss: -107.4412
+2022-07-21 08:48:36,274 - mmpose - INFO - Epoch [150][50/87]	lr: 5.000e-04, eta: 0:25:08, time: 0.439, data_time: 0.231, memory: 1599, reg_loss: -106.8326, acc_pose: 0.7503, loss: -106.8326
+2022-07-21 08:48:49,530 - mmpose - INFO - Saving checkpoint at 150 epochs
+2022-07-21 08:49:28,073 - mmpose - INFO - Epoch(val) [150][24]	Head: 92.1896, Shoulder: 90.6080, Elbow: 77.6719, Wrist: 66.2855, Hip: 81.0628, Knee: 67.4392, Ankle: 53.1177, PCKh: 76.9269, PCKh@0.1: 16.5288
+2022-07-21 08:49:58,369 - mmpose - INFO - Epoch [151][50/87]	lr: 5.000e-04, eta: 0:24:45, time: 0.606, data_time: 0.503, memory: 1599, reg_loss: -106.5889, acc_pose: 0.7543, loss: -106.5889
+2022-07-21 08:50:59,593 - mmpose - INFO - Epoch [152][50/87]	lr: 5.000e-04, eta: 0:24:29, time: 0.963, data_time: 0.143, memory: 1599, reg_loss: -106.9053, acc_pose: 0.7522, loss: -106.9053
+2022-07-21 08:51:34,479 - mmpose - INFO - Epoch [153][50/87]	lr: 5.000e-04, eta: 0:24:02, time: 0.436, data_time: 0.309, memory: 1599, reg_loss: -106.9695, acc_pose: 0.7528, loss: -106.9695
+2022-07-21 08:52:09,802 - mmpose - INFO - Epoch [154][50/87]	lr: 5.000e-04, eta: 0:23:36, time: 0.433, data_time: 0.261, memory: 1599, reg_loss: -106.8685, acc_pose: 0.7516, loss: -106.8685
+2022-07-21 08:52:44,997 - mmpose - INFO - Epoch [155][50/87]	lr: 5.000e-04, eta: 0:23:10, time: 0.436, data_time: 0.189, memory: 1599, reg_loss: -106.9478, acc_pose: 0.7467, loss: -106.9478
+2022-07-21 08:53:40,951 - mmpose - INFO - Epoch [156][50/87]	lr: 5.000e-04, eta: 0:22:43, time: 0.432, data_time: 0.319, memory: 1599, reg_loss: -107.1421, acc_pose: 0.7523, loss: -107.1421
+2022-07-21 08:54:28,870 - mmpose - INFO - Epoch [157][50/87]	lr: 5.000e-04, eta: 0:22:22, time: 0.695, data_time: 0.233, memory: 1599, reg_loss: -107.3327, acc_pose: 0.7549, loss: -107.3327
+2022-07-21 08:55:03,333 - mmpose - INFO - Epoch [158][50/87]	lr: 5.000e-04, eta: 0:21:55, time: 0.433, data_time: 0.341, memory: 1599, reg_loss: -107.0979, acc_pose: 0.7541, loss: -107.0979
+2022-07-21 08:55:39,077 - mmpose - INFO - Epoch [159][50/87]	lr: 5.000e-04, eta: 0:21:29, time: 0.442, data_time: 0.267, memory: 1599, reg_loss: -107.4664, acc_pose: 0.7520, loss: -107.4664
+2022-07-21 08:56:13,994 - mmpose - INFO - Epoch [160][50/87]	lr: 5.000e-04, eta: 0:21:03, time: 0.434, data_time: 0.152, memory: 1599, reg_loss: -107.7188, acc_pose: 0.7522, loss: -107.7188
+2022-07-21 08:56:27,337 - mmpose - INFO - Saving checkpoint at 160 epochs
+2022-07-21 08:56:48,818 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_140.pth was removed
+2022-07-21 08:56:48,898 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_160.pth.
+2022-07-21 08:56:48,898 - mmpose - INFO - Best PCKh is 77.5150 at 160 epoch.
+2022-07-21 08:56:48,898 - mmpose - INFO - Epoch(val) [160][24]	Head: 92.1896, Shoulder: 90.8628, Elbow: 78.4218, Wrist: 66.8344, Hip: 82.5342, Knee: 69.0720, Ankle: 52.6212, PCKh: 77.5150, PCKh@0.1: 17.6477
+2022-07-21 08:57:10,255 - mmpose - INFO - Epoch [161][50/87]	lr: 5.000e-04, eta: 0:20:37, time: 0.427, data_time: 0.325, memory: 1599, reg_loss: -107.9002, acc_pose: 0.7536, loss: -107.9002
+2022-07-21 08:57:46,062 - mmpose - INFO - Epoch [162][50/87]	lr: 5.000e-04, eta: 0:20:11, time: 0.442, data_time: 0.231, memory: 1599, reg_loss: -107.6407, acc_pose: 0.7550, loss: -107.6407
+2022-07-21 08:58:20,894 - mmpose - INFO - Epoch [163][50/87]	lr: 5.000e-04, eta: 0:19:45, time: 0.429, data_time: 0.264, memory: 1599, reg_loss: -107.6135, acc_pose: 0.7570, loss: -107.6135
+2022-07-21 08:58:56,304 - mmpose - INFO - Epoch [164][50/87]	lr: 5.000e-04, eta: 0:19:19, time: 0.434, data_time: 0.202, memory: 1599, reg_loss: -107.8681, acc_pose: 0.7560, loss: -107.8681
+2022-07-21 08:59:31,287 - mmpose - INFO - Epoch [165][50/87]	lr: 5.000e-04, eta: 0:18:53, time: 0.438, data_time: 0.277, memory: 1599, reg_loss: -107.9678, acc_pose: 0.7523, loss: -107.9678
+2022-07-21 09:00:06,701 - mmpose - INFO - Epoch [166][50/87]	lr: 5.000e-04, eta: 0:18:27, time: 0.437, data_time: 0.273, memory: 1599, reg_loss: -108.2036, acc_pose: 0.7612, loss: -108.2036
+2022-07-21 09:00:41,517 - mmpose - INFO - Epoch [167][50/87]	lr: 5.000e-04, eta: 0:18:02, time: 0.434, data_time: 0.305, memory: 1599, reg_loss: -108.5421, acc_pose: 0.7620, loss: -108.5421
+2022-07-21 09:01:16,379 - mmpose - INFO - Epoch [168][50/87]	lr: 5.000e-04, eta: 0:17:36, time: 0.429, data_time: 0.228, memory: 1599, reg_loss: -107.8476, acc_pose: 0.7569, loss: -107.8476
+2022-07-21 09:02:56,886 - mmpose - INFO - Epoch [169][50/87]	lr: 5.000e-04, eta: 0:17:21, time: 1.312, data_time: 0.156, memory: 1599, reg_loss: -108.2947, acc_pose: 0.7546, loss: -108.2947
+2022-07-21 09:03:32,186 - mmpose - INFO - Epoch [170][50/87]	lr: 5.000e-04, eta: 0:16:55, time: 0.438, data_time: 0.351, memory: 1599, reg_loss: -108.4981, acc_pose: 0.7591, loss: -108.4981
+2022-07-21 09:03:45,726 - mmpose - INFO - Saving checkpoint at 170 epochs
+2022-07-21 09:03:50,389 - mmpose - INFO - Epoch(val) [170][24]	Head: 92.7694, Shoulder: 90.9477, Elbow: 78.0468, Wrist: 66.4759, Hip: 81.9111, Knee: 68.9501, Ankle: 53.3762, PCKh: 77.4577, PCKh@0.1: 16.9139
+2022-07-21 09:04:13,641 - mmpose - INFO - Epoch [171][50/87]	lr: 5.000e-05, eta: 0:16:29, time: 0.465, data_time: 0.181, memory: 1599, reg_loss: -109.3395, acc_pose: 0.7593, loss: -109.3395
+2022-07-21 09:04:48,283 - mmpose - INFO - Epoch [172][50/87]	lr: 5.000e-05, eta: 0:16:04, time: 0.431, data_time: 0.176, memory: 1599, reg_loss: -109.2717, acc_pose: 0.7560, loss: -109.2717
+2022-07-21 09:05:54,283 - mmpose - INFO - Epoch [173][50/87]	lr: 5.000e-05, eta: 0:15:38, time: 0.438, data_time: 0.283, memory: 1599, reg_loss: -110.6271, acc_pose: 0.7636, loss: -110.6271
+2022-07-21 09:07:06,879 - mmpose - INFO - Epoch [174][50/87]	lr: 5.000e-05, eta: 0:15:12, time: 0.436, data_time: 0.297, memory: 1599, reg_loss: -110.4842, acc_pose: 0.7711, loss: -110.4842
+2022-07-21 09:07:42,040 - mmpose - INFO - Epoch [175][50/87]	lr: 5.000e-05, eta: 0:14:46, time: 0.441, data_time: 0.272, memory: 1599, reg_loss: -110.9867, acc_pose: 0.7728, loss: -110.9867
+2022-07-21 09:08:17,064 - mmpose - INFO - Epoch [176][50/87]	lr: 5.000e-05, eta: 0:14:21, time: 0.438, data_time: 0.141, memory: 1599, reg_loss: -110.9461, acc_pose: 0.7725, loss: -110.9461
+2022-07-21 09:09:09,593 - mmpose - INFO - Epoch [177][50/87]	lr: 5.000e-05, eta: 0:13:58, time: 0.783, data_time: 0.687, memory: 1599, reg_loss: -111.3843, acc_pose: 0.7745, loss: -111.3843
+2022-07-21 09:10:03,487 - mmpose - INFO - Epoch [178][50/87]	lr: 5.000e-05, eta: 0:13:36, time: 0.810, data_time: 0.115, memory: 1599, reg_loss: -111.5719, acc_pose: 0.7725, loss: -111.5719
+2022-07-21 09:11:06,070 - mmpose - INFO - Epoch [179][50/87]	lr: 5.000e-05, eta: 0:13:10, time: 0.440, data_time: 0.300, memory: 1599, reg_loss: -110.9890, acc_pose: 0.7693, loss: -110.9890
+2022-07-21 09:11:58,747 - mmpose - INFO - Epoch [180][50/87]	lr: 5.000e-05, eta: 0:12:45, time: 0.430, data_time: 0.323, memory: 1599, reg_loss: -111.5084, acc_pose: 0.7660, loss: -111.5084
+2022-07-21 09:12:11,952 - mmpose - INFO - Saving checkpoint at 180 epochs
+2022-07-21 09:12:43,321 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_160.pth was removed
+2022-07-21 09:12:43,388 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_180.pth.
+2022-07-21 09:12:43,388 - mmpose - INFO - Best PCKh is 78.1681 at 180 epoch.
+2022-07-21 09:12:43,388 - mmpose - INFO - Epoch(val) [180][24]	Head: 92.8377, Shoulder: 91.4742, Elbow: 78.6945, Wrist: 67.2450, Hip: 82.6554, Knee: 70.1599, Ankle: 54.6996, PCKh: 78.1681, PCKh@0.1: 17.8298
+2022-07-21 09:13:04,979 - mmpose - INFO - Epoch [181][50/87]	lr: 5.000e-05, eta: 0:12:19, time: 0.432, data_time: 0.322, memory: 1599, reg_loss: -111.9902, acc_pose: 0.7749, loss: -111.9902
+2022-07-21 09:13:40,244 - mmpose - INFO - Epoch [182][50/87]	lr: 5.000e-05, eta: 0:11:53, time: 0.435, data_time: 0.289, memory: 1599, reg_loss: -111.6211, acc_pose: 0.7734, loss: -111.6211
+2022-07-21 09:14:15,398 - mmpose - INFO - Epoch [183][50/87]	lr: 5.000e-05, eta: 0:11:28, time: 0.437, data_time: 0.230, memory: 1599, reg_loss: -111.7089, acc_pose: 0.7724, loss: -111.7089
+2022-07-21 09:14:50,868 - mmpose - INFO - Epoch [184][50/87]	lr: 5.000e-05, eta: 0:11:02, time: 0.443, data_time: 0.184, memory: 1599, reg_loss: -111.4094, acc_pose: 0.7685, loss: -111.4094
+2022-07-21 09:15:25,778 - mmpose - INFO - Epoch [185][50/87]	lr: 5.000e-05, eta: 0:10:37, time: 0.439, data_time: 0.327, memory: 1599, reg_loss: -111.6743, acc_pose: 0.7725, loss: -111.6743
+2022-07-21 09:16:00,811 - mmpose - INFO - Epoch [186][50/87]	lr: 5.000e-05, eta: 0:10:11, time: 0.437, data_time: 0.261, memory: 1599, reg_loss: -112.4989, acc_pose: 0.7718, loss: -112.4989
+2022-07-21 09:16:35,527 - mmpose - INFO - Epoch [187][50/87]	lr: 5.000e-05, eta: 0:09:46, time: 0.430, data_time: 0.315, memory: 1599, reg_loss: -112.3326, acc_pose: 0.7716, loss: -112.3326
+2022-07-21 09:17:54,121 - mmpose - INFO - Epoch [188][50/87]	lr: 5.000e-05, eta: 0:09:25, time: 1.296, data_time: 1.095, memory: 1599, reg_loss: -112.1485, acc_pose: 0.7725, loss: -112.1485
+2022-07-21 09:18:29,548 - mmpose - INFO - Epoch [189][50/87]	lr: 5.000e-05, eta: 0:09:00, time: 0.444, data_time: 0.331, memory: 1599, reg_loss: -111.5240, acc_pose: 0.7730, loss: -111.5240
+2022-07-21 09:19:05,064 - mmpose - INFO - Epoch [190][50/87]	lr: 5.000e-05, eta: 0:08:34, time: 0.443, data_time: 0.316, memory: 1599, reg_loss: -112.0078, acc_pose: 0.7732, loss: -112.0078
+2022-07-21 09:19:17,985 - mmpose - INFO - Saving checkpoint at 190 epochs
+2022-07-21 09:19:44,773 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_180.pth was removed
+2022-07-21 09:19:44,870 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_190.pth.
+2022-07-21 09:19:44,870 - mmpose - INFO - Best PCKh is 78.2279 at 190 epoch.
+2022-07-21 09:19:44,871 - mmpose - INFO - Epoch(val) [190][24]	Head: 92.8718, Shoulder: 91.5761, Elbow: 79.1546, Wrist: 67.2971, Hip: 82.7073, Knee: 69.8775, Ankle: 54.6756, PCKh: 78.2279, PCKh@0.1: 18.0770
+2022-07-21 09:20:20,680 - mmpose - INFO - Epoch [191][50/87]	lr: 5.000e-05, eta: 0:08:10, time: 0.716, data_time: 0.617, memory: 1599, reg_loss: -111.9397, acc_pose: 0.7715, loss: -111.9397
+2022-07-21 09:20:56,442 - mmpose - INFO - Epoch [192][50/87]	lr: 5.000e-05, eta: 0:07:45, time: 0.453, data_time: 0.326, memory: 1599, reg_loss: -111.5180, acc_pose: 0.7719, loss: -111.5180
+2022-07-21 09:21:31,651 - mmpose - INFO - Epoch [193][50/87]	lr: 5.000e-05, eta: 0:07:19, time: 0.429, data_time: 0.329, memory: 1599, reg_loss: -111.6158, acc_pose: 0.7797, loss: -111.6158
+2022-07-21 09:22:06,849 - mmpose - INFO - Epoch [194][50/87]	lr: 5.000e-05, eta: 0:06:53, time: 0.432, data_time: 0.296, memory: 1599, reg_loss: -111.8320, acc_pose: 0.7796, loss: -111.8320
+2022-07-21 09:22:41,902 - mmpose - INFO - Epoch [195][50/87]	lr: 5.000e-05, eta: 0:06:28, time: 0.435, data_time: 0.334, memory: 1599, reg_loss: -112.6746, acc_pose: 0.7753, loss: -112.6746
+2022-07-21 09:23:17,433 - mmpose - INFO - Epoch [196][50/87]	lr: 5.000e-05, eta: 0:06:03, time: 0.437, data_time: 0.202, memory: 1599, reg_loss: -112.2593, acc_pose: 0.7815, loss: -112.2593
+2022-07-21 09:24:18,260 - mmpose - INFO - Epoch [197][50/87]	lr: 5.000e-05, eta: 0:05:37, time: 0.429, data_time: 0.310, memory: 1599, reg_loss: -112.0934, acc_pose: 0.7672, loss: -112.0934
+2022-07-21 09:24:54,036 - mmpose - INFO - Epoch [198][50/87]	lr: 5.000e-05, eta: 0:05:12, time: 0.438, data_time: 0.256, memory: 1599, reg_loss: -112.1322, acc_pose: 0.7736, loss: -112.1322
+2022-07-21 09:25:29,396 - mmpose - INFO - Epoch [199][50/87]	lr: 5.000e-05, eta: 0:04:47, time: 0.448, data_time: 0.215, memory: 1599, reg_loss: -112.0809, acc_pose: 0.7711, loss: -112.0809
+2022-07-21 09:26:04,560 - mmpose - INFO - Epoch [200][50/87]	lr: 5.000e-05, eta: 0:04:21, time: 0.432, data_time: 0.315, memory: 1599, reg_loss: -112.2228, acc_pose: 0.7753, loss: -112.2228
+2022-07-21 09:26:18,127 - mmpose - INFO - Saving checkpoint at 200 epochs
+2022-07-21 09:26:28,715 - mmpose - INFO - The previous best checkpoint /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/17_reg_shufflenetv2_mpii_256x256_dsnt_rle/best_PCKh_epoch_190.pth was removed
+2022-07-21 09:26:28,774 - mmpose - INFO - Now best checkpoint is saved as best_PCKh_epoch_200.pth.
+2022-07-21 09:26:28,774 - mmpose - INFO - Best PCKh is 78.3971 at 200 epoch.
+2022-07-21 09:26:28,774 - mmpose - INFO - Epoch(val) [200][24]	Head: 92.9059, Shoulder: 91.7629, Elbow: 79.2059, Wrist: 67.0910, Hip: 83.0708, Knee: 70.2802, Ankle: 54.9357, PCKh: 78.3971, PCKh@0.1: 18.0484
+2022-07-21 09:26:50,562 - mmpose - INFO - Epoch [201][50/87]	lr: 5.000e-06, eta: 0:03:56, time: 0.436, data_time: 0.254, memory: 1599, reg_loss: -112.6615, acc_pose: 0.7745, loss: -112.6615
+2022-07-21 09:27:25,887 - mmpose - INFO - Epoch [202][50/87]	lr: 5.000e-06, eta: 0:03:31, time: 0.444, data_time: 0.212, memory: 1599, reg_loss: -112.5775, acc_pose: 0.7804, loss: -112.5775
+2022-07-21 09:28:01,265 - mmpose - INFO - Epoch [203][50/87]	lr: 5.000e-06, eta: 0:03:06, time: 0.440, data_time: 0.293, memory: 1599, reg_loss: -113.0192, acc_pose: 0.7808, loss: -113.0192
+2022-07-21 09:28:47,125 - mmpose - INFO - Epoch [204][50/87]	lr: 5.000e-06, eta: 0:02:40, time: 0.434, data_time: 0.281, memory: 1599, reg_loss: -111.9256, acc_pose: 0.7793, loss: -111.9256
+2022-07-21 09:29:43,708 - mmpose - INFO - Epoch [205][50/87]	lr: 5.000e-06, eta: 0:02:16, time: 0.867, data_time: 0.207, memory: 1599, reg_loss: -112.2942, acc_pose: 0.7755, loss: -112.2942
+2022-07-21 09:30:30,068 - mmpose - INFO - Epoch [206][50/87]	lr: 5.000e-06, eta: 0:01:51, time: 0.663, data_time: 0.187, memory: 1599, reg_loss: -112.6118, acc_pose: 0.7734, loss: -112.6118
+2022-07-21 09:31:04,724 - mmpose - INFO - Epoch [207][50/87]	lr: 5.000e-06, eta: 0:01:26, time: 0.438, data_time: 0.251, memory: 1599, reg_loss: -113.2335, acc_pose: 0.7795, loss: -113.2335
+2022-07-21 09:31:39,361 - mmpose - INFO - Epoch [208][50/87]	lr: 5.000e-06, eta: 0:01:00, time: 0.431, data_time: 0.210, memory: 1599, reg_loss: -112.4390, acc_pose: 0.7776, loss: -112.4390
+2022-07-21 09:32:14,825 - mmpose - INFO - Epoch [209][50/87]	lr: 5.000e-06, eta: 0:00:35, time: 0.441, data_time: 0.284, memory: 1599, reg_loss: -112.1299, acc_pose: 0.7734, loss: -112.1299
+2022-07-21 09:33:52,027 - mmpose - INFO - Epoch [210][50/87]	lr: 5.000e-06, eta: 0:00:10, time: 1.677, data_time: 0.259, memory: 1599, reg_loss: -112.6088, acc_pose: 0.7722, loss: -112.6088
+2022-07-21 09:34:04,903 - mmpose - INFO - Saving checkpoint at 210 epochs
+2022-07-21 09:34:46,948 - mmpose - INFO - Epoch(val) [210][24]	Head: 92.8718, Shoulder: 91.5082, Elbow: 79.3251, Wrist: 67.3653, Hip: 82.8631, Knee: 70.2604, Ankle: 54.7942, PCKh: 78.3502, PCKh@0.1: 18.2514

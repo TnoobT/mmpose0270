@@ -1,9 +1,9 @@
-2022-07-20 11:24:19,904 - mmpose - INFO - Environment info:
+2022-07-22 02:05:46,045 - mmpose - INFO - Environment info:
 ------------------------------------------------------------
 sys.platform: linux
 Python: 3.9.7 (default, Sep 16 2021, 13:09:58) [GCC 7.5.0]
 CUDA available: True
-GPU 0,1,2,3: NVIDIA GeForce RTX 3090
+GPU 0,1,2,3,4,5,6,7: NVIDIA GeForce RTX 3090
 CUDA_HOME: /usr/local/cuda-11.1
 NVCC: Cuda compilation tools, release 11.1, V11.1.74
 GCC: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
@@ -27,11 +27,11 @@ OpenCV: 4.5.5
 MMCV: 1.5.1
 MMCV Compiler: GCC 7.5
 MMCV CUDA Compiler: 11.1
-MMPose: 0.27.0+5b76a00
+MMPose: 0.27.0+34d8bdb
 ------------------------------------------------------------
 
-2022-07-20 11:24:19,905 - mmpose - INFO - Distributed training: True
-2022-07-20 11:24:23,378 - mmpose - INFO - Config:
+2022-07-22 02:05:47,266 - mmpose - INFO - Distributed training: False
+2022-07-22 02:05:57,444 - mmpose - INFO - Config:
 checkpoint_config = dict(interval=10)
 log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
 log_level = 'INFO'
@@ -212,17 +212,25 @@ channel_cfg = dict(
     inference_channel=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
 model = dict(
     type='TopDown',
-    pretrained='mmcls://shufflenet_v2',
+    pretrained=
+    'work_dirs/2_hm_shufflenetv2_mpii_256x256/best_PCKh_epoch_200.pth',
     backbone=dict(type='ShuffleNetV2', widen_factor=1.0),
     keypoint_head=dict(
-        type='DeepposeRegressionHead',
+        type='IntegralPoseRegressionHead',
         in_channels=1024,
         num_joints=16,
         loss_keypoint=dict(
-            type='RLELoss',
-            use_target_weight=True,
-            size_average=True,
-            residual=True),
+            type='DSNTRLELoss',
+            dsnt_param=dict(
+                use_target_weight=True,
+                sigma=0.25,
+                mse_weight=1,
+                js_weight=0,
+                is_dsnt=True),
+            rle_param=dict(
+                use_target_weight=True, size_average=True, residual=True),
+            dsnt_weight=1,
+            rle_weight=1),
         out_sigma=True),
     train_cfg=dict(),
     test_cfg=dict(flip_test=True))
@@ -980,58 +988,7 @@ data = dict(
                 0.089, 0.083, 0.107, 0.107, 0.083, 0.089, 0.026, 0.026, 0.026,
                 0.026, 0.062, 0.072, 0.179, 0.179, 0.072, 0.062
             ])))
-work_dir = './work_dirs/15_reg_shufflenetv2_mpii_256x256_rle'
-gpu_ids = range(0, 4)
+work_dir = './work_dirs/19_reg_shufflenetv2_mpii_256x256_dsnt_rle'
+gpu_ids = [3]
 
-2022-07-20 11:24:23,380 - mmpose - INFO - Set random seed to 2526, deterministic: False
-2022-07-20 11:24:32,417 - mmpose - INFO - Start running, host: tianfj@qwe, work_dir: /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/15_reg_shufflenetv2_mpii_256x256_rle
-2022-07-20 11:24:32,417 - mmpose - INFO - Hooks will be executed in the following order:
-before_run:
-(VERY_HIGH   ) StepLrUpdaterHook                  
-(NORMAL      ) CheckpointHook                     
-(NORMAL      ) DistEvalHook                       
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_train_epoch:
-(VERY_HIGH   ) StepLrUpdaterHook                  
-(NORMAL      ) DistSamplerSeedHook                
-(NORMAL      ) DistEvalHook                       
-(LOW         ) IterTimerHook                      
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_train_iter:
-(VERY_HIGH   ) StepLrUpdaterHook                  
-(NORMAL      ) DistEvalHook                       
-(LOW         ) IterTimerHook                      
- -------------------- 
-after_train_iter:
-(ABOVE_NORMAL) OptimizerHook                      
-(NORMAL      ) CheckpointHook                     
-(NORMAL      ) DistEvalHook                       
-(LOW         ) IterTimerHook                      
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-after_train_epoch:
-(NORMAL      ) CheckpointHook                     
-(NORMAL      ) DistEvalHook                       
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_val_epoch:
-(NORMAL      ) DistSamplerSeedHook                
-(LOW         ) IterTimerHook                      
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_val_iter:
-(LOW         ) IterTimerHook                      
- -------------------- 
-after_val_iter:
-(LOW         ) IterTimerHook                      
- -------------------- 
-after_val_epoch:
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-after_run:
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-2022-07-20 11:24:32,417 - mmpose - INFO - workflow: [('train', 1)], max: 210 epochs
-2022-07-20 11:24:32,418 - mmpose - INFO - Checkpoints will be saved to /data/tfj/workspace/python_projects/pose/mmpose0270/work_dirs/15_reg_shufflenetv2_mpii_256x256_rle by HardDiskBackend.
+2022-07-22 02:06:06,632 - mmpose - INFO - Set random seed to 2526, deterministic: False

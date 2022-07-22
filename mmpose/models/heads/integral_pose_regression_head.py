@@ -41,7 +41,7 @@ class IntegralPoseRegressionHead(nn.Module):
 
         self.train_cfg = {} if train_cfg is None else train_cfg
         self.test_cfg = {} if test_cfg is None else test_cfg
-        self.out_sigma = True
+        self.out_sigma = out_sigma
 
         if out_sigma:
             self.avg = nn.AdaptiveAvgPool2d((1, 1))

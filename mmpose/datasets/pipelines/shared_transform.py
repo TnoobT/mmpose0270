@@ -157,7 +157,7 @@ class Collect:
             results.update(results['ann_info'])
 
         data = {}
-        for key in self.keys:
+        for key in self.keys: # 收集train_pipeline里keys关键字，收集数据
             if isinstance(key, tuple):
                 assert len(key) == 2
                 key_src, key_tgt = key[:2]
@@ -166,7 +166,7 @@ class Collect:
             data[key_tgt] = results[key_src]
 
         meta = {}
-        if len(self.meta_keys) != 0:
+        if len(self.meta_keys) != 0: # 收集train_pipeline里meta_keys关键字，收集数据
             for key in self.meta_keys:
                 if isinstance(key, tuple):
                     assert len(key) == 2

@@ -13,19 +13,24 @@
             "justMyCode": false,
             "args": [
             // for train
-            "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/17_reg_shufflenetv2_mpii_256x256_dsnt_rle.py", 
-            "--gpu-id","4",
+            // "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/19_reg_shufflenetv2_mpii_256x256_dsnt_rle.py", 
+            // "--gpu-id","4",
 
             // for test
-            // "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/13_reg_shufflenetv2_mpii_256x256_dsnt.py", 
-            // "work_dirs/13_reg_shufflenetv2_mpii_256x256_dsnt/epoch_210.pth",
+            "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/18_reg_shufflenetv2_mpii_256x256_dsnt_rle.py", 
+            "work_dirs/18_reg_shufflenetv2_mpii_256x256_dsnt_rle/epoch_210.pth",
 
             // for img demo
-            // "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/16_reg_shufflenetv2_mpii_256x256_rle.py", 
-            // "work_dirs/16_reg_shufflenetv2_mpii_256x256_rle/epoch_210.pth",
+            // "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/18_reg_shufflenetv2_mpii_256x256_dsnt_rle.py", 
+            // "work_dirs/18_reg_shufflenetv2_mpii_256x256_dsnt_rle/epoch_210.pth",
             // "--img-root","/data/tfj/workspace/datasets/MPII/images",
             // "--json-file","/data/tfj/workspace/datasets/MPII/annotations/my_label/mpii_coco_format_val.json",
-            // "--out-img-root","./tmp_save"
+            // "--out-img-root","./tmp_save",
+
+            // for torch2onnx
+            // "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/18_reg_shufflenetv2_mpii_256x256_dsnt_rle.py", 
+            // "--checkpoint","work_dirs/18_reg_shufflenetv2_mpii_256x256_dsnt_rle/epoch_210.pth",    
+            // "--output-file", "18.onnx"
 
 
 
