@@ -78,7 +78,7 @@ class TopDownMpiiDataset(Kpt2dSviewRgbImgTopDownDataset):
             coco_style=False,
             test_mode=test_mode)
 
-        self.db = self._get_db()
+        self.db = self._get_db() # 读取数据
         self.image_set = set(x['image_file'] for x in self.db)
         self.num_images = len(self.image_set)
 
@@ -120,7 +120,7 @@ class TopDownMpiiDataset(Kpt2dSviewRgbImgTopDownDataset):
                 joints_3d[:, 0:2] = joints[:, 0:2] - 1
                 joints_3d_visible[:, :2] = joints_vis[:, None]
             image_file = osp.join(self.img_prefix, image_name)
-            gt_db.append({
+            gt_db.append({   # 默认添加的key: value
                 'image_file': image_file,
                 'bbox_id': bbox_id,
                 'center': center,

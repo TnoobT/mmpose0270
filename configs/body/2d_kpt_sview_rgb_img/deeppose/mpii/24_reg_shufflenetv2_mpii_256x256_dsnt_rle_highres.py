@@ -39,12 +39,13 @@ model = dict(
         num_joints=channel_cfg['num_output_channels'],
         loss_keypoint=dict(
             type='DSNTRLELoss',
-            dsnt_param=dict(use_target_weight=True, sigma = 0.25, mse_weight=1, js_weight = 1, is_dsnt = True),
+            dsnt_param=dict(use_target_weight=True, sigma = 1, mse_weight=1, js_weight = 1, is_dsnt = True),
             rle_param=dict(use_target_weight=True, size_average=True, residual=True),
             dsnt_weight = 1, 
-            rle_weight = 10,
+            rle_weight = 1
             ),
-        out_sigma=True
+        out_sigma=True,
+        out_highres = True, # 输出高分辨率特征图，bacbone输出扩大两倍，注意扩大分辨率需修改sigma
         ),
     train_cfg=dict(),
     test_cfg=dict(flip_test=True))
@@ -73,7 +74,7 @@ train_pipeline = [
         mean=[0.485, 0.456, 0.406],
         std=[0.229, 0.224, 0.225]),
     dict(type='TopDownGenerateTargetRegression'),
-    dict(  # 收集数据
+    dict(
         type='Collect',
         keys=['img', 'target', 'target_weight'],
         meta_keys=[

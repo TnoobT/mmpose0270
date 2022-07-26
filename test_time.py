@@ -8,7 +8,7 @@ import onnxruntime
 import torch
 import time
 
-onnx_path = './23.onnx'
+onnx_path = './24.onnx'
 
 times = []
 def get_onnx_output(img):

@@ -14,7 +14,10 @@ from mmpose.core.evaluation.top_down_eval import (keypoint_auc, keypoint_epe,
 from mmpose.datasets import DatasetInfo
 from mmpose.datasets.pipelines import Compose
 
-
+# 派生类得到results(不受cfg的key影响)传给这个基类，基类把得到的results(label的键值)对送给pipeline处理数据
+# pipeline里每次处理都会往results里创建一些新的键值对，然后在datasets/pipelines/shared_transform.py里
+# collect类根据cfg里的键值从results里面取出数据； 一般来说，keys里的'img', 'target', 'target_weight'直接传入网络的forword
+# meta_keys里的数据收集了一些备用数据如bbox/center/scale等等，以第四个参数传入forword
 class Kpt2dSviewRgbImgTopDownDataset(Dataset, metaclass=ABCMeta):
     """Base class for keypoint 2D top-down pose estimation with single-view RGB
     image as the input.
@@ -104,7 +107,7 @@ class Kpt2dSviewRgbImgTopDownDataset(Dataset, metaclass=ABCMeta):
 
         self.db = []
 
-        self.pipeline = Compose(self.pipeline)
+        self.pipeline = Compose(self.pipeline) # 初始化处理数据的类
 
     @staticmethod
     def _get_mapping_id_name(imgs):
@@ -280,7 +283,7 @@ class Kpt2dSviewRgbImgTopDownDataset(Dataset, metaclass=ABCMeta):
         """Get the sample given index."""
         results = copy.deepcopy(self.db[idx])
         results['ann_info'] = self.ann_info
-        return self.pipeline(results)
+        return self.pipeline(results) # 读取带数据后，处理数据; 这里输入的数据，默认有一些键值对(不受cfg影响)
 
     def _sort_and_unique_bboxes(self, kpts, key='bbox_id'):
         """sort kpts and remove the repeated ones."""

@@ -3,7 +3,7 @@ import numpy as np
 import torch.nn as nn
 import dsntnn
 import torch
-from mmcv.cnn import normal_init
+from mmcv.cnn import normal_init,build_upsample_layer
 
 from mmpose.core.evaluation import (keypoint_pck_accuracy,
                                     keypoints_from_regression)
@@ -30,6 +30,7 @@ class IntegralPoseRegressionHead(nn.Module):
                  num_joints,
                  loss_keypoint=None,
                  out_sigma=False,
+                 out_highres = False,
                  train_cfg=None,
                  test_cfg=None):
         super().__init__()
@@ -42,30 +43,45 @@ class IntegralPoseRegressionHead(nn.Module):
         self.train_cfg = {} if train_cfg is None else train_cfg
         self.test_cfg = {} if test_cfg is None else test_cfg
         self.out_sigma = out_sigma
+        self.out_highres = out_highres
 
         if out_sigma:
             self.avg = nn.AdaptiveAvgPool2d((1, 1))
             self.fc = nn.Linear(self.in_channels, self.num_joints * 2)
             self.conv = nn.Conv2d(self.in_channels, self.num_joints, kernel_size=1, bias=False)
+            if self.out_highres:
+                self.deconv = self._make_deconv_layer( 2, (256, 16), (4, 4) )
+                self.in_channels = in_channels
+                self.conv = nn.Conv2d(self.num_joints, self.num_joints, kernel_size=1, bias=False)
+                self.fc = nn.Linear(self.in_channels, self.num_joints * 2)
+                
         else:
             self.conv = nn.Conv2d(self.in_channels, self.num_joints, kernel_size=1, bias=False)
-        
-
+            if self.out_highres:
+                self.deconv = self._make_deconv_layer( 2, (256, 16), (4, 4) )
+                self.in_channels = in_channels
+                self.conv = nn.Conv2d(self.num_joints, self.num_joints, kernel_size=1, bias=False)
+                
     def forward(self, x):
         """Forward function."""
         if isinstance(x, (list, tuple)):
             assert len(x) == 1, ('DeepPoseRegressionHead only supports '
                                  'single-level feature.')
             x = x[0]
+        x_copy = x[:]
         if self.out_sigma:
+            if self.out_highres:
+                x = self.deconv(x)
             unnormalized_heatmaps = self.conv(x) # (64,16,8,8)
             heatmaps = dsntnn.flat_softmax(unnormalized_heatmaps) #  (64,16,8,8)
             # 4. Calculate the coordinates
             coords = dsntnn.dsnt(heatmaps) # (64,16,2)
-            global_feature = self.avg(x).reshape(-1,self.in_channels)
+            global_feature = self.avg(x_copy).reshape(-1,self.in_channels)
             sigma = self.fc(global_feature).reshape(-1,self.num_joints,2)
             coords = torch.cat([coords,sigma],dim = -1)
         else:
+            if self.out_highres:
+                x = self.deconv(x)
             unnormalized_heatmaps = self.conv(x)
             heatmaps = dsntnn.flat_softmax(unnormalized_heatmaps)
             # 4. Calculate the coordinates
@@ -205,3 +221,54 @@ class IntegralPoseRegressionHead(nn.Module):
 
     def init_weights(self):
         normal_init(self.conv, mean=0, std=0.01, bias=0)
+
+
+    def _get_deconv_cfg(self,deconv_kernel):
+        """Get configurations for deconv layers."""
+        if deconv_kernel == 4:
+            padding = 1
+            output_padding = 0
+        elif deconv_kernel == 3:
+            padding = 1
+            output_padding = 1
+        elif deconv_kernel == 2:
+            padding = 0
+            output_padding = 0
+        else:
+            raise ValueError(f'Not supported num_kernels ({deconv_kernel}).')
+
+        return deconv_kernel, padding, output_padding
+
+
+    def _make_deconv_layer(self, num_layers, num_filters, num_kernels):
+        """Make deconv layers."""
+        if num_layers != len(num_filters):
+            error_msg = f'num_layers({num_layers}) ' \
+                        f'!= length of num_filters({len(num_filters)})'
+            raise ValueError(error_msg)
+        if num_layers != len(num_kernels):
+            error_msg = f'num_layers({num_layers}) ' \
+                        f'!= length of num_kernels({len(num_kernels)})'
+            raise ValueError(error_msg)
+
+        layers = []
+        for i in range(num_layers):
+            kernel, padding, output_padding = \
+                self._get_deconv_cfg(num_kernels[i])
+
+            planes = num_filters[i]
+            layers.append(
+                build_upsample_layer(
+                    dict(type='deconv'),
+                    in_channels=self.in_channels,
+                    out_channels=planes,
+                    kernel_size=kernel,
+                    stride=2,
+                    padding=padding,
+                    output_padding=output_padding,
+                    bias=False))
+            layers.append(nn.BatchNorm2d(planes))
+            layers.append(nn.ReLU(inplace=True))
+            self.in_channels = planes
+
+        return nn.Sequential(*layers)

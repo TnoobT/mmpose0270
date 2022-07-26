@@ -81,7 +81,7 @@ class Compose:
           dicts of transforms or transform objects.
     """
 
-    def __init__(self, transforms):
+    def __init__(self, transforms): # 初始化图像预处理的类
         assert isinstance(transforms, Sequence)
         self.transforms = []
         for transform in transforms:
