@@ -1,4 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
+import enum
 import warnings
 
 import mmcv
@@ -6,6 +7,7 @@ import numpy as np
 from mmcv.image import imwrite
 from mmcv.utils.misc import deprecated_api_warning
 from mmcv.visualization.image import imshow
+import torch
 
 from mmpose.core import imshow_bboxes, imshow_keypoints
 from .. import builder
@@ -53,6 +55,7 @@ class TopDown(BasePose):
         if neck is not None:
             self.neck = builder.build_neck(neck)
 
+        self.with_simcc = getattr(self.train_cfg,'with_simcc',False) # 默认不使用simcc
         self.is_dsnt = False # 是否使用dsnt  
         if keypoint_head is not None:
             keypoint_head['train_cfg'] = train_cfg
@@ -152,7 +155,16 @@ class TopDown(BasePose):
         if self.with_neck:
             output = self.neck(output)
         if self.with_keypoint:
-            if self.is_dsnt:
+            if self.with_simcc:
+                output,heatmap,pred_x,pred_y = self.keypoint_head(output)
+                # target_x = []
+                # target_y = []
+                # for idx,item in enumerate(img_metas):
+                #     target_x.append(torch.from_numpy(item['target_x']).unsqueeze(0))
+                #     target_y.append(torch.from_numpy(item['target_y']).unsqueeze(0))
+                target_x = kwargs['target_x']
+                target_y = kwargs['target_y']
+            elif self.is_dsnt:
                 output,heatmap = self.keypoint_head(output) # 关键点和热图,(64,16,2),(64,16,8,8)
             else:
                 output = self.keypoint_head(output)
@@ -160,7 +172,14 @@ class TopDown(BasePose):
         # if return loss
         losses = dict()
         if self.with_keypoint:
-            if self.is_dsnt:
+            if self.with_simcc:
+                keypoint_losses = self.keypoint_head.get_loss(
+                output, target, heatmap,target_weight,pred_x,pred_y,target_x,target_y)
+                losses.update(keypoint_losses)
+                keypoint_accuracy = self.keypoint_head.get_accuracy(
+                    output, target, target_weight)
+                losses.update(keypoint_accuracy)
+            elif self.is_dsnt:
                 keypoint_losses = self.keypoint_head.get_loss(
                 output, target,heatmap,target_weight)
                 losses.update(keypoint_losses)

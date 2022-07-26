@@ -614,3 +614,68 @@ class DSNTRLELoss(nn.Module):
         loss = self.dw*dsnt_loss + rle_loss*self.re
 
         return loss
+
+
+class KLDiscretLoss(nn.Module):
+    def __init__(self):
+        super(KLDiscretLoss, self).__init__()
+        self.LogSoftmax = nn.LogSoftmax(dim=1) #[B,LOGITS]
+        self.criterion_ = nn.KLDivLoss(reduction='none')
+ 
+    def criterion(self, dec_outs, labels):
+        scores = self.LogSoftmax(dec_outs)
+        loss = torch.mean(self.criterion_(scores, labels), dim=1) 
+        return loss
+
+    def forward(self, output_x, output_y, target_x, target_y, target_weight):
+        num_joints = output_x.size(1)
+        loss = 0
+
+        for idx in range(num_joints):
+            coord_x_pred = output_x[:,idx].squeeze()
+            coord_y_pred = output_y[:,idx].squeeze()
+            coord_x_gt = target_x[:,idx].squeeze()
+            coord_y_gt = target_y[:,idx].squeeze()
+            weight = target_weight[:,idx,0].squeeze()
+            loss += (self.criterion(coord_x_pred,coord_x_gt).mul(weight).mean()) 
+            loss += (self.criterion(coord_y_pred,coord_y_gt).mul(weight).mean())
+        return loss / num_joints 
+
+
+@LOSSES.register_module()
+class DSNTRLE_SimC_Loss(nn.Module):
+    """SmoothL1Loss loss.
+
+    Args:
+        rle损失+dsnt损失+simcc损失
+    """
+
+    def __init__(self, dsnt_param, rle_param, dsnt_weight, rle_weight, simc_weight):
+        super().__init__()
+        
+        dsnt_use_target_weight = getattr(dsnt_param,'use_target_weight',True)
+        sigma = getattr(dsnt_param,'sigma',0.25)
+        mse_weight = getattr(dsnt_param,'mse_weight',1)
+        js_weight = getattr(dsnt_param,'js_weight',1)
+        self.dsnt = DSNTLoss(dsnt_use_target_weight,sigma,mse_weight,js_weight)
+
+        rle_use_target_weight = getattr(rle_param,'use_target_weight',True)
+        size_average = getattr(rle_param,'size_average',True)
+        residual = getattr(rle_param,'residual',True)
+        self.rle = RLELoss(rle_use_target_weight,size_average,residual)
+        self.simc = KLDiscretLoss()
+    
+        self.dw = dsnt_weight
+        self.re = rle_weight
+        self.sw = simc_weight
+
+
+    def forward(self, output, target,pred_x,pred_y,target_x,target_y, heatmap,target_weight):
+      
+        dsnt_loss = self.dsnt(output[...,:2], target, heatmap, target_weight)
+        rle_loss = self.rle(output, target, target_weight)
+        cimc_loss = self.simc(pred_x, pred_y, target_x, target_y, target_weight)
+
+        loss = self.dw*dsnt_loss + rle_loss*self.re + cimc_loss*self.sw
+
+        return loss

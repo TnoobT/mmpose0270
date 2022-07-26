@@ -31,6 +31,7 @@ class IntegralPoseRegressionHead(nn.Module):
                  loss_keypoint=None,
                  out_sigma=False,
                  out_highres = False,
+                 with_simcc = False,
                  train_cfg=None,
                  test_cfg=None):
         super().__init__()
@@ -44,6 +45,11 @@ class IntegralPoseRegressionHead(nn.Module):
         self.test_cfg = {} if test_cfg is None else test_cfg
         self.out_sigma = out_sigma
         self.out_highres = out_highres
+        self.with_simcc = with_simcc
+
+        if with_simcc:
+            self.mlp_head_x = nn.Linear(32*32, int(256*2))
+            self.mlp_head_y = nn.Linear(32*32, int(256*2))
 
         if out_sigma:
             self.avg = nn.AdaptiveAvgPool2d((1, 1))
@@ -69,7 +75,7 @@ class IntegralPoseRegressionHead(nn.Module):
                                  'single-level feature.')
             x = x[0]
         x_copy = x[:]
-        if self.out_sigma:
+        if self.out_sigma: # rle
             if self.out_highres:
                 x = self.deconv(x)
             unnormalized_heatmaps = self.conv(x) # (64,16,8,8)
@@ -87,9 +93,16 @@ class IntegralPoseRegressionHead(nn.Module):
             # 4. Calculate the coordinates
             coords = dsntnn.dsnt(heatmaps)
 
+        if self.with_simcc:
+            b,c,h,w = x.shape
+            vec_x = x.view(b,self.num_joints,-1) # (64,16,32*32)
+            pred_x = self.mlp_head_x(vec_x)
+            pred_y = self.mlp_head_y(vec_x)
+            return coords,heatmaps,pred_x,pred_y
+
         return coords,heatmaps
 
-    def get_loss(self, output, target,heatmap, target_weight):
+    def get_loss(self, output, target, heatmap,target_weight,pred_x = None,pred_y= None,target_x= None,target_y= None):
         """Calculate top-down keypoint loss.
 
         Note:
@@ -106,8 +119,10 @@ class IntegralPoseRegressionHead(nn.Module):
         losses = dict()
         assert not isinstance(self.loss, nn.Sequential)
         assert target.dim() == 3 and target_weight.dim() == 3
-
-        losses['reg_loss'] = self.loss(output, target, heatmap, target_weight)
+        if self.with_simcc:
+            losses['reg_loss'] = self.loss(output, target,pred_x,pred_y,target_x,target_y, heatmap,target_weight)
+        else:
+            losses['reg_loss'] = self.loss(output, target, heatmap, target_weight)
 
         return losses
 
@@ -151,7 +166,10 @@ class IntegralPoseRegressionHead(nn.Module):
             flip_pairs (None | list[tuple()):
                 Pairs of keypoints which are mirrored.
         """
-        output,heatmap = self.forward(x)
+        if self.with_simcc:
+            output,heatmap,pred_x,pred_y = self.forward(x)
+        else:
+            output,heatmap = self.forward(x)
 
         if flip_pairs is not None:
             output_regression = fliplr_regression(

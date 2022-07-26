@@ -773,3 +773,83 @@ class TopDownGenerateTargetRegression:
         results['target_weight'] = target_weight
 
         return results
+
+@PIPELINES.register_module()
+class TopDownGenerateSimC:
+    """Generate the target regression vector .
+
+    Required key: 'joints_3d', 'joints_3d_visible', 'ann_info'. Modified key:
+    'target', and 'target_weight'.
+    """
+
+    def __init__(self):
+        pass
+
+    def _adjust_target_weight(self, joint, target_weight, tmp_size):
+        # feat_stride = self.image_size / self.heatmap_size
+        mu_x = joint[0]
+        mu_y = joint[1]
+        # Check that any part of the gaussian is in-bounds
+        ul = [int(mu_x - tmp_size), int(mu_y - tmp_size)]
+        br = [int(mu_x + tmp_size + 1), int(mu_y + tmp_size + 1)]
+        if ul[0] >= 256 or ul[1] >= 256\
+                or br[0] < 0 or br[1] < 0:
+            # If not, just return the image as is
+            target_weight = 0
+
+        return target_weight
+
+    def _generate_sa_simdr(self, joints, joints_vis):
+       
+        '''
+        :param joints:  [num_joints, 3]
+        :param joints_vis: [num_joints, 3]
+        :return: target, target_weight(1: visible, 0: invisible)
+        '''
+        target_weight = np.ones((16, 1), dtype=np.float32)
+        target_weight[:, 0] = joints_vis[:, 0]
+
+        target_x = np.zeros((16,
+                            int(256*2)),
+                            dtype=np.float32)
+        target_y = np.zeros((16,
+                            int(256*2)),
+                            dtype=np.float32)                              
+
+        self.sigma = 6
+        tmp_size = self.sigma * 3
+
+        for joint_id in range(16):
+            target_weight[joint_id] = \
+                self._adjust_target_weight(joints[joint_id], target_weight[joint_id], tmp_size)
+            if target_weight[joint_id] == 0:
+                continue
+
+            mu_x = joints[joint_id][0] * 2
+            mu_y = joints[joint_id][1] * 2
+            
+            x = np.arange(0, int(256*2), 1, np.float32)
+            y = np.arange(0, int(256*2), 1, np.float32)
+
+            v = target_weight[joint_id]
+            if v > 0.5:
+                target_x[joint_id] = (np.exp(- ((x - mu_x) ** 2) / (2 * self.sigma ** 2)))/(self.sigma*np.sqrt(np.pi*2))
+                target_y[joint_id] = (np.exp(- ((y - mu_y) ** 2) / (2 * self.sigma ** 2)))/(self.sigma*np.sqrt(np.pi*2))
+        
+        if False:
+            target_weight = np.multiply(target_weight, self.joints_weight)
+
+        return target_x, target_y, target_weight 
+
+    def __call__(self, results):
+        """Generate the target heatmap."""
+        joints_3d = results['joints_3d']
+        joints_3d_visible = results['joints_3d_visible']
+
+        target_x, target_y, target_xy_weight  = self._generate_sa_simdr(joints_3d,joints_3d_visible)
+
+        results['target_x'] = target_x
+        results['target_y'] = target_y
+        results['target_xy_weight'] = target_xy_weight
+        
+        return results
