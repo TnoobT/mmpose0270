@@ -18,6 +18,8 @@ from mmpose.datasets.pipelines import Compose
 # pipeline里每次处理都会往results里创建一些新的键值对，然后在datasets/pipelines/shared_transform.py里
 # collect类根据cfg里的键值从results里面取出数据； 一般来说，keys里的'img', 'target', 'target_weight'直接传入网络的forword
 # meta_keys里的数据收集了一些备用数据如bbox/center/scale等等，以第四个参数传入forword
+# 若keys里自己定义了一些关键字如'target_x',收集的数据会在forward_train(self, img, target, target_weight, img_metas, **kwargs):
+# 第五个参数**kwargs里，自取即可。
 class Kpt2dSviewRgbImgTopDownDataset(Dataset, metaclass=ABCMeta):
     """Base class for keypoint 2D top-down pose estimation with single-view RGB
     image as the input.
