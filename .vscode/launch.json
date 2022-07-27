@@ -13,7 +13,7 @@
             "justMyCode": false,
             "args": [
             // for train
-            "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/25_reg_shufflenetv2_mpii_256x256_tmp.py", 
+            "configs/body/2d_kpt_sview_rgb_img/deeppose/mpii/28_reg_shufflenetv2_mpii_256x256_dsnt_rle_highres.py", 
             "--gpu-id","4",
 
             // for test

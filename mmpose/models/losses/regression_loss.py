@@ -613,7 +613,7 @@ class DSNTRLELoss(nn.Module):
         rle_loss = self.rle(output, target, target_weight)
         loss = self.dw*dsnt_loss + rle_loss*self.re
 
-        return loss
+        return loss,dsnt_loss,rle_loss
 
 
 class KLDiscretLoss(nn.Module):

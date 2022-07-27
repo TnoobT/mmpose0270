@@ -59,7 +59,7 @@ class IntegralPoseRegressionHead(nn.Module):
                 self.deconv = self._make_deconv_layer( 2, (256, 16), (4, 4) )
                 self.in_channels = in_channels
                 self.conv = nn.Conv2d(self.num_joints, self.num_joints, kernel_size=1, bias=False)
-                self.fc = nn.Linear(self.in_channels, self.num_joints * 2)
+                self.fc = nn.Linear(self.in_channels, self.num_joints * 2) 
                 
         else:
             self.conv = nn.Conv2d(self.in_channels, self.num_joints, kernel_size=1, bias=False)
@@ -83,7 +83,7 @@ class IntegralPoseRegressionHead(nn.Module):
             # 4. Calculate the coordinates
             coords = dsntnn.dsnt(heatmaps) # (64,16,2)
             global_feature = self.avg(x_copy).reshape(-1,self.in_channels)
-            sigma = self.fc(global_feature).reshape(-1,self.num_joints,2)
+            sigma = self.fc(global_feature).reshape(-1,self.num_joints,2) 
             coords = torch.cat([coords,sigma],dim = -1)
         else:
             if self.out_highres:
@@ -100,7 +100,7 @@ class IntegralPoseRegressionHead(nn.Module):
             pred_y = self.mlp_head_y(vec_x)
             return coords,heatmaps,pred_x,pred_y
 
-        return coords,heatmaps
+        return coords,heatmaps 
 
     def get_loss(self, output, target, heatmap,target_weight,pred_x = None,pred_y= None,target_x= None,target_y= None):
         """Calculate top-down keypoint loss.
@@ -115,14 +115,15 @@ class IntegralPoseRegressionHead(nn.Module):
             target_weight (torch.Tensor[N, K, 2]):
                 Weights across different joint types.
         """
-
-        losses = dict()
+        # 损失直接加到字典里log就会打印出来
+        # 最终打印的有个loss = 所有 有loss关键字的数值和
+        losses = dict() 
         assert not isinstance(self.loss, nn.Sequential)
         assert target.dim() == 3 and target_weight.dim() == 3
         if self.with_simcc:
-            losses['reg_loss'] = self.loss(output, target,pred_x,pred_y,target_x,target_y, heatmap,target_weight)
+            losses['reg_loss']= self.loss(output, target,pred_x,pred_y,target_x,target_y, heatmap,target_weight)
         else:
-            losses['reg_loss'] = self.loss(output, target, heatmap, target_weight)
+            losses['reg_loss'],losses['dsnt_loss'],losses['rle_loss'] = self.loss(output, target, heatmap, target_weight)
 
         return losses
 

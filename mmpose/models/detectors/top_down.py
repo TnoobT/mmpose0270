@@ -157,11 +157,6 @@ class TopDown(BasePose):
         if self.with_keypoint:
             if self.with_simcc:
                 output,heatmap,pred_x,pred_y = self.keypoint_head(output)
-                # target_x = []
-                # target_y = []
-                # for idx,item in enumerate(img_metas):
-                #     target_x.append(torch.from_numpy(item['target_x']).unsqueeze(0))
-                #     target_y.append(torch.from_numpy(item['target_y']).unsqueeze(0))
                 target_x = kwargs['target_x']
                 target_y = kwargs['target_y']
             elif self.is_dsnt:

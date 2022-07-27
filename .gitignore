@@ -5,3 +5,4 @@
 *.mat
 tmp_save/
 __pycache__/
+*.pyc
