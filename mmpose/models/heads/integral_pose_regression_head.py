@@ -123,7 +123,7 @@ class IntegralPoseRegressionHead(nn.Module):
         if self.with_simcc:
             losses['reg_loss']= self.loss(output, target,pred_x,pred_y,target_x,target_y, heatmap,target_weight)
         else:
-            losses['reg_loss'],losses['dsnt_loss'],losses['rle_loss'] = self.loss(output, target, heatmap, target_weight)
+            losses['reg_loss'] = self.loss(output, target, heatmap, target_weight)
 
         return losses
 
