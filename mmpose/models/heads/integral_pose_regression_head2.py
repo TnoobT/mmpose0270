@@ -3,6 +3,7 @@ import numpy as np
 import torch.nn as nn
 import dsntnn
 import torch
+import torch.nn.functional as F
 from mmcv.cnn import normal_init,build_upsample_layer
 
 from mmpose.core.evaluation import (keypoint_pck_accuracy,
@@ -10,9 +11,9 @@ from mmpose.core.evaluation import (keypoint_pck_accuracy,
 from mmpose.core.post_processing import fliplr_regression
 from mmpose.models.builder import HEADS, build_loss
 
-
+# 主要用来实验 rle和simcc(dsnt求期望的形式) 的组合
 @HEADS.register_module()
-class IntegralPoseRegressionHead(nn.Module):
+class IntegralPoseRegressionHead2(nn.Module):
     """Deeppose regression head with fully connected layers.
 
     "DeepPose: Human Pose Estimation via Deep Neural Networks".
@@ -28,6 +29,8 @@ class IntegralPoseRegressionHead(nn.Module):
     def __init__(self,
                  in_channels,
                  num_joints,
+                 input_size = None,
+                 ratio = None,
                  loss_keypoint=None,
                  out_sigma=False,
                  out_highres = False,
@@ -46,27 +49,26 @@ class IntegralPoseRegressionHead(nn.Module):
         self.out_sigma = out_sigma
         self.out_highres = out_highres
         self.with_simcc = with_simcc
+        self.ratio = ratio
+        self.input_size = input_size
+        h,w = input_size[0],input_size[1]
 
         if with_simcc:
-            self.mlp_head_x = nn.Linear(32*32, int(256*2))
-            self.mlp_head_y = nn.Linear(32*32, int(256*2))
+            self.mlp_head_x = nn.Linear(8*8, int(w*ratio))
+            self.mlp_head_y = nn.Linear(8*8, int(h*ratio))
 
         if out_sigma:
             self.avg = nn.AdaptiveAvgPool2d((1, 1))
             self.fc = nn.Linear(self.in_channels, self.num_joints * 2)
             self.conv = nn.Conv2d(self.in_channels, self.num_joints, kernel_size=1, bias=False)
-            if self.out_highres:
-                self.deconv = self._make_deconv_layer( 2, (256, 16), (4, 4) )
-                self.in_channels = in_channels
-                self.conv = nn.Conv2d(self.num_joints, self.num_joints, kernel_size=1, bias=False)
-                self.fc = nn.Linear(self.in_channels, self.num_joints * 2) 
-                
-        else:
-            self.conv = nn.Conv2d(self.in_channels, self.num_joints, kernel_size=1, bias=False)
-            if self.out_highres:
-                self.deconv = self._make_deconv_layer( 2, (256, 16), (4, 4) )
-                self.in_channels = in_channels
-                self.conv = nn.Conv2d(self.num_joints, self.num_joints, kernel_size=1, bias=False)
+        if out_highres:
+            self.deconv = self._make_deconv_layer( 2, (256, 16), (4, 4) )
+            self.in_channels = in_channels
+            self.conv = nn.Conv2d(self.num_joints, self.num_joints, kernel_size=1, bias=False)
+            self.fc = nn.Linear(self.in_channels, self.num_joints * 2) 
+            self.mlp_head_x = nn.Linear(32*32, int(w*ratio))
+            self.mlp_head_y = nn.Linear(32*32, int(h*ratio))
+
                 
     def forward(self, x):
         """Forward function."""
@@ -74,33 +76,35 @@ class IntegralPoseRegressionHead(nn.Module):
             assert len(x) == 1, ('DeepPoseRegressionHead only supports '
                                  'single-level feature.')
             x = x[0]
+        
+        none = None
         x_copy = x[:]
         if self.out_sigma: # rle
             if self.out_highres:
                 x = self.deconv(x)
-            unnormalized_heatmaps = self.conv(x) # (64,16,8,8)
-            heatmaps = dsntnn.flat_softmax(unnormalized_heatmaps) #  (64,16,8,8)
-            # 4. Calculate the coordinates
-            coords = dsntnn.dsnt(heatmaps) # (64,16,2)
+            # unnormalized_heatmaps = self.conv(x) # (64,16,8,8)
+            # heatmaps = dsntnn.flat_softmax(unnormalized_heatmaps) #  (64,16,8,8)
+            # # 4. Calculate the coordinates
+            # coords = dsntnn.dsnt(heatmaps) # (64,16,2)
             global_feature = self.avg(x_copy).reshape(-1,self.in_channels)
             sigma = self.fc(global_feature).reshape(-1,self.num_joints,2) 
-            coords = torch.cat([coords,sigma],dim = -1)
-        else:
-            if self.out_highres:
-                x = self.deconv(x)
-            unnormalized_heatmaps = self.conv(x)
-            heatmaps = dsntnn.flat_softmax(unnormalized_heatmaps)
-            # 4. Calculate the coordinates
-            coords = dsntnn.dsnt(heatmaps)
 
         if self.with_simcc:
             b,c,h,w = x.shape
+            x = self.conv(x)
             vec_x = x.view(b,self.num_joints,-1) # (64,16,32*32)
-            pred_x = self.mlp_head_x(vec_x)
-            pred_y = self.mlp_head_y(vec_x)
-            return coords,heatmaps,pred_x,pred_y
+            pred_x = F.softmax(self.mlp_head_x(vec_x),dim=-1)
+            pred_y = F.softmax(self.mlp_head_y(vec_x),dim=-1)
+            range_x = torch.arange(0.0, self.input_size[1]*self.ratio, 1, dtype=pred_x.dtype, device=pred_x.device) / (self.input_size[1]*self.ratio)
+            range_y = torch.arange(0.0, self.input_size[0]*self.ratio, 1, dtype=pred_x.dtype, device=pred_x.device) / (self.input_size[0]*self.ratio)
+            simc_pred_x = torch.sum(pred_x*range_x,dim=-1).unsqueeze(-1)
+            simc_pred_y = torch.sum(pred_y*range_y,dim=-1).unsqueeze(-1)
+            simc_pred = torch.cat([simc_pred_x,simc_pred_y],dim=-1)
+            coords = torch.cat([simc_pred,sigma],dim=-1)
 
-        return coords,heatmaps 
+            return coords,none,pred_x,pred_y  # 为了不修改topdown的返回格式
+
+        return coords 
 
     def get_loss(self, output, target, heatmap,target_weight,pred_x = None,pred_y= None,target_x= None,target_y= None):
         """Calculate top-down keypoint loss.

@@ -29,25 +29,30 @@ channel_cfg = dict(
     inference_channel=list(range(16)))
 
 # model settings
+input_size = (256,256)
+ratio = 2
 model = dict(
     type='TopDown',
     pretrained='work_dirs/2_hm_shufflenetv2_mpii_256x256/best_PCKh_epoch_200.pth',
     backbone=dict(type='ShuffleNetV2', widen_factor=1.0),
     keypoint_head=dict(
-        type='IntegralPoseRegressionHead',  # 对应这个头初始化的几个参数
+        type='IntegralPoseRegressionHead2',  # 对应这个头初始化的几个参数
         in_channels=1024,
         num_joints=channel_cfg['num_output_channels'],
+        input_size = input_size,
+        ratio = ratio,
         loss_keypoint=dict(
-            type='DSNTRLELoss',
-            dsnt_param=dict(use_target_weight=True, sigma = 1, mse_weight=1, js_weight = 1, is_dsnt = True),
+            type='DSNTRLE_SimC_Loss2',
+            simc_param=dict(),
             rle_param=dict(use_target_weight=True, size_average=True, residual=True),
-            dsnt_weight = 1, 
             rle_weight = 1,
+            simc_weight = 1,
             ),
         out_sigma=True,
-        out_highres = True, # 输出高分辨率特征图，bacbone输出扩大两倍，注意扩大分辨率需修改sigma
+        out_highres = False, # 输出高分辨率特征图，bacbone输出扩大两倍，注意扩大分辨率需修改sigma
+        with_simcc = True
         ),
-    train_cfg=dict(),
+    train_cfg=dict(with_simcc = True),
     test_cfg=dict(flip_test=True))
 
 data_cfg = dict(

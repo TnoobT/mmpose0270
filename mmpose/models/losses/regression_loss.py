@@ -679,3 +679,37 @@ class DSNTRLE_SimC_Loss(nn.Module):
         loss = self.dw*dsnt_loss + rle_loss*self.re + cimc_loss*self.sw
 
         return loss
+
+
+@LOSSES.register_module()
+class DSNTRLE_SimC_Loss2(nn.Module):  # simcc也求期望得到坐标值，和dsnt类似
+    """SmoothL1Loss loss.
+
+    Args:
+        rle损失+dsnt损失+simcc损失
+    """
+
+    def __init__(self, simc_param, rle_param, rle_weight, simc_weight):
+        super().__init__()
+        
+        rle_use_target_weight = getattr(rle_param,'use_target_weight',True)
+        size_average = getattr(rle_param,'size_average',True)
+        residual = getattr(rle_param,'residual',True)
+        self.rle = RLELoss(rle_use_target_weight,size_average,residual)
+
+        self.l1 = F.l1_loss
+        self.rw = rle_weight
+        self.sw = simc_weight
+
+
+    def forward(self, output, target,pred_x,pred_y,target_x,target_y,heatmap,target_weight):
+      
+        simc_pred = output[...,:2]
+        rle_loss = self.rle(output, target, target_weight)
+        # cimc_loss = self.simc(pred_x, pred_y, target_x, target_y, target_weight)
+        
+        simc_loss = self.l1(simc_pred * target_weight,target * target_weight)
+
+        loss = rle_loss*self.rw + simc_loss*self.sw
+
+        return loss,rle_loss,simc_loss
