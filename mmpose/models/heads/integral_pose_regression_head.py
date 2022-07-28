@@ -128,7 +128,7 @@ class IntegralPoseRegressionHead(nn.Module):
         if isinstance(tmp_loss,tuple):
             losses['reg_loss'] = tmp_loss[0]
             for idx,item in enumerate(tmp_loss[1:]):
-                losses[str(idx)] = item
+                losses[str(idx+2)] = item
         else:
             losses['reg_loss'] = tmp_loss
 
