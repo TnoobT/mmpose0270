@@ -95,21 +95,21 @@ class AELoss(nn.Module):
         pull = 0
         for joints_per_person in joints:
             tmp = []
-            for joint in joints_per_person:
+            for joint in joints_per_person: # 标签tag就是关键点的位置，热图上的索引，第几张热图的第几行第几列
                 if joint[1] > 0:
-                    tmp.append(pred_tag[joint[0]])
+                    tmp.append(pred_tag[joint[0]]) # 找到tag位置上 预测的值
             if len(tmp) == 0:
                 continue
             tmp = torch.stack(tmp)
             tags.append(torch.mean(tmp, dim=0))
-            pull = pull + torch.mean((tmp - tags[-1].expand_as(tmp))**2)
+            pull = pull + torch.mean((tmp - tags[-1].expand_as(tmp))**2) # 同一个人关键点之间的tag 要相近
 
         num_tags = len(tags)
         if num_tags == 0:
             return (
                 _make_input(torch.zeros(1).float(), device=pred_tag.device),
                 _make_input(torch.zeros(1).float(), device=pred_tag.device))
-        elif num_tags == 1:
+        elif num_tags == 1: # 如果只有一个人或者没有人，tag损失为0
             return (_make_input(
                 torch.zeros(1).float(), device=pred_tag.device), pull)
 
@@ -121,7 +121,7 @@ class AELoss(nn.Module):
 
         diff = A - B
 
-        if self.loss_type == 'exp':
+        if self.loss_type == 'exp': # 不同人之间的tag要尽可能远
             diff = torch.pow(diff, 2)
             push = torch.exp(-diff)
             push = torch.sum(push) - num_tags
@@ -251,8 +251,8 @@ class MultiLossFactory(nn.Module):
         pull_losses = []
         for idx in range(len(outputs)):
             offset_feat = 0
-            if self.heatmaps_loss[idx]:
-                heatmaps_pred = outputs[idx][:, :self.num_joints]
+            if self.heatmaps_loss[idx]:  # 热图损失
+                heatmaps_pred = outputs[idx][:, :self.num_joints] # (24,17,128,128)
                 offset_feat = self.num_joints
                 heatmaps_loss = self.heatmaps_loss[idx](heatmaps_pred,
                                                         heatmaps[idx],
@@ -263,9 +263,9 @@ class MultiLossFactory(nn.Module):
                 heatmaps_losses.append(None)
 
             if self.ae_loss[idx]:
-                tags_pred = outputs[idx][:, offset_feat:]
+                tags_pred = outputs[idx][:, offset_feat:] # (24,17,128,128)
                 batch_size = tags_pred.size()[0]
-                tags_pred = tags_pred.contiguous().view(batch_size, -1, 1)
+                tags_pred = tags_pred.contiguous().view(batch_size, -1, 1) # (24,17*128*128,1)
 
                 push_loss, pull_loss = self.ae_loss[idx](tags_pred,
                                                          joints[idx])

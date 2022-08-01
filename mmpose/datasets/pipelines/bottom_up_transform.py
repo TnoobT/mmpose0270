@@ -208,7 +208,7 @@ class HeatmapGenerator:
         return hms
 
 
-class JointsEncoder:
+class JointsEncoder: # bottom to up 关节点 tag
     """Encodes the visible joints into (coordinates, score); The coordinate of
     one joint and its score are of `int` type.
 
@@ -258,7 +258,7 @@ class JointsEncoder:
                     if self.tag_per_joint:
                         visible_kpts[i][tot] = \
                             (idx * self.output_size.prod()
-                             + y * self.output_size[0] + x, 1)
+                             + y * self.output_size[0] + x, 1) # 第几张特征图的第几行第几个
                     else:
                         visible_kpts[i][tot] = (y * self.output_size[0] + x, 1)
                     tot += 1

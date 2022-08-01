@@ -171,10 +171,10 @@ class AssociativeEmbedding(BasePose):
             dict: The total loss for bottom-up
         """
 
-        output = self.backbone(img)
+        output = self.backbone(img) # (24,2048,16,16)
 
         if self.with_keypoint:
-            output = self.keypoint_head(output)
+            output = self.keypoint_head(output) #  (24,34,128,128)
 
         # if return loss
         losses = dict()

@@ -274,10 +274,10 @@ class DeconvHead(nn.Module):
 
     def forward(self, x):
         """Forward function."""
-        x = self._transform_inputs(x)
+        x = self._transform_inputs(x) # 多个特征列表
         final_outputs = []
-        x = self.deconv_layers(x)
-        y = self.final_layer(x)
+        x = self.deconv_layers(x) # (24,256,128,128)
+        y = self.final_layer(x) # (24,34,128,128)
         final_outputs.append(y)
         return final_outputs
 
