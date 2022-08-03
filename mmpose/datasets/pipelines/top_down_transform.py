@@ -291,7 +291,7 @@ class TopDownAffine:
         r = results['rotation']
 
         if self.use_udp:
-            trans = get_warp_matrix(r, c * 2.0, image_size - 1.0, s * 200.0)
+            trans = get_warp_matrix(r, c * 2.0, image_size - 1.0, s * 200.0) # -1
             if not isinstance(img, list):
                 img = cv2.warpAffine(
                     img,
@@ -408,7 +408,7 @@ class TopDownGenerateTarget:
                 target_weight[joint_id] = joints_3d_visible[joint_id, 0]
 
                 feat_stride = image_size / [W, H]
-                mu_x = joints_3d[joint_id][0] / feat_stride[0]
+                mu_x = joints_3d[joint_id][0] / feat_stride[0] # 不取整
                 mu_y = joints_3d[joint_id][1] / feat_stride[1]
                 # Check that any part of the gaussian is in-bounds
                 ul = [mu_x - tmp_size, mu_y - tmp_size]
@@ -423,7 +423,7 @@ class TopDownGenerateTarget:
                 y = np.arange(0, H, 1, np.float32)
                 y = y[:, None]
 
-                if target_weight[joint_id] > 0.5:
+                if target_weight[joint_id] > 0.5: # 特征图上高斯核没有限制范围?
                     target[joint_id] = np.exp(-((x - mu_x)**2 +
                                                 (y - mu_y)**2) /
                                               (2 * sigma**2))
@@ -561,7 +561,7 @@ class TopDownGenerateTarget:
             y = x[:, None]
 
             for joint_id in range(num_joints):
-                feat_stride = (image_size - 1.0) / (heatmap_size - 1.0)
+                feat_stride = (image_size - 1.0) / (heatmap_size - 1.0) # -1
                 mu_x = int(joints_3d[joint_id][0] / feat_stride[0] + 0.5)
                 mu_y = int(joints_3d[joint_id][1] / feat_stride[1] + 0.5)
                 # Check that any part of the gaussian is in-bounds

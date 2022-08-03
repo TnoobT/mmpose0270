@@ -13,7 +13,7 @@
             "justMyCode": false,
             "args": [
             // for train
-            "configs/body/2d_kpt_sview_rgb_img/associative_embedding/coco/res50_coco_512x512.py", 
+            "configs/body/2d_kpt_sview_rgb_img/topdown_heatmap/coco/hrnet_w32_coco_256x192_dark.py", 
             "--gpu-id","3",
 
             // for test

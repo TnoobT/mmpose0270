@@ -182,8 +182,8 @@ class HeatmapGenerator:
                        x >= self.output_size[0] or y >= self.output_size[1]:
                         continue
 
-                    if self.use_udp:
-                        x0 = 3 * sigma + 1 + pt[0] - x
+                    if self.use_udp: # udp 多了这个
+                        x0 = 3 * sigma + 1 + pt[0] - x 
                         y0 = 3 * sigma + 1 + pt[1] - y
                         g = np.exp(-((self.x - x0)**2 + (self.y - y0)**2) /
                                    (2 * sigma**2))
@@ -472,7 +472,7 @@ class BottomUpRandomAffine:
                                                     self.output_size)
 
         height, width = image.shape[:2]
-        if self.use_udp:
+        if self.use_udp: # 中心点-1
             center = np.array(((width - 1.0) / 2, (height - 1.0) / 2))
         else:
             center = np.array((width / 2, height / 2))
@@ -508,7 +508,7 @@ class BottomUpRandomAffine:
                     size_dst=np.array(
                         (_output_size[0], _output_size[1]), dtype=np.float32) -
                     1.0,
-                    size_target=scale)
+                    size_target=scale) # -1
                 mask[i] = cv2.warpAffine(
                     (mask[i] * 255).astype(np.uint8),
                     trans, (int(_output_size[0]), int(_output_size[1])),
@@ -523,7 +523,7 @@ class BottomUpRandomAffine:
                 theta=aug_rot,
                 size_input=center * 2.0,
                 size_dst=np.array((self.input_size[0], self.input_size[1]),
-                                  dtype=np.float32) - 1.0,
+                                  dtype=np.float32) - 1.0, # -1
                 size_target=scale)
             image = cv2.warpAffine(
                 image,
